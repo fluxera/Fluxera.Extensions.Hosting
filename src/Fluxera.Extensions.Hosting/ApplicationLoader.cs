@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using Fluxera.Extensions.DependencyInjection;
+	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Guards;
 	using Microsoft.Extensions.Configuration;

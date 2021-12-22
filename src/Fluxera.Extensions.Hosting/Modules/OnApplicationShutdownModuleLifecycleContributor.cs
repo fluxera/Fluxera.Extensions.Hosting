@@ -1,4 +1,4 @@
-﻿namespace Fluxera.Extensions.Hosting
+﻿namespace Fluxera.Extensions.Hosting.Modules
 {
 	using JetBrains.Annotations;
 

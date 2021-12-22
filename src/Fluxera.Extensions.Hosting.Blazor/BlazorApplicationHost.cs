@@ -4,6 +4,7 @@
 	using System.Diagnostics;
 	using System.Net.Http;
 	using System.Threading.Tasks;
+	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Components;

@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Reflection;
+	using Fluxera.Extensions.Hosting.Modules;
 	using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.FileProviders;

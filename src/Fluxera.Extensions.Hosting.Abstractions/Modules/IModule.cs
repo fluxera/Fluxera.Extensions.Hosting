@@ -1,9 +1,9 @@
-﻿namespace Fluxera.Extensions.Hosting
+﻿namespace Fluxera.Extensions.Hosting.Modules
 {
 	using JetBrains.Annotations;
 
 	/// <summary>
-	///     Contact for module.
+	///     A marker interface for modules.
 	/// </summary>
 	[PublicAPI]
 	public interface IModule

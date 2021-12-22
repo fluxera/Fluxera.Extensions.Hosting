@@ -4,6 +4,7 @@
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
+	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Hosting;
 

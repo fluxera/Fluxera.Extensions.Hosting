@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Reflection;
+	using Fluxera.Extensions.Hosting.Modules;
 
 	internal static class ModuleHelper
 	{

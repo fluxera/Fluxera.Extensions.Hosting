@@ -1,6 +1,7 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
 	using System.Collections.Generic;
+	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.DependencyInjection;

@@ -3,6 +3,7 @@
 	using System;
 	using System.Linq.Expressions;
 	using System.Runtime.CompilerServices;
+	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Guards;
 	using JetBrains.Annotations;

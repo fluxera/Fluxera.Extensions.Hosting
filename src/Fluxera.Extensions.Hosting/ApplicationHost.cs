@@ -6,6 +6,7 @@ namespace Fluxera.Extensions.Hosting
 	using System.IO;
 	using System.Reflection;
 	using System.Threading.Tasks;
+	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Guards;
 	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;

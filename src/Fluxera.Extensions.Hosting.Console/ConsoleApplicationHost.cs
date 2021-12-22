@@ -2,6 +2,7 @@
 {
 	using System.IO;
 	using System.Reflection;
+	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Hosting;
 
