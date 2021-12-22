@@ -5,6 +5,7 @@
 	using System.Net.Http;
 	using System.Threading.Tasks;
 	using Fluxera.Extensions.Hosting.Modules;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Components;
@@ -14,15 +15,23 @@
 	using Microsoft.Extensions.Hosting;
 	using Microsoft.Extensions.Logging;
 
+	/// <summary>
+	///     An abstract base class for blazor applications.
+	/// </summary>
+	/// <typeparam name="TStartupModule">The startup module type.</typeparam>
+	/// <typeparam name="TRootComponent">The root component type.</typeparam>
 	[PublicAPI]
 	public abstract class BlazorApplicationHost<TStartupModule, TRootComponent> : IApplicationHost
 		where TStartupModule : class, IModule
 		where TRootComponent : class, IComponent
 	{
 		private ApplicationHostEvents events = new ApplicationHostEvents();
-		private ILogger logger;
+		private ILogger logger = null!;
 
-		protected string[] CommandLineArgs { get; private set; }
+		/// <summary>
+		///     Gets the command line arguments.
+		/// </summary>
+		protected string[] CommandLineArgs { get; private set; } = null!;
 
 		/// <inheritdoc />
 		public async Task RunAsync(string[] args)
@@ -92,14 +101,36 @@
 			}
 		}
 
+		/// <summary>
+		///     Creates a <see cref="ILoggerFactory" />.
+		/// </summary>
+		/// <returns>The logger factory.</returns>
+		protected virtual ILoggerFactory CreateBootstrapperLoggerFactory()
+		{
+			ILoggerFactory loggerFactory = new ConsoleOutLoggerFactory();
+			return loggerFactory;
+		}
+
+		/// <summary>
+		///     Configures the <see cref="IHostBuilder" /> instance.
+		/// </summary>
+		/// <param name="builder"></param>
 		protected virtual void ConfigureHostBuilder(WebAssemblyHostBuilder builder)
 		{
 		}
 
+		/// <summary>
+		///     Configures optional event handlers on the given <see cref="ApplicationHostEvents" /> instance.
+		/// </summary>
+		/// <param name="applicationHostEvents"></param>
 		protected virtual void ConfigureApplicationHostEvents(ApplicationHostEvents applicationHostEvents)
 		{
 		}
 
+		/// <summary>
+		///     Configures the plugin modules of the application.
+		/// </summary>
+		/// <param name="context"></param>
 		protected virtual void ConfigureApplicationPlugins(IPluginConfigurationContext context)
 		{
 		}
@@ -108,12 +139,6 @@
 		{
 			ILoggerFactory loggerFactory = this.CreateBootstrapperLoggerFactory();
 			return loggerFactory.CreateLogger(ApplicationHost.LoggerName);
-		}
-
-		protected virtual ILoggerFactory CreateBootstrapperLoggerFactory()
-		{
-			ILoggerFactory loggerFactory = new ConsoleOutLoggerFactory();
-			return loggerFactory;
 		}
 	}
 }

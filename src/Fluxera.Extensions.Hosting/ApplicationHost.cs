@@ -7,6 +7,7 @@ namespace Fluxera.Extensions.Hosting
 	using System.Reflection;
 	using System.Threading.Tasks;
 	using Fluxera.Extensions.Hosting.Modules;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Guards;
 	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
@@ -17,9 +18,15 @@ namespace Fluxera.Extensions.Hosting
 	using Microsoft.Extensions.Hosting.Internal;
 	using Microsoft.Extensions.Logging;
 
+	/// <summary>
+	///     A static entry-point for modular host-based applications.
+	/// </summary>
 	[PublicAPI]
 	public static class ApplicationHost
 	{
+		/// <summary>
+		///     The logger name.
+		/// </summary>
 		public const string LoggerName = "Fluxera.Extensions.Hosting.ApplicationHost";
 
 		/// <summary>
@@ -49,20 +56,33 @@ namespace Fluxera.Extensions.Hosting
 		}
 	}
 
+
+	/// <summary>
+	///     A static entry-point for modular host-based applications.
+	/// </summary>
 	[PublicAPI]
 	public abstract class ApplicationHost<TStartupModule> : IApplicationHost
 		where TStartupModule : class, IModule
 	{
-		private IHostEnvironment environment;
+		private IHostEnvironment environment = null!;
 		private ApplicationHostEvents events = new ApplicationHostEvents();
+		private IHostBuilder hostBuilder = null!;
+		private ILogger logger = null!;
 
-		private IHostBuilder hostBuilder;
-		private ILogger logger;
+		/// <summary>
+		///     Gets the command line arguments of the application.
+		/// </summary>
+		protected string[] CommandLineArgs { get; private set; } = null!;
 
-		protected string[] CommandLineArgs { get; private set; }
-
+		/// <summary>
+		///     Gets the optional allocation loader builder function.
+		/// </summary>
 		protected virtual ApplicationLoaderBuilderFunc? ApplicationLoaderBuilder { get; }
 
+		/// <summary>
+		///     Gets the prefixes of environment variables that should be loaded into the
+		///     host initialization configuration.
+		/// </summary>
 		protected virtual IEnumerable<string> HostConfigurationEnvironmentVariablesPrefixes
 		{
 			get
@@ -135,32 +155,72 @@ namespace Fluxera.Extensions.Hosting
 			}
 		}
 
+		/// <summary>
+		///     Creates the <see cref="IHostBuilder" /> instance to use.
+		/// </summary>
+		/// <returns></returns>
 		protected virtual IHostBuilder CreateHostBuilder()
 		{
 			// Create the host builder.
 			return Host.CreateDefaultBuilder(this.CommandLineArgs);
 		}
 
+		/// <summary>
+		///     Builds the <see cref="IHost" /> instance.
+		/// </summary>
+		/// <returns></returns>
 		protected virtual IHost BuildHost()
 		{
 			// Build the host.
 			return this.hostBuilder.Build();
 		}
 
+		/// <summary>
+		///     Initializes the <see cref="IApplicationLoader" /> from the given <see cref="IHost" />.
+		/// </summary>
+		/// <param name="host"></param>
 		protected virtual void InitializeApplicationLoader(IHost host)
 		{
 			IApplicationLoader applicationLoader = host.Services.GetRequiredService<IApplicationLoader>();
 			applicationLoader.Initialize(new ApplicationLoaderInitializationContext(host.Services));
 		}
 
+		/// <summary>
+		///     Creates a <see cref="ILoggerFactory" />.
+		/// </summary>
+		/// <param name="configuration">The application configuration.</param>
+		/// <returns>The logger factory.</returns>
+		protected virtual ILoggerFactory CreateBootstrapperLoggerFactory(IConfiguration configuration)
+		{
+			ILoggerFactory loggerFactory = LoggerFactory.Create(loggingBuilder =>
+			{
+				loggingBuilder.AddConfiguration(configuration.GetSection("Logging"));
+				loggingBuilder.AddConsole();
+			});
+
+			return loggerFactory;
+		}
+
+		/// <summary>
+		///     Configures the <see cref="IHostBuilder" /> instance.
+		/// </summary>
+		/// <param name="builder"></param>
 		protected virtual void ConfigureHostBuilder(IHostBuilder builder)
 		{
 		}
 
+		/// <summary>
+		///     Configures optional event handlers on the given <see cref="ApplicationHostEvents" /> instance.
+		/// </summary>
+		/// <param name="applicationHostEvents"></param>
 		protected virtual void ConfigureApplicationHostEvents(ApplicationHostEvents applicationHostEvents)
 		{
 		}
 
+		/// <summary>
+		///     Configures the plugin modules of the application.
+		/// </summary>
+		/// <param name="context"></param>
 		protected virtual void ConfigureApplicationPlugins(IPluginConfigurationContext context)
 		{
 		}
@@ -233,17 +293,6 @@ namespace Fluxera.Extensions.Hosting
 
 			ILoggerFactory loggerFactory = this.CreateBootstrapperLoggerFactory(configuration);
 			return loggerFactory.CreateLogger(ApplicationHost.LoggerName);
-		}
-
-		protected virtual ILoggerFactory CreateBootstrapperLoggerFactory(IConfiguration configuration)
-		{
-			ILoggerFactory loggerFactory = LoggerFactory.Create(loggingBuilder =>
-			{
-				loggingBuilder.AddConfiguration(configuration.GetSection("Logging"));
-				loggingBuilder.AddConsole();
-			});
-
-			return loggerFactory;
 		}
 	}
 }

@@ -14,14 +14,14 @@
 			Guard.Against.Null(serviceProvider, nameof(serviceProvider));
 
 			this.ServiceProvider = serviceProvider;
-
 			this.Configuration = this.ServiceProvider.GetRequiredService<IConfiguration>();
 			this.Environment = this.ServiceProvider.GetRequiredService<IHostEnvironment>();
 			ILoggerFactory loggerFactory = this.ServiceProvider.GetRequiredService<ILoggerFactory>();
 			this.Logger = loggerFactory.CreateLogger(ApplicationHost.LoggerName);
 		}
 
-		public IServiceProvider ServiceProvider { get; set; }
+		/// <inheritdoc />
+		public IServiceProvider ServiceProvider { get; }
 
 		/// <inheritdoc />
 		public IConfiguration Configuration { get; }

@@ -7,11 +7,15 @@
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
 
+	/// <summary>
+	///     An abstract base class for web host applications.
+	/// </summary>
+	/// <typeparam name="TStartupModule"></typeparam>
 	[PublicAPI]
 	public abstract class WebApplicationHost<TStartupModule> : ApplicationHost<TStartupModule>
 		where TStartupModule : class, IModule
 	{
-		private WebApplicationBuilder webApplicationBuilder;
+		private WebApplicationBuilder webApplicationBuilder = null!;
 
 		/// <inheritdoc />
 		protected override ApplicationLoaderBuilderFunc ApplicationLoaderBuilder => ApplicationLoaderBuilderFuncFactory.CreateApplication;

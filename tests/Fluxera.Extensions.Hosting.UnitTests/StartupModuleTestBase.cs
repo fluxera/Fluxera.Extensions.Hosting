@@ -14,7 +14,7 @@
 	public abstract class StartupModuleTestBase<TStartupModule> : TestBase
 		where TStartupModule : class, IModule
 	{
-		protected IApplicationLoader ApplicationLoader { get; private set; }
+		protected IApplicationLoader ApplicationLoader { get; private set; } = null!;
 
 		[SetUp]
 		public void Setup()

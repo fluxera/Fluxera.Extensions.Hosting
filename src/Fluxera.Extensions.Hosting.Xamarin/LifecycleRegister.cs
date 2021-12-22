@@ -3,20 +3,20 @@
 	using System;
 	using System.Collections.Generic;
 
-	public class LifecycleRegister : ILifecycleRegister
+	internal sealed class LifecycleRegister : ILifecycleRegister
 	{
-		private readonly HashSet<Action> callbacks = new HashSet<Action>();
+		private readonly HashSet<Action> actions = new HashSet<Action>();
 
 		public void Register(Action callback)
 		{
-			this.callbacks.Add(callback);
+			this.actions.Add(callback);
 		}
 
 		public void Notify()
 		{
-			foreach(Action? callback in this.callbacks)
+			foreach(Action? action in this.actions)
 			{
-				callback.Invoke();
+				action.Invoke();
 			}
 		}
 	}

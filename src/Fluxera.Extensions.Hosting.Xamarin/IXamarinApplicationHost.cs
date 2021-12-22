@@ -3,29 +3,37 @@
 	using System;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using Microsoft.Extensions.Hosting;
+	using JetBrains.Annotations;
 
+	/// <summary>
+	///     A contract for an Xamarin Forms application host.
+	/// </summary>
+	[PublicAPI]
 	public interface IXamarinApplicationHost
 	{
 		/// <summary>
-		///     The programs configured services.
+		///     Gets the service collection.
 		/// </summary>
 		IServiceProvider Services { get; }
 
 		/// <summary>
-		///     Start the program.
+		///     Starts the application host.
 		/// </summary>
-		/// <param name="cancellationToken">Used to abort program start.</param>
-		/// <returns>A <see cref="Task" /> that will be completed when the <see cref="IHost" /> starts.</returns>
+		/// <param name="cancellationToken">The cancellation token.</param>
+		/// <returns></returns>
 		Task StartAsync(CancellationToken cancellationToken = default);
 
 		/// <summary>
-		///     Attempts to gracefully stop the program.
+		///     Tries to gracefully stop the application.
 		/// </summary>
-		/// <param name="cancellationToken">Used to indicate when stop should no longer be graceful.</param>
-		/// <returns>A <see cref="Task" /> that will be completed when the <see cref="IHost" /> stops.</returns>
+		/// <param name="cancellationToken">The cancellation token.</param>
+		/// <returns></returns>
 		Task StopAsync(CancellationToken cancellationToken = default);
 
+		/// <summary>
+		///     Builds the application instance.
+		/// </summary>
+		/// <returns></returns>
 		internal XamarinApplication Build();
 	}
 }

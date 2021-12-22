@@ -3,85 +3,21 @@
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Builder;
 
+	/// <summary>
+	///     Extension methods on the <see cref="IApplicationInitializationContext" /> type.
+	/// </summary>
 	[PublicAPI]
 	public static class ApplicationInitializationContextExtensions
 	{
+		/// <summary>
+		///     Gets the <see cref="IApplicationBuilder" /> from the <see cref="WebApplicationInitializationContext" />.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
 		public static WebApplication GetApplicationBuilder(this IApplicationInitializationContext context)
 		{
-			WebApplicationInitializationContext webContext = (WebApplicationInitializationContext) context;
+			WebApplicationInitializationContext webContext = (WebApplicationInitializationContext)context;
 			return (WebApplication)webContext.ApplicationBuilder;
 		}
-
-		//public static ApplicationInitializationContext UseDeveloperExceptionPage(
-		//	this ApplicationInitializationContext context)
-		//{
-		//	IApplicationBuilder app = context.GetApplicationBuilder();
-		//	ILogger logger = context.CreateLogger<WebModule>();
-		//	IHostEnvironment environment = context.GetHostEnvironment();
-
-		//	if (environment.IsDevelopment())
-		//	{
-		//		context.Log(logger, x => app.UseDeveloperExceptionPage());
-		//	}
-
-		//	return context;
-		//}
-
-		//public static ApplicationInitializationContext UseExceptionHandler(
-		//	this ApplicationInitializationContext context, string errorHandlingPath)
-		//{
-		//	IApplicationBuilder app = context.GetApplicationBuilder();
-		//	ILogger logger = context.CreateLogger<WebModule>();
-
-		//	context.Log(logger, x => app.UseExceptionHandler(errorHandlingPath));
-
-		//	return context;
-		//}
-
-		//public static ApplicationInitializationContext UseHsts(this ApplicationInitializationContext context)
-		//{
-		//	IApplicationBuilder app = context.GetApplicationBuilder();
-		//	ILogger logger = context.CreateLogger<WebModule>();
-
-		//	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-		//	// https://docs.microsoft.com/en-us/aspnet/core/migration/20_21?view=aspnetcore-2.1
-		//	context.Log(logger, x => app.UseHsts());
-
-		//	return context;
-		//}
-
-		//public static ApplicationInitializationContext UseForwardedHeaders(
-		//	this ApplicationInitializationContext context)
-		//{
-		//	IApplicationBuilder app = context.GetApplicationBuilder();
-		//	ILogger logger = context.CreateLogger<WebModule>();
-
-		//	context.Log(logger, x => app.UseForwardedHeaders());
-
-		//	return context;
-		//}
-
-		//public static ApplicationInitializationContext UseHttpsRedirection(
-		//	this ApplicationInitializationContext context)
-		//{
-		//	IApplicationBuilder app = context.GetApplicationBuilder();
-		//	ILogger logger = context.CreateLogger<WebModule>();
-
-		//	// https://docs.microsoft.com/en-us/aspnet/core/migration/20_21?view=aspnetcore-2.1
-		//	context.Log(logger, x => app.UseHttpsRedirection());
-
-		//	return context;
-		//}
-
-		//public static ApplicationInitializationContext UseStaticFiles(this ApplicationInitializationContext context)
-		//{
-		//	IApplicationBuilder app = context.GetApplicationBuilder();
-		//	ILogger logger = context.CreateLogger<WebModule>();
-
-		//	// https://docs.microsoft.com/en-us/aspnet/core/migration/20_21?view=aspnetcore-2.1
-		//	context.Log(logger, x => app.UseStaticFiles());
-
-		//	return context;
-		//}
 	}
 }

@@ -24,19 +24,6 @@
 			source.Insert(targetIndex, item);
 		}
 
-		public static int FindIndex<T>(this IList<T> source, Predicate<T> selector)
-		{
-			for(int i = 0; i < source.Count; ++i)
-			{
-				if(selector(source[i]))
-				{
-					return i;
-				}
-			}
-
-			return -1;
-		}
-
 		/// <summary>
 		///     Sort a list by a topological sorting, which consider their dependencies.
 		/// </summary>
@@ -47,10 +34,8 @@
 		public static IList<T> SortByDependencies<T>(this IEnumerable<T> source,
 			Func<T, IEnumerable<T>> getDependencies)
 		{
-			/*
-			 * See: http://www.codeproject.com/Articles/869059/Topological-sorting-in-Csharp
-			 *      http://en.wikipedia.org/wiki/Topological_sorting
-			 */
+			// See: http://www.codeproject.com/Articles/869059/Topological-sorting-in-Csharp
+			//      http://en.wikipedia.org/wiki/Topological_sorting
 
 			IList<T> sorted = new List<T>();
 			IDictionary<T, bool> visited = new Dictionary<T, bool>();
@@ -63,13 +48,19 @@
 			return sorted;
 		}
 
-		/// <summary>
-		/// </summary>
-		/// <typeparam name="T">The type of the members of values.</typeparam>
-		/// <param name="item">Item to resolve</param>
-		/// <param name="getDependencies">Function to resolve the dependencies</param>
-		/// <param name="sorted">List with the sorted items</param>
-		/// <param name="visited">Dictionary with the visited items</param>
+		private static int FindIndex<T>(this IList<T> source, Predicate<T> selector)
+		{
+			for(int i = 0; i < source.Count; ++i)
+			{
+				if(selector(source[i]))
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+
 		private static void SortByDependenciesVisit<T>(T item, Func<T, IEnumerable<T>> getDependencies, IList<T> sorted,
 			IDictionary<T, bool> visited)
 		{

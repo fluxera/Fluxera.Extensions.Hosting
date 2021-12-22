@@ -6,7 +6,7 @@
 	using Microsoft.Extensions.Hosting;
 
 	/// <summary>
-	///     Defines methods for objects that are managed by the host.
+	///     A contract for a hosting service.
 	/// </summary>
 	[PublicAPI]
 	public interface IXamarinHostedService : IHostedService

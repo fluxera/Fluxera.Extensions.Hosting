@@ -8,10 +8,15 @@
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Hosting;
 
+	/// <summary>
+	///     An abstract base class for windows service application hosts.
+	/// </summary>
+	/// <typeparam name="TStartupModule">The startup module type.</typeparam>
 	[PublicAPI]
 	public abstract class WindowsServiceApplicationHost<TStartupModule> : ApplicationHost<TStartupModule>
 		where TStartupModule : class, IModule
 	{
+		/// <inheritdoc />
 		protected override void ConfigureHostBuilder(IHostBuilder builder)
 		{
 			bool isService = !(Debugger.IsAttached || this.CommandLineArgs.Contains("--console"));

@@ -14,6 +14,12 @@
 	[PublicAPI]
 	public static class ServiceConfigurationContextExtensions
 	{
+		/// <summary>
+		///     Logs the service configuration action.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="addExpression"></param>
+		/// <param name="callerMemberName"></param>
 		public static void Log(this IServiceConfigurationContext context,
 			Expression<Func<IServiceCollection, IServiceCollection>> addExpression,
 			[CallerMemberName] string callerMemberName = null!)
@@ -21,7 +27,7 @@
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(addExpression, nameof(addExpression));
 
-			MethodCallExpression methodCallExpression = addExpression.Body as MethodCallExpression;
+			MethodCallExpression methodCallExpression = (addExpression.Body as MethodCallExpression)!;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -33,6 +39,12 @@
 			});
 		}
 
+		/// <summary>
+		///     Logs the service configuration action.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="addExpression"></param>
+		/// <param name="callerMemberName"></param>
 		public static void Log(this IServiceConfigurationContext context,
 			Expression<Action<IServiceCollection>> addExpression,
 			[CallerMemberName] string callerMemberName = null!)
@@ -40,7 +52,7 @@
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(addExpression, nameof(addExpression));
 
-			MethodCallExpression methodCallExpression = addExpression.Body as MethodCallExpression;
+			MethodCallExpression methodCallExpression = (addExpression.Body as MethodCallExpression)!;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -52,6 +64,14 @@
 			});
 		}
 
+		/// <summary>
+		///     Logs the service configuration action.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="context"></param>
+		/// <param name="addExpression"></param>
+		/// <param name="callerMemberName"></param>
+		/// <returns></returns>
 		public static T Log<T>(this IServiceConfigurationContext context,
 			Expression<Func<IServiceCollection, T>> addExpression,
 			[CallerMemberName] string callerMemberName = null!)
@@ -59,7 +79,7 @@
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(addExpression, nameof(addExpression));
 
-			MethodCallExpression methodCallExpression = addExpression.Body as MethodCallExpression;
+			MethodCallExpression methodCallExpression = (addExpression.Body as MethodCallExpression)!;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -68,6 +88,13 @@
 			return ExecuteTryCatch(context.Logger, () => addExpression.Compile().Invoke(context.Services));
 		}
 
+		/// <summary>
+		///     Logs the service configuration action.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="methodName"></param>
+		/// <param name="addFunction"></param>
+		/// <param name="callerMemberName"></param>
 		public static void Log(this IServiceConfigurationContext context,
 			string methodName,
 			Action<IServiceCollection> addFunction,
@@ -84,6 +111,15 @@
 			});
 		}
 
+		/// <summary>
+		///     Logs the service configuration action.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="context"></param>
+		/// <param name="methodName"></param>
+		/// <param name="addFunction"></param>
+		/// <param name="callerMemberName"></param>
+		/// <returns></returns>
 		public static T Log<T>(this IServiceConfigurationContext context,
 			string methodName,
 			Func<IServiceCollection, T> addFunction,

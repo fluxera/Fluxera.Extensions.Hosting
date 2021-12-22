@@ -11,10 +11,20 @@
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
 
+	/// <summary>
+	///     An application loader service.
+	/// </summary>
 	public class ApplicationLoader : IApplicationLoader
 	{
 		private bool isShutDown;
 
+		/// <summary>
+		///     Creates a new instance of the <see cref="ApplicationLoader" /> type.
+		/// </summary>
+		/// <param name="startupModuleType">The startup module type.</param>
+		/// <param name="services">The service collection.</param>
+		/// <param name="pluginSources">The plugin sources.</param>
+		/// <param name="modules">The modules.</param>
 		public ApplicationLoader(
 			Type startupModuleType,
 			IServiceCollection services,
@@ -39,16 +49,22 @@
 			services.AddSingleton<IApplicationLoader>(this);
 		}
 
+		/// <inheritdoc />
 		public Type StartupModuleType { get; }
 
-		public IServiceProvider ServiceProvider { get; private set; }
+		/// <inheritdoc />
+		public IServiceProvider ServiceProvider { get; private set; } = null!;
 
+		/// <inheritdoc />
 		public IReadOnlyCollection<IModuleDescriptor> Modules { get; }
 
+		/// <inheritdoc />
 		public IServiceCollection Services { get; }
 
+		/// <inheritdoc />
 		public IConfiguration Configuration => this.Services.GetSingletonInstance<IConfiguration>();
 
+		/// <inheritdoc />
 		public IPluginSourceList PluginSources { get; }
 
 		/// <inheritdoc />
@@ -99,8 +115,12 @@
 			}
 		}
 
-		protected virtual IApplicationInitializationContext CreateApplicationInitializationContext(
-			IServiceProvider serviceProvider)
+		/// <summary>
+		///     Creates the <see cref="IApplicationInitializationContext" /> instance to use.
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <returns></returns>
+		protected virtual IApplicationInitializationContext CreateApplicationInitializationContext(IServiceProvider serviceProvider)
 		{
 			return new ApplicationInitializationContext(serviceProvider);
 		}

@@ -42,13 +42,16 @@
 			// Remove all "ConfigureServices" object accessor instances, because they are only needed for configuring services.
 			IList<ServiceDescriptor> serviceDescriptors = services
 				.Where(x => x.ServiceType.IsAssignableTo<IObjectAccessor>())
-				.Where(x => ((IObjectAccessor)x.ImplementationInstance).Context == ObjectAccessorLifetime.ConfigureServices)
+				.Where(x => (x.ImplementationInstance != null) && (((IObjectAccessor)x.ImplementationInstance).Context == ObjectAccessorLifetime.ConfigureServices))
 				.ToList();
 			foreach(ServiceDescriptor serviceDescriptor in serviceDescriptors)
 			{
 				services.Remove(serviceDescriptor);
-				IObjectAccessor accessor = (IObjectAccessor)serviceDescriptor.ImplementationInstance;
-				accessor?.Dispose();
+				if(serviceDescriptor != null)
+				{
+					IObjectAccessor? accessor = serviceDescriptor.ImplementationInstance as IObjectAccessor;
+					accessor?.Dispose();
+				}
 			}
 		}
 	}

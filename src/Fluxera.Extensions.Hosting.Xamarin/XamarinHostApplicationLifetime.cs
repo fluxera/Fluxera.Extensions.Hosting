@@ -40,7 +40,7 @@
 		{
 			try
 			{
-				(this.ApplicationSleeping as LifecycleRegister).Notify();
+				(this.ApplicationSleeping as LifecycleRegister)?.Notify();
 			}
 			catch(Exception ex)
 			{
@@ -58,7 +58,7 @@
 		{
 			try
 			{
-				(this.ApplicationResuming as LifecycleRegister).Notify();
+				(this.ApplicationResuming as LifecycleRegister)?.Notify();
 			}
 			catch(Exception ex)
 			{

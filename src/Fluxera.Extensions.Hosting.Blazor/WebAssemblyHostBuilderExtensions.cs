@@ -3,6 +3,7 @@
 	using System;
 	using System.Reflection;
 	using Fluxera.Extensions.Hosting.Modules;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.FileProviders;
@@ -41,7 +42,7 @@
 			return hostBuilder;
 		}
 
-		internal static WebAssemblyHostBuilder ConfigureApplicationLoader<TStartupModule>(this WebAssemblyHostBuilder hostBuilder,
+		public static void ConfigureApplicationLoader<TStartupModule>(this WebAssemblyHostBuilder hostBuilder,
 			ILogger logger,
 			Action<IPluginConfigurationContext>? configurePlugins = null,
 			ApplicationLoaderBuilderFunc? applicationLoaderFactory = null)
@@ -49,16 +50,12 @@
 		{
 			BlazorHostEnvironment environment = new BlazorHostEnvironment(hostBuilder.HostEnvironment, Assembly.GetEntryAssembly()?.GetName().Name ?? string.Empty);
 			hostBuilder.Services.AddApplicationLoader<TStartupModule>(hostBuilder.Configuration, environment, logger, configurePlugins, applicationLoaderFactory);
-
-			return hostBuilder;
 		}
 
-		private static WebAssemblyHostBuilder UseWebAssemblyLifetime(this WebAssemblyHostBuilder hostBuilder)
+		private static void UseWebAssemblyLifetime(this WebAssemblyHostBuilder hostBuilder)
 		{
 			hostBuilder.Services.AddSingleton<IHostLifetime, WebAssemblyLifetime>();
 			hostBuilder.Services.AddSingleton<IHostApplicationLifetime, ApplicationLifetime>();
-
-			return hostBuilder;
 		}
 
 		private sealed class BlazorHostEnvironment : IHostEnvironment, IWebAssemblyHostEnvironment

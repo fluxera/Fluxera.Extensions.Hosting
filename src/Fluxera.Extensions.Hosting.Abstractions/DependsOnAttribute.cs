@@ -4,7 +4,7 @@
 	using JetBrains.Annotations;
 
 	/// <summary>
-	///     Used to define dependencies of a type.
+	///     Defines a dependency of a modules. Can be used multiple times on a module class.
 	/// </summary>
 	[PublicAPI]
 	[MeansImplicitUse]
@@ -14,15 +14,15 @@
 		/// <summary>
 		///     Creates a new instance of the <see cref="DependsOnAttribute" /> type.
 		/// </summary>
-		/// <param name="dependentType"></param>
-		public DependsOnAttribute(Type dependentType)
+		/// <param name="dependentModuleType"></param>
+		public DependsOnAttribute(Type dependentModuleType)
 		{
-			this.DependentType = dependentType;
+			this.DependentModuleType = dependentModuleType;
 		}
 
 		/// <summary>
 		///     The type of the module the decorated module depends on.
 		/// </summary>
-		public Type DependentType { get; }
+		public Type DependentModuleType { get; }
 	}
 }

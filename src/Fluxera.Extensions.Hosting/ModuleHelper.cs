@@ -31,9 +31,9 @@
 			IEnumerable<DependsOnAttribute> dependencyAttributes = moduleType.GetCustomAttributes<DependsOnAttribute>();
 			foreach(DependsOnAttribute dependencyAttribute in dependencyAttributes)
 			{
-				if(!dependencies.Contains(dependencyAttribute.DependentType))
+				if(!dependencies.Contains(dependencyAttribute.DependentModuleType))
 				{
-					dependencies.Add(dependencyAttribute.DependentType);
+					dependencies.Add(dependencyAttribute.DependentModuleType);
 				}
 			}
 

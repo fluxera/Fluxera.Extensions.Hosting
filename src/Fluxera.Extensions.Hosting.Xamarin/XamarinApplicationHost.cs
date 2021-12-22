@@ -7,6 +7,7 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using Fluxera.Extensions.Hosting.Modules;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -15,14 +16,17 @@
 	using Microsoft.Extensions.Hosting.Internal;
 	using Microsoft.Extensions.Logging;
 
+	/// <summary>
+	///     A static entry-point the a Xamarin Forms application.
+	/// </summary>
 	[PublicAPI]
 	public static class XamarinApplicationHost
 	{
 		/// <summary>
 		///     Creates the application host.
 		/// </summary>
-		/// <typeparam name="TApplicationHost">The host type.</typeparam>
-		/// <returns>A task running the application host.</returns>
+		/// <typeparam name="TApplicationHost">The type of the host.</typeparam>
+		/// <returns></returns>
 		public static XamarinApplication BuildApplication<TApplicationHost>()
 			where TApplicationHost : class, IXamarinApplicationHost, new()
 		{
@@ -31,23 +35,29 @@
 		}
 	}
 
+	/// <summary>
+	///     An abstract base class for Xamarin Forms application hosts.
+	/// </summary>
+	/// <typeparam name="TStartupModule">The type of the startup module.</typeparam>
+	/// <typeparam name="TApplication">The application type.</typeparam>
 	[PublicAPI]
 	public abstract class XamarinApplicationHost<TStartupModule, TApplication> : IXamarinApplicationHost
 		where TStartupModule : class, IModule
 		where TApplication : XamarinApplication
 	{
-		private IHostEnvironment environment;
+		private IHostEnvironment environment = null!;
 		private ApplicationHostEvents events = new ApplicationHostEvents();
-		private IHost host;
+		private IHost host = null!;
+		private IHostBuilder hostBuilder = null!;
+		private ILogger logger = null!;
 
-		private IHostBuilder hostBuilder;
-		private ILogger logger;
-
+		/// <inheritdoc />
 		public Task StartAsync(CancellationToken cancellationToken = default)
 		{
 			return this.host.StartAsync(cancellationToken);
 		}
 
+		/// <inheritdoc />
 		public Task StopAsync(CancellationToken cancellationToken = default)
 		{
 			return this.host.StopAsync(cancellationToken);
@@ -118,16 +128,45 @@
 			return application;
 		}
 
+		/// <inheritdoc />
 		public IServiceProvider Services => this.host.Services;
 
+		/// <summary>
+		///     Creates a <see cref="ILoggerFactory" />.
+		/// </summary>
+		/// <param name="configuration">The application configuration.</param>
+		/// <returns>The logger factory.</returns>
+		protected virtual ILoggerFactory CreateBootstrapperLoggerFactory(IConfiguration configuration)
+		{
+			ILoggerFactory loggerFactory = LoggerFactory.Create(loggingBuilder =>
+			{
+				loggingBuilder.AddConfiguration(configuration.GetSection("Logging"));
+				loggingBuilder.AddConsole();
+			});
+
+			return loggerFactory;
+		}
+
+		/// <summary>
+		///     Configures the <see cref="IHostBuilder" /> instance.
+		/// </summary>
+		/// <param name="builder"></param>
 		protected virtual void ConfigureHostBuilder(IHostBuilder builder)
 		{
 		}
 
+		/// <summary>
+		///     Configures optional event handlers on the given <see cref="ApplicationHostEvents" /> instance.
+		/// </summary>
+		/// <param name="applicationHostEvents"></param>
 		protected virtual void ConfigureApplicationHostEvents(ApplicationHostEvents applicationHostEvents)
 		{
 		}
 
+		/// <summary>
+		///     Configures the plugin modules of the application.
+		/// </summary>
+		/// <param name="context"></param>
 		protected virtual void ConfigureApplicationPlugins(IPluginConfigurationContext context)
 		{
 		}
@@ -199,17 +238,6 @@
 			//return NullLogger.Instance;
 		}
 
-		protected virtual ILoggerFactory CreateBootstrapperLoggerFactory(IConfiguration configuration)
-		{
-			ILoggerFactory loggerFactory = LoggerFactory.Create(loggingBuilder =>
-			{
-				loggingBuilder.AddConfiguration(configuration.GetSection("Logging"));
-				loggingBuilder.AddConsole();
-			});
-
-			return loggerFactory;
-		}
-
 		internal virtual IHostBuilder CreateHostBuilder()
 		{
 			IHostBuilder builder = XamarinHost.CreateDefaultBuilder<TApplication>();
@@ -219,8 +247,7 @@
 		internal virtual IHost BuildHost()
 		{
 			// Build the host.
-			IHost host = this.hostBuilder.Build();
-			return host;
+			return this.hostBuilder.Build();
 		}
 	}
 }

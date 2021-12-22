@@ -5,13 +5,14 @@
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using Fluxera.Utilities;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
 	using Microsoft.Extensions.Logging;
 
 	/// <summary>
-	///     Extends the <see cref="IHost" />.
+	///     Extension methods on the <see cref="IHost" /> type.
 	/// </summary>
 	[PublicAPI]
 	public static class HostExtensions
@@ -19,38 +20,35 @@
 		/// <summary>
 		///     Puts the host to sleep synchronously.
 		/// </summary>
-		/// <param name="host">The <see cref="IHost" /> that is being extended.</param>
+		/// <param name="host">The host.</param>
 		public static void Sleep(this IHost host)
 		{
-			host.SleepAsync().GetAwaiter().GetResult();
+			AsyncHelper.RunSync(() => host.SleepAsync());
 		}
 
 		/// <summary>
 		///     Signals that the <see cref="IHost" /> will be sleeping.
 		/// </summary>
-		/// <param name="host">The <see cref="IHost" /> that is being extended.</param>
+		/// <param name="host">The host.</param>
+		/// <param name="cancellationToken">The cancellation token.</param>
 		public static async Task SleepAsync(this IHost host, CancellationToken cancellationToken = default)
 		{
-			IEnumerable<IHostedService>? hostedServices = host.Services.GetService<IEnumerable<IHostedService>>();
+			IEnumerable<IHostedService> hostedServices = host.Services.GetServices<IHostedService>();
 
 			IList<Exception> exceptions = new List<Exception>();
-			if(hostedServices != null)
+			foreach(IHostedService? hostedService in hostedServices.Reverse())
 			{
-				foreach(IHostedService? hostedService in hostedServices.Reverse())
+				cancellationToken.ThrowIfCancellationRequested();
+				try
 				{
-					cancellationToken.ThrowIfCancellationRequested();
-					try
+					if(hostedService is IXamarinHostedService service)
 					{
-						// Fire IXamarinHostedService.Sleep
-						if(hostedService is IXamarinHostedService service)
-						{
-							await service.SleepAsync(cancellationToken).ConfigureAwait(false);
-						}
+						await service.SleepAsync(cancellationToken).ConfigureAwait(false);
 					}
-					catch(Exception ex)
-					{
-						exceptions.Add(ex);
-					}
+				}
+				catch(Exception ex)
+				{
+					exceptions.Add(ex);
 				}
 			}
 
@@ -72,22 +70,22 @@
 		/// <summary>
 		///     Resumes the host synchronously.
 		/// </summary>
-		/// <param name="host">The <see cref="IHost" /> that is being extended.</param>
+		/// <param name="host">The host.</param>
 		public static void Resume(this IHost host)
 		{
-			host.ResumeAsync().GetAwaiter().GetResult();
+			AsyncHelper.RunSync(() => host.ResumeAsync());
 		}
 
 		/// <summary>
 		///     Signals that the <see cref="IHost" /> will be resuming.
 		/// </summary>
-		/// <param name="host">The <see cref="IHost" /> that is being extended.</param>
+		/// <param name="host">The host.</param>
+		/// <param name="cancellationToken">The cancellation token.</param>
 		public static async Task ResumeAsync(this IHost host, CancellationToken cancellationToken = default)
 		{
-			IEnumerable<IHostedService>? hostedServices = host.Services.GetService<IEnumerable<IHostedService>>();
-			foreach(IHostedService? hostedService in hostedServices)
+			IEnumerable<IHostedService> hostedServices = host.Services.GetServices<IHostedService>();
+			foreach(IHostedService hostedService in hostedServices)
 			{
-				// Fire IXamarinHostedService.Sleep
 				if(hostedService is IXamarinHostedService service)
 				{
 					await service.ResumeAsync(cancellationToken).ConfigureAwait(false);

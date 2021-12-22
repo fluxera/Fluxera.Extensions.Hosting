@@ -15,20 +15,20 @@
 	{
 		private readonly IHostApplicationLifetime applicationLifetime;
 		private readonly IHostEnvironment hostEnvironment;
-		private readonly IServiceProvider serviceProvider;
-		private readonly IWpfContext wpfContext;
 		private readonly ILogger logger;
-		private readonly WpfApplicationLifetimeOptions options;
 
 		private readonly ManualResetEvent manualResetEvent = new ManualResetEvent(false);
-		private Thread thread;
+		private readonly WpfApplicationLifetimeOptions options;
+		private readonly IServiceProvider serviceProvider;
+		private readonly WpfContext wpfContext;
 
 		private CancellationTokenRegistration applicationStartedRegistration;
 		private CancellationTokenRegistration applicationStoppingRegistration;
+		private Thread? thread;
 
 		public WpfApplicationLifetime(
 			IServiceProvider serviceProvider,
-			IWpfContext wpfContext,
+			WpfContext wpfContext,
 			IHostApplicationLifetime applicationLifetime,
 			IHostEnvironment hostEnvironment,
 			IOptions<WpfApplicationLifetimeOptions> options,
@@ -42,9 +42,19 @@
 			this.options = options.Value;
 		}
 
+		/// <inheritdoc />
+		public void Dispose()
+		{
+			this.manualResetEvent.Set();
+			this.manualResetEvent.Dispose();
+
+			this.applicationStartedRegistration.Dispose();
+			this.applicationStoppingRegistration.Dispose();
+		}
+
 		public async Task WaitForStartAsync(CancellationToken cancellationToken)
 		{
-			if (!this.options.SuppressStatusMessages)
+			if(!this.options.SuppressStatusMessages)
 			{
 				this.applicationStartedRegistration = this.applicationLifetime.ApplicationStarted.Register(() =>
 				{
@@ -68,7 +78,7 @@
 			try
 			{
 				bool checkAccess = this.wpfContext.Dispatcher.CheckAccess();
-				if (checkAccess)
+				if(checkAccess)
 				{
 					this.wpfContext.Application.Shutdown();
 				}
@@ -77,20 +87,10 @@
 					await this.wpfContext.Dispatcher.InvokeAsync(() => this.wpfContext.Application.Shutdown());
 				}
 			}
-			catch (OperationCanceledException)
+			catch(OperationCanceledException)
 			{
 				// Intentionally left blank.
 			}
-		}
-
-		/// <inheritdoc />
-		public void Dispose()
-		{
-			this.manualResetEvent.Set();
-			this.manualResetEvent.Dispose();
-
-			this.applicationStartedRegistration.Dispose();
-			this.applicationStoppingRegistration.Dispose();
 		}
 
 		private async Task StartApplicationThreadAsync(CancellationToken cancellationToken)
@@ -98,7 +98,8 @@
 			TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
 
 			// Create and start the WPF thread.
-			this.thread = new Thread(state =>
+			// ReSharper disable once UseObjectOrCollectionInitializer
+			this.thread = new Thread(_ =>
 			{
 				// Prepare the application.
 				this.PreApplicationStart(tcs);
@@ -112,8 +113,10 @@
 
 			// Set the thread as background thread.
 			this.thread.IsBackground = true;
+
 			// Set the apartment state.
 			this.thread.SetApartmentState(ApartmentState.STA);
+
 			// Start the new UI thread.
 			this.thread.Start(this.serviceProvider);
 
@@ -144,18 +147,17 @@
 				new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher));
 
 			// Register to the WPF application exit to stop the host application.
-			application.Exit += (sender, e) =>
+			application.Exit += (_, _) =>
 			{
-				IHostApplicationLifetime hostApplicationLifetime =
-					this.serviceProvider.GetRequiredService<IHostApplicationLifetime>();
+				IHostApplicationLifetime hostApplicationLifetime = this.serviceProvider.GetRequiredService<IHostApplicationLifetime>();
 				hostApplicationLifetime.StopApplication();
 			};
 
-			application.Startup += (sender, e) =>
+			application.Startup += (_, _) =>
 			{
 				// Open the specified shell window.
 				IMainWindow? mainWindow = this.serviceProvider.GetService<IMainWindow>();
-				if (mainWindow != null)
+				if(mainWindow != null)
 				{
 					taskCompletionSource.SetResult(true);
 					mainWindow.Show();
@@ -182,21 +184,17 @@
 		{
 			try
 			{
-				// Use the provided IWpfService.
-				IEnumerable<IWpfApplicationInitializer> wpfServices =
-					this.serviceProvider.GetServices<IWpfApplicationInitializer>();
-				if (wpfServices != null)
+				// Use the provided application initializer.
+				IEnumerable<IWpfApplicationInitializer> wpfServices = this.serviceProvider.GetServices<IWpfApplicationInitializer>();
+				foreach(IWpfApplicationInitializer wpfService in wpfServices)
 				{
-					foreach (IWpfApplicationInitializer wpfService in wpfServices)
-					{
-						wpfService.Initialize(this.wpfContext.Application);
-					}
+					wpfService.Initialize(this.wpfContext.Application);
 				}
 
 				// Run the WPF application in this thread which was specifically created for it.
 				this.wpfContext.Application.Run();
 			}
-			catch (Exception ex)
+			catch(Exception ex)
 			{
 				taskCompletionSource.SetException(ex);
 			}

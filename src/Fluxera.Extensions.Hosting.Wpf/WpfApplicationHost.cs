@@ -6,6 +6,10 @@
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
 
+	/// <summary>
+	///     An abstract base class for WPF application hosts.
+	/// </summary>
+	/// <typeparam name="TStartupModule">The type of the startup module.</typeparam>
 	[PublicAPI]
 	public abstract class WpfApplicationHost<TStartupModule> : ApplicationHost<TStartupModule>
 		where TStartupModule : class, IModule
@@ -22,7 +26,7 @@
 				// The context is implicitly created and added to the properties.
 				if(!context.Properties.TryRetrieveContext(WpfContext.ContextKey, out WpfContext wpfContext))
 				{
-					services.AddSingleton<IWpfContext>(wpfContext);
+					services.AddSingleton(wpfContext);
 				}
 			});
 

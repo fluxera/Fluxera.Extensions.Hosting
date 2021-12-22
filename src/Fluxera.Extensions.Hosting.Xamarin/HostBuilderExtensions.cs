@@ -6,17 +6,17 @@
 	using Microsoft.Extensions.Hosting;
 
 	/// <summary>
-	///     Extensions for <see cref="IHostBuilder" />.
+	///     Extensions for the <see cref="IHostBuilder" /> type.
 	/// </summary>
 	[PublicAPI]
 	public static class HostBuilderExtensions
 	{
 		/// <summary>
-		///     Convenience method for adding an <see cref="IHostedService" />.
+		///     Adds an <see cref="IHostedService" /> to the service collection when configuring the host builder.
 		/// </summary>
 		/// <typeparam name="T">The type of service to add.</typeparam>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining.</returns>
+		/// <param name="hostBuilder">The host builder.</param>
+		/// <returns>T</returns>
 		public static IHostBuilder UseHostedService<T>(this IHostBuilder hostBuilder)
 			where T : class, IHostedService
 		{
@@ -24,37 +24,36 @@
 		}
 
 		/// <summary>
-		///     Adds support for Xamarin Sleep and Resume lifecycle events.
+		///     Adds support for the Sleep and Resume lifecycle events.
 		/// </summary>
-		/// <typeparam name="TApplication">The application class.</typeparam>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
+		/// <typeparam name="TApplication">The application type.</typeparam>
+		/// <param name="hostBuilder">The host builder.</param>
+		/// <returns></returns>
 		public static IHostBuilder UseXamarinLifetime<TApplication>(this IHostBuilder hostBuilder)
 			where TApplication : class
 		{
-			return hostBuilder.ConfigureServices((context, collection) =>
+			return hostBuilder.ConfigureServices(services =>
 			{
-				collection.AddSingleton<TApplication>();
-				collection.AddSingleton<IHostApplicationLifetime, XamarinHostApplicationLifetime>();
-				collection.AddSingleton<IHostLifetime, XamarinHostLifetime>();
+				services.AddSingleton<TApplication>();
+				services.AddSingleton<IHostApplicationLifetime, XamarinHostApplicationLifetime>();
+				services.AddSingleton<IHostLifetime, XamarinHostLifetime>();
 			});
 		}
 
 		/// <summary>
-		///     Adds support for Xamarin Sleep and Resume lifecycle events.
+		///     Adds support for Sleep and Resume lifecycle events.
 		/// </summary>
-		/// <typeparam name="TApplication">The application class.</typeparam>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <param name="configureOptions">The options to be configured.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
-		/// <summary>
-		public static IHostBuilder UseXamarinLifetime<TApplication>(this IHostBuilder hostBuilder, Action<XamarinHostLifetime> configureOptions)
+		/// <typeparam name="TApplication">The application type.</typeparam>
+		/// <param name="hostBuilder">The host builder.</param>
+		/// <param name="configureOptions">Action to configure the options.</param>
+		/// <returns></returns>
+		public static IHostBuilder UseXamarinLifetime<TApplication>(this IHostBuilder hostBuilder, Action<XamarinHostLifetimeOptions> configureOptions)
 			where TApplication : class
 		{
-			return hostBuilder.ConfigureServices((context, collection) =>
+			return hostBuilder.ConfigureServices(services =>
 			{
-				UseXamarinLifetime<TApplication>(hostBuilder);
-				collection.Configure(configureOptions);
+				hostBuilder.UseXamarinLifetime<TApplication>();
+				services.Configure(configureOptions);
 			});
 		}
 	}

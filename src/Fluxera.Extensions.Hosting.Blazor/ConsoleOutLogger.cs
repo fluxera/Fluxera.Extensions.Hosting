@@ -45,17 +45,17 @@
 
 			if(!string.IsNullOrEmpty(message) || (exception != null))
 			{
-				this.WriteMessage(logLevel, this.name, eventId.Id, message, exception);
+				WriteMessage(logLevel, this.name, eventId.Id, message, exception);
 			}
 		}
 
-		private void WriteMessage(LogLevel logLevel, string logName, int eventId, string message, Exception? exception)
+		private static void WriteMessage(LogLevel logLevel, string logName, int eventId, string message, Exception? exception)
 		{
 			lock(logBuilder)
 			{
 				try
 				{
-					this.CreateDefaultLogMessage(logBuilder, logLevel, logName, eventId, message, exception);
+					CreateDefaultLogMessage(logBuilder, logLevel, logName, eventId, message, exception);
 					string formattedMessage = logBuilder.ToString();
 
 					switch(logLevel)
@@ -90,24 +90,24 @@
 			}
 		}
 
-		private void CreateDefaultLogMessage(StringBuilder logBuilder, LogLevel logLevel, string logName, int eventId, string message, Exception? exception)
+		private static void CreateDefaultLogMessage(StringBuilder stringBuilder, LogLevel logLevel, string logName, int eventId, string message, Exception? exception)
 		{
-			logBuilder.Append(GetLogLevelString(logLevel));
-			logBuilder.Append(LogLevelPadding);
-			logBuilder.Append(logName);
-			logBuilder.Append('[');
-			logBuilder.Append(eventId);
-			logBuilder.Append(']');
+			stringBuilder.Append(GetLogLevelString(logLevel));
+			stringBuilder.Append(LogLevelPadding);
+			stringBuilder.Append(logName);
+			stringBuilder.Append('[');
+			stringBuilder.Append(eventId);
+			stringBuilder.Append(']');
 
 			if(!string.IsNullOrEmpty(message))
 			{
 				// message
-				logBuilder.AppendLine();
-				logBuilder.Append(messagePadding);
+				stringBuilder.AppendLine();
+				stringBuilder.Append(messagePadding);
 
-				int len = logBuilder.Length;
-				logBuilder.Append(message);
-				logBuilder.Replace(Environment.NewLine, newLineWithMessagePadding, len, message.Length);
+				int len = stringBuilder.Length;
+				stringBuilder.Append(message);
+				stringBuilder.Replace(Environment.NewLine, newLineWithMessagePadding, len, message.Length);
 			}
 
 			// Example:
@@ -116,30 +116,23 @@
 			if(exception != null)
 			{
 				// exception message
-				logBuilder.AppendLine();
-				logBuilder.Append(exception);
+				stringBuilder.AppendLine();
+				stringBuilder.Append(exception);
 			}
 		}
 
 		private static string GetLogLevelString(LogLevel logLevel)
 		{
-			switch(logLevel)
+			return logLevel switch
 			{
-				case LogLevel.Trace:
-					return "trce";
-				case LogLevel.Debug:
-					return "dbug";
-				case LogLevel.Information:
-					return "info";
-				case LogLevel.Warning:
-					return "warn";
-				case LogLevel.Error:
-					return "fail";
-				case LogLevel.Critical:
-					return "crit";
-				default:
-					throw new ArgumentOutOfRangeException(nameof(logLevel));
-			}
+				LogLevel.Trace => "trce",
+				LogLevel.Debug => "dbug",
+				LogLevel.Information => "info",
+				LogLevel.Warning => "warn",
+				LogLevel.Error => "fail",
+				LogLevel.Critical => "crit",
+				_ => throw new ArgumentOutOfRangeException(nameof(logLevel))
+			};
 		}
 
 		private class NoOpDisposable : IDisposable

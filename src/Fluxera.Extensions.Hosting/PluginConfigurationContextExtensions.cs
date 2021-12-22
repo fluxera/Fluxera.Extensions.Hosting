@@ -9,39 +9,69 @@
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Logging;
 
+	/// <summary>
+	///     Extensions methods to simplify the configuration of plugin sources.
+	/// </summary>
 	[PublicAPI]
 	public static class PluginConfigurationContextExtensions
 	{
-		public static IPluginConfigurationContext AddPlugins(this IPluginConfigurationContext context,
-			string pluginAssembliesFolder)
+		/// <summary>
+		///     Adds all assemblies containing plugin from a folder.
+		/// </summary>
+		/// <param name="context">The plugin configuration context.</param>
+		/// <param name="pluginAssembliesFolder">The folder to scan for plugin modules.</param>
+		/// <returns></returns>
+		public static IPluginConfigurationContext AddPlugins(this IPluginConfigurationContext context, string pluginAssembliesFolder)
 		{
 			context.PluginSources.Add(new FolderPluginSource(pluginAssembliesFolder));
 
 			return context;
 		}
 
-		public static IPluginConfigurationContext AddPlugins(this IPluginConfigurationContext context,
-			params Type[] pluginModuleTypes)
+		/// <summary>
+		///     Adds the given plugin modules types.
+		/// </summary>
+		/// <param name="context">The plugin configuration context.</param>
+		/// <param name="pluginModuleTypes">The plugin modules.</param>
+		/// <returns></returns>
+		public static IPluginConfigurationContext AddPlugins(this IPluginConfigurationContext context, params Type[] pluginModuleTypes)
 		{
 			context.PluginSources.Add(new PluginTypeListSource(pluginModuleTypes));
 
 			return context;
 		}
 
+		/// <summary>
+		///     Adds the plugin module of teh given type.
+		/// </summary>
+		/// <typeparam name="TPluginModule">The type of the plugin module.</typeparam>
+		/// <param name="context">The plugin configuration context.</param>
+		/// <returns></returns>
 		public static IPluginConfigurationContext AddPlugin<TPluginModule>(this IPluginConfigurationContext context)
 			where TPluginModule : class, IModule
 		{
 			return context.AddPlugin(typeof(TPluginModule));
 		}
 
-		public static IPluginConfigurationContext AddPlugin(this IPluginConfigurationContext context,
-			Type pluginModuleType)
+		/// <summary>
+		///     Adds the plugin module of teh given type.
+		/// </summary>
+		/// <param name="context">The plugin configuration context.</param>
+		/// <param name="pluginModuleType">The plugin module type.</param>
+		/// <returns></returns>
+		public static IPluginConfigurationContext AddPlugin(this IPluginConfigurationContext context, Type pluginModuleType)
 		{
 			context.PluginSources.Add(new PluginModuleTypeSource(pluginModuleType));
 
 			return context;
 		}
 
+		/// <summary>
+		///     Logs the plugin configuration action.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="addExpression"></param>
+		/// <param name="callerMemberName"></param>
 		public static void Log(this IPluginConfigurationContext context,
 			Expression<Func<IPluginSourceList, IPluginSourceList>> addExpression,
 			[CallerMemberName] string callerMemberName = null!)
@@ -49,7 +79,7 @@
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(addExpression, nameof(addExpression));
 
-			MethodCallExpression methodCallExpression = addExpression.Body as MethodCallExpression;
+			MethodCallExpression methodCallExpression = (addExpression.Body as MethodCallExpression)!;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -61,6 +91,12 @@
 			});
 		}
 
+		/// <summary>
+		///     Logs the plugin configuration action.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="addExpression"></param>
+		/// <param name="callerMemberName"></param>
 		public static void Log(this IPluginConfigurationContext context,
 			Expression<Action<IPluginSourceList>> addExpression,
 			[CallerMemberName] string callerMemberName = null!)
@@ -68,7 +104,7 @@
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(addExpression, nameof(addExpression));
 
-			MethodCallExpression methodCallExpression = addExpression.Body as MethodCallExpression;
+			MethodCallExpression methodCallExpression = (addExpression.Body as MethodCallExpression)!;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -80,6 +116,14 @@
 			});
 		}
 
+		/// <summary>
+		///     Logs the plugin configuration action.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="context"></param>
+		/// <param name="addExpression"></param>
+		/// <param name="callerMemberName"></param>
+		/// <returns></returns>
 		public static T Log<T>(this IPluginConfigurationContext context,
 			Expression<Func<IPluginSourceList, T>> addExpression,
 			[CallerMemberName] string callerMemberName = null!)
@@ -87,7 +131,7 @@
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(addExpression, nameof(addExpression));
 
-			MethodCallExpression methodCallExpression = addExpression.Body as MethodCallExpression;
+			MethodCallExpression methodCallExpression = (addExpression.Body as MethodCallExpression)!;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -96,6 +140,13 @@
 			return ExecuteTryCatch(context.Logger, () => addExpression.Compile().Invoke(context.PluginSources));
 		}
 
+		/// <summary>
+		///     Logs the plugin configuration action.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="methodName"></param>
+		/// <param name="addFunction"></param>
+		/// <param name="callerMemberName"></param>
 		public static void Log(this IPluginConfigurationContext context,
 			string methodName,
 			Action<IPluginSourceList> addFunction,
@@ -112,6 +163,15 @@
 			});
 		}
 
+		/// <summary>
+		///     Logs the plugin configuration action.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="context"></param>
+		/// <param name="methodName"></param>
+		/// <param name="addFunction"></param>
+		/// <param name="callerMemberName"></param>
+		/// <returns></returns>
 		public static T Log<T>(this IPluginConfigurationContext context,
 			string methodName,
 			Func<IPluginSourceList, T> addFunction,

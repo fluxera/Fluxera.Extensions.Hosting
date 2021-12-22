@@ -6,9 +6,12 @@
 	using Fluxera.Extensions.Hosting.Plugins;
 	using Microsoft.Extensions.DependencyInjection;
 
+	/// <summary>
+	///     A specialized <see cref="IApplicationLoader" /> for web applications.
+	/// </summary>
 	internal sealed class WebApplicationLoader : ApplicationLoader
 	{
-		private WebApplicationLoaderInitializationContext webContext;
+		private WebApplicationLoaderInitializationContext webContext = null!;
 
 		public WebApplicationLoader(
 			Type startupModuleType,
@@ -24,7 +27,7 @@
 		{
 			base.Initialize(context);
 
-			this.webContext = this.webContext;
+			this.webContext = (WebApplicationLoaderInitializationContext)context;
 		}
 
 		protected override IApplicationInitializationContext CreateApplicationInitializationContext(IServiceProvider serviceProvider)

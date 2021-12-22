@@ -97,11 +97,10 @@
 		{
 			foreach(Type dependedModuleType in ModuleHelper.FindDependedModuleTypes(moduleDescriptor.Type))
 			{
-				IModuleDescriptor dependedModule = moduleDescriptors.FirstOrDefault(m => m.Type == dependedModuleType);
+				IModuleDescriptor? dependedModule = moduleDescriptors.FirstOrDefault(descriptor => descriptor.Type == dependedModuleType);
 				if(dependedModule == null)
 				{
-					throw new Exception(
-						$"Could not find a depended module {dependedModuleType.AssemblyQualifiedName} for {moduleDescriptor.Type.AssemblyQualifiedName}.");
+					throw new Exception($"Could not find a dependent module '{dependedModuleType.Name}' for module type '{moduleDescriptor.Type.Namespace}'.");
 				}
 
 				ModuleDescriptor moduleDescriptorEx = (ModuleDescriptor)moduleDescriptor;

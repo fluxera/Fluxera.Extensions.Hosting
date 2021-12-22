@@ -10,9 +10,9 @@
 	public interface ILifecycleRegister
 	{
 		/// <summary>
-		///     Registers a given callback.
+		///     Registers a given action.
 		/// </summary>
-		/// <param name="callback">The callback to be registered.</param>
-		void Register(Action callback);
+		/// <param name="action">The action to be registered.</param>
+		void Register(Action action);
 	}
 }
