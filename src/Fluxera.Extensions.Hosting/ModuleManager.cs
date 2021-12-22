@@ -4,9 +4,7 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using JetBrains.Annotations;
-	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
-	using Microsoft.Extensions.Options;
 
 	[UsedImplicitly]
 	internal sealed class ModuleManager : IModuleManager
@@ -18,17 +16,13 @@
 		public ModuleManager(
 			ILogger<ModuleManager> logger,
 			IModuleContainer moduleContainer,
-			IOptions<ModuleLifecycleOptions> options,
-			IServiceProvider serviceProvider)
+			IEnumerable<IModuleLifecycleContributor> lifecycleContributors)
 		{
 			this.moduleContainer = moduleContainer;
 			this.logger = logger;
 
-			this.lifecycleContributors = options.Value
-				.Contributors
-				.Select(serviceProvider.GetRequiredService)
-				.Cast<IModuleLifecycleContributor>()
-				.ToArray();
+			// Get the lifecycle contributor services from the service provider.
+			this.lifecycleContributors = lifecycleContributors.ToArray();
 		}
 
 		public void InitializeModules(IApplicationInitializationContext context)

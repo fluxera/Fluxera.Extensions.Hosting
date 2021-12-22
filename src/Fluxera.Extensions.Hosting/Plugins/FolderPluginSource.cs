@@ -1,4 +1,4 @@
-﻿namespace Fluxera.Extensions.Hosting
+﻿namespace Fluxera.Extensions.Hosting.Plugins
 {
 	using System;
 	using System.Collections.Generic;
@@ -8,6 +8,9 @@
 	using Fluxera.Guards;
 	using Fluxera.Utilities.Extensions;
 
+	/// <summary>
+	///     Loads plugin modules from a folder containing assemblies.
+	/// </summary>
 	internal sealed class FolderPluginSource : IPluginSource
 	{
 		private readonly string folder;

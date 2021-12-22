@@ -1,4 +1,4 @@
-﻿namespace Fluxera.Extensions.Hosting
+﻿namespace Fluxera.Extensions.Hosting.Plugins
 {
 	using System;
 	using System.Collections.Generic;
@@ -6,6 +6,9 @@
 	using System.Reflection;
 	using Fluxera.Guards;
 
+	/// <summary>
+	///     A plugin source for manually adding module types.
+	/// </summary>
 	internal sealed class PluginTypeListSource : IPluginSource
 	{
 		private readonly Lazy<IEnumerable<Assembly>> moduleAssemblies;

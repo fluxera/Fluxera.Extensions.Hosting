@@ -8,6 +8,9 @@
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
 
+	/// <summary>
+	///     Extension methods to support easier logging in service configuration methods of modules.
+	/// </summary>
 	[PublicAPI]
 	public static class ServiceConfigurationContextExtensions
 	{

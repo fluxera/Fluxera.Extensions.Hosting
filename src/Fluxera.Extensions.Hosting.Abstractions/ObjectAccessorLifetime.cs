@@ -1,8 +1,11 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
-	using DependencyInjection;
+	using Fluxera.Extensions.DependencyInjection;
 	using JetBrains.Annotations;
 
+	/// <summary>
+	///     A custom object accessor context that is used to control the lifetime of an object in ser service collection.
+	/// </summary>
 	[PublicAPI]
 	public sealed class ObjectAccessorLifetime
 	{

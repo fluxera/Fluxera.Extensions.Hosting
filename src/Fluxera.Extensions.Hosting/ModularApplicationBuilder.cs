@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using Fluxera.Extensions.DependencyInjection;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Utilities.Extensions;
 	using Microsoft.Extensions.DependencyInjection;
 
@@ -26,20 +27,11 @@
 			// Update configuration.
 			this.services.UpdateConfiguration();
 
-			// Configure the lifecycle contributors.
-			this.services.Configure<ModuleLifecycleOptions>(options =>
-			{
-				options.Contributors.Add<OnPreApplicationInitializationModuleLifecycleContributor>();
-				options.Contributors.Add<OnApplicationInitializationModuleLifecycleContributor>();
-				options.Contributors.Add<OnPostApplicationInitializationModuleLifecycleContributor>();
-				options.Contributors.Add<OnApplicationShutdownModuleLifecycleContributor>();
-			});
-
-			// Add the lifecycle contributor services.
-			this.services.AddSingleton<OnPreApplicationInitializationModuleLifecycleContributor>();
-			this.services.AddSingleton<OnApplicationInitializationModuleLifecycleContributor>();
-			this.services.AddSingleton<OnPostApplicationInitializationModuleLifecycleContributor>();
-			this.services.AddSingleton<OnApplicationShutdownModuleLifecycleContributor>();
+			// Add the lifecycle contributors.
+			this.services.AddSingleton<IModuleLifecycleContributor, OnPreApplicationInitializationModuleLifecycleContributor>();
+			this.services.AddSingleton<IModuleLifecycleContributor, OnApplicationInitializationModuleLifecycleContributor>();
+			this.services.AddSingleton<IModuleLifecycleContributor, OnPostApplicationInitializationModuleLifecycleContributor>();
+			this.services.AddSingleton<IModuleLifecycleContributor, OnApplicationShutdownModuleLifecycleContributor>();
 
 			// Add the module manager.
 			this.services.AddTransient<IModuleManager, ModuleManager>();

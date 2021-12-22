@@ -1,4 +1,4 @@
-﻿namespace Fluxera.Extensions.Hosting
+﻿namespace Fluxera.Extensions.Hosting.Plugins
 {
 	using System;
 	using System.Collections.Generic;

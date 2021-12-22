@@ -1,5 +1,6 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
+	using Fluxera.Extensions.Hosting.Plugins;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.Hosting;

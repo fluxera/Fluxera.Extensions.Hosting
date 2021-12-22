@@ -2,12 +2,11 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
 	using System.Reflection;
 
 	internal static class ModuleHelper
 	{
-		public static IList<Type> FindAllModuleTypes(Type startupModuleType)
+		public static IEnumerable<Type> FindAllModuleTypes(Type startupModuleType)
 		{
 			IList<Type> moduleTypes = new List<Type>();
 			AddModuleAndDependenciesRecursive(moduleTypes, startupModuleType);
@@ -22,24 +21,18 @@
 			}
 		}
 
-		public static IList<Type> FindDependedModuleTypes(Type moduleType)
+		public static IEnumerable<Type> FindDependedModuleTypes(Type moduleType)
 		{
 			CheckModuleType(moduleType);
 
 			IList<Type> dependencies = new List<Type>();
 
-			IEnumerable<IDependentTypesProvider> dependencyDescriptors = moduleType
-				.GetCustomAttributes()
-				.OfType<IDependentTypesProvider>();
-
-			foreach(IDependentTypesProvider descriptor in dependencyDescriptors)
+			IEnumerable<DependsOnAttribute> dependencyAttributes = moduleType.GetCustomAttributes<DependsOnAttribute>();
+			foreach(DependsOnAttribute dependencyAttribute in dependencyAttributes)
 			{
-				foreach(Type dependedModuleType in descriptor.GetDependentTypes())
+				if(!dependencies.Contains(dependencyAttribute.DependentType))
 				{
-					if(!dependencies.Contains(dependedModuleType))
-					{
-						dependencies.Add(dependedModuleType);
-					}
+					dependencies.Add(dependencyAttribute.DependentType);
 				}
 			}
 

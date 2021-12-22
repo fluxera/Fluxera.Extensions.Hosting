@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.DependencyInjection;
 

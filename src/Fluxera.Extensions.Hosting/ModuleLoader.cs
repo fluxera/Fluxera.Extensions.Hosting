@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Guards;
 	using Fluxera.Utilities.Extensions;
 	using Microsoft.Extensions.DependencyInjection;

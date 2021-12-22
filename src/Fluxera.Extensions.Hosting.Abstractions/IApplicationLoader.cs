@@ -1,48 +1,54 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
 	using System;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 
+	/// <summary>
+	///     A contract for a modular application loader which configures and loads
+	///     the configured modules and plugins.
+	/// </summary>
 	[PublicAPI]
 	public interface IApplicationLoader : IModuleContainer, IDisposable
 	{
 		/// <summary>
-		///     Type of the startup (entry) module of the application.
+		///     Gets the type of the startup module.
 		/// </summary>
 		Type StartupModuleType { get; }
 
 		/// <summary>
-		///     List of services registered to this application.
-		///     Can not add new services to this collection after application initialize.
+		///     Gets the service collection.
 		/// </summary>
 		IServiceCollection Services { get; }
 
 		/// <summary>
-		///     The configuration instance of the application.
+		///     Gets the configuration of the application.
 		/// </summary>
 		IConfiguration Configuration { get; }
 
 		/// <summary>
-		///     Reference to the plugin sources to use when loading modules.
+		///     Gets the plugin sources to use when loading modules.
 		/// </summary>
 		IPluginSourceList PluginSources { get; }
 
 		/// <summary>
-		///     Reference to the root service provider used by the application.
-		///     This can not be used before initialize the application.
+		///     Gets the service provider.
 		/// </summary>
 		IServiceProvider ServiceProvider { get; }
 
 		/// <summary>
-		///     Initializes the application using the provided host instance.
+		///     Initializes the application using the given context.
 		/// </summary>
+		/// <remarks>
+		///     See: <see cref="IApplicationLoaderInitializationContext" />
+		/// </remarks>
 		/// <param name="context"></param>
 		void Initialize(IApplicationLoaderInitializationContext context);
 
 		/// <summary>
-		///     Used to gracefully shutdown the application and all modules.
+		///     Gracefully shuts down the application.
 		/// </summary>
 		void Shutdown();
 	}
