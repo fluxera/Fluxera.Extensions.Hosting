@@ -7,7 +7,7 @@
 	using Microsoft.Extensions.Hosting;
 
 	[DependsOn(typeof(WebModule))]
-	public class WebApplication1Module : ApplicationInitializationModule
+	public class WebApplication1Module : ConfigureApplicationModule
 	{
 		/// <inheritdoc />
 		public override void ConfigureServices(IServiceConfigurationContext context)

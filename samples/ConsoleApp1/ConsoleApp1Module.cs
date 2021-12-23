@@ -8,7 +8,7 @@
 
 	[PublicAPI]
 	[UsedImplicitly]
-	internal sealed class ConsoleApp1Module : ApplicationInitializationModule
+	internal sealed class ConsoleApp1Module : ConfigureApplicationModule
 	{
 		/// <inheritdoc />
 		public override void ConfigureServices(IServiceConfigurationContext context)
