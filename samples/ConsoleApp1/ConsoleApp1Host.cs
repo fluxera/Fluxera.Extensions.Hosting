@@ -12,7 +12,7 @@
 
 	[PublicAPI]
 	[UsedImplicitly]
-	internal sealed class ConsoleApp1Host : ConsoleApplicationHost<ConsoleApp1Module>
+	internal sealed class ConsoleApp1Host : ConsoleApplicationHost<ConsoleApp1Module> // WindowsServiceApplicationHost<ConsoleApp1Module>
 	{
 		/// <inheritdoc />
 		protected override void ConfigureHostBuilder(IHostBuilder builder)
