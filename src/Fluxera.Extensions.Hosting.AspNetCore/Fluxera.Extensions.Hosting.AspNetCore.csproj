@@ -6,8 +6,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting.AspNetCore</Title>
-		<Description>The custom extensions for ASP.NET hosting.</Description>
-		<PackageTags>library;extensions;hosting;aspnet</PackageTags>
+		<Description>A modular application host for ASP.NET.</Description>
+		<PackageTags>library;extensions;hosting;modular;aspnet</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".AspNetCore",""))</RootNamespace>
 	</PropertyGroup>
 

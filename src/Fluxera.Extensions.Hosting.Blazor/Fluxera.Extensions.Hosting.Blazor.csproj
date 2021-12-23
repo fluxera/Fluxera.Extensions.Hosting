@@ -6,8 +6,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting.Blazor</Title>
-		<Description>The custom extensions for Blazor hosting.</Description>
-		<PackageTags>library;extensions;hosting;blazor</PackageTags>
+		<Description>A modular application host for Blazor.</Description>
+		<PackageTags>library;extensions;hosting;modular;blazor</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Blazor",""))</RootNamespace>
 	</PropertyGroup>
 

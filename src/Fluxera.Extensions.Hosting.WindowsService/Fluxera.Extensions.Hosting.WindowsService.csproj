@@ -7,8 +7,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting.WindowsService</Title>
-		<Description>The custom extensions for windows service hosting.</Description>
-		<PackageTags>library;extensions;hosting;windowsservice</PackageTags>
+		<Description>A modular application host for windows service applications.</Description>
+		<PackageTags>library;extensions;hosting;modular;windowsservice</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".WindowsService",""))</RootNamespace>
 	</PropertyGroup>
 

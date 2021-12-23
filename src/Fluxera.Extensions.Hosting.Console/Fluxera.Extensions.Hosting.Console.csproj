@@ -6,8 +6,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting.Console</Title>
-		<Description>The custom extensions for console hosting.</Description>
-		<PackageTags>library;extensions;hosting;console</PackageTags>
+		<Description>A modular application host for console applications.</Description>
+		<PackageTags>library;extensions;hosting;modular;console</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Console",""))</RootNamespace>
 	</PropertyGroup>
 

@@ -6,8 +6,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting</Title>
-		<Description>The custom extensions for hosting.</Description>
-		<PackageTags>library;extensions;hosting</PackageTags>
+		<Description>A modular application host.</Description>
+		<PackageTags>library;extensions;hosting;modular</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -7,8 +7,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting.Wpf</Title>
-		<Description>The custom extensions for WPF hosting.</Description>
-		<PackageTags>library;extensions;hosting;wpf</PackageTags>
+		<Description>A modular application host for WPF.</Description>
+		<PackageTags>library;extensions;hosting;modular;wpf</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Wpf",""))</RootNamespace>
 	</PropertyGroup>
 

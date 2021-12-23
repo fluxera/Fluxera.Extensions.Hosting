@@ -6,8 +6,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting.Abstractions</Title>
-		<Description>The abstractions for the custom extensions for hosting.</Description>
-		<PackageTags>library;extensions;hosting</PackageTags>
+		<Description>The abstractions for the modular application host.</Description>
+		<PackageTags>library;extensions;hosting;modular</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Abstractions",""))</RootNamespace>
 	</PropertyGroup>
 

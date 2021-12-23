@@ -6,8 +6,8 @@
 
 	<PropertyGroup>
 		<Title>Fluxera.Extensions.Hosting.Xamarin</Title>
-		<Description>The custom extensions for Xamarin.Forms hosting.</Description>
-		<PackageTags>library;extensions;hosting;xamarin</PackageTags>
+		<Description>A modular application host for Xamarin.Forms.</Description>
+		<PackageTags>library;extensions;hosting;modular;xamarin</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Xamarin",""))</RootNamespace>
 	</PropertyGroup>
 
