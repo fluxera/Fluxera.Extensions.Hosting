@@ -25,7 +25,7 @@
 		/// <param name="environment">The application environment.</param>
 		/// <param name="bootstrapperLogger">The bootstrapping logger.</param>
 		/// <param name="configurePlugins">An optional action that configures the plugins.</param>
-		/// <param name="applicationLoaderFactory">The optional application loader builder factory funtion.</param>
+		/// <param name="applicationLoaderFactory">The optional application loader builder factory function.</param>
 		/// <returns></returns>
 		public static IServiceCollection AddApplicationLoader<TStartupModule>(this IServiceCollection services,
 			IConfiguration configuration,

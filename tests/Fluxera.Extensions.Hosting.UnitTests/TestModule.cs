@@ -4,7 +4,7 @@
 	using JetBrains.Annotations;
 
 	[PublicAPI]
-	public class TestModuleBase : ApplicationInitializationModule
+	public class TestModule : ApplicationInitializationModule
 	{
 		public bool PreConfigureServicesWasCalled { get; set; }
 
@@ -12,15 +12,13 @@
 
 		public bool PostConfigureServicesWasCalled { get; set; }
 
-		public bool OnApplicationInitializeWasCalled { get; set; }
-
-		public bool OnApplicationShutdownWasCalled { get; set; }
-
 		public bool PreConfigureWasCalled { get; set; }
 
 		public bool ConfigureWasCalled { get; set; }
 
 		public bool PostConfigureWasCalled { get; set; }
+
+		public bool OnApplicationShutdownWasCalled { get; set; }
 
 		/// <inheritdoc />
 		public override void PreConfigureServices(IServiceConfigurationContext context)

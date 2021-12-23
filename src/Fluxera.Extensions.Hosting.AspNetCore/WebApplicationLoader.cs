@@ -25,9 +25,9 @@
 		/// <inheritdoc />
 		public override void Initialize(IApplicationLoaderInitializationContext context)
 		{
-			base.Initialize(context);
-
 			this.webContext = (WebApplicationLoaderInitializationContext)context;
+
+			base.Initialize(context);
 		}
 
 		protected override IApplicationInitializationContext CreateApplicationInitializationContext(IServiceProvider serviceProvider)

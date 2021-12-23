@@ -1,7 +1,6 @@
 ﻿namespace Fluxera.Extensions.Hosting.UnitTests
 {
 	using System;
-	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
@@ -14,7 +13,7 @@
 	public abstract class StartupModuleTestBase<TStartupModule> : TestBase
 		where TStartupModule : class, IModule
 	{
-		protected IApplicationLoader ApplicationLoader { get; private set; } = null!;
+		protected IApplicationLoader? ApplicationLoader { get; private set; }
 
 		[SetUp]
 		public void Setup()
@@ -27,10 +26,13 @@
 					EnvironmentName = "Development",
 					ApplicationName = "UnitTests",
 				};
-				services.AddObjectAccessor(environment, ObjectAccessorLifetime.ConfigureServices);
+
+				services.AddSingleton(environment);
+				services.AddSingleton<IHostLifetime, TestLifetime>();
+				services.AddSingleton<IHostApplicationLifetime, TestApplicationLifetime>();
+
 				services.AddApplicationLoader<TStartupModule>(configuration, environment, CreateBootstrapperLogger());
 			});
-
 
 			this.ApplicationLoader = serviceProvider.GetRequiredService<IApplicationLoader>();
 			this.ApplicationLoader.Initialize(new ApplicationLoaderInitializationContext(serviceProvider));
@@ -39,7 +41,7 @@
 		[TearDown]
 		public void TearDown()
 		{
-			this.ApplicationLoader.Shutdown();
+			this.ApplicationLoader?.Shutdown();
 			this.ApplicationLoader = null!;
 		}
 	}
