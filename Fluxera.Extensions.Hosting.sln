@@ -1,0 +1,105 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{75AC41E9-2B8B-4D76-A7DF-A18F4FB9D6D6}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
+		GitVersion.yml = GitVersion.yml
+		global.json = global.json
+		icon.png = icon.png
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF28D730-99B3-4811-AAC7-725A73B3F668}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F18D2D58-282C-4D93-8D9A-3A76CF98F018}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.Abstractions", "src\Fluxera.Extensions.Hosting.Abstractions\Fluxera.Extensions.Hosting.Abstractions.csproj", "{7B4893E0-1660-44B1-979A-1C4F19DB0471}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting", "src\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj", "{BDE069C4-F429-4B31-9571-E12CE427F72D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.Console", "src\Fluxera.Extensions.Hosting.Console\Fluxera.Extensions.Hosting.Console.csproj", "{9A232CB3-98B5-466D-89F0-A3B0D2FAC184}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.WindowsService", "src\Fluxera.Extensions.Hosting.WindowsService\Fluxera.Extensions.Hosting.WindowsService.csproj", "{C298DC6F-DD00-4347-9264-A3D1E1FE4FF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.Xamarin", "src\Fluxera.Extensions.Hosting.Xamarin\Fluxera.Extensions.Hosting.Xamarin.csproj", "{1A423488-1FD7-468F-A947-DA11AD84E3F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.AspNetCore", "src\Fluxera.Extensions.Hosting.AspNetCore\Fluxera.Extensions.Hosting.AspNetCore.csproj", "{9573D80B-FD07-45C9-8237-DA1884934881}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.Blazor", "src\Fluxera.Extensions.Hosting.Blazor\Fluxera.Extensions.Hosting.Blazor.csproj", "{D0958D89-736C-4304-9280-20AE37E0D871}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.Wpf", "src\Fluxera.Extensions.Hosting.Wpf\Fluxera.Extensions.Hosting.Wpf.csproj", "{3E78416A-8F6B-4343-AFA6-930B27574415}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.UnitTests", "tests\Fluxera.Extensions.Hosting.UnitTests\Fluxera.Extensions.Hosting.UnitTests.csproj", "{3E8945B5-D2C4-43D1-80D3-F669052815C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B4893E0-1660-44B1-979A-1C4F19DB0471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B4893E0-1660-44B1-979A-1C4F19DB0471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B4893E0-1660-44B1-979A-1C4F19DB0471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B4893E0-1660-44B1-979A-1C4F19DB0471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE069C4-F429-4B31-9571-E12CE427F72D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE069C4-F429-4B31-9571-E12CE427F72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE069C4-F429-4B31-9571-E12CE427F72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE069C4-F429-4B31-9571-E12CE427F72D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A232CB3-98B5-466D-89F0-A3B0D2FAC184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A232CB3-98B5-466D-89F0-A3B0D2FAC184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A232CB3-98B5-466D-89F0-A3B0D2FAC184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A232CB3-98B5-466D-89F0-A3B0D2FAC184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C298DC6F-DD00-4347-9264-A3D1E1FE4FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C298DC6F-DD00-4347-9264-A3D1E1FE4FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C298DC6F-DD00-4347-9264-A3D1E1FE4FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C298DC6F-DD00-4347-9264-A3D1E1FE4FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A423488-1FD7-468F-A947-DA11AD84E3F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A423488-1FD7-468F-A947-DA11AD84E3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A423488-1FD7-468F-A947-DA11AD84E3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A423488-1FD7-468F-A947-DA11AD84E3F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9573D80B-FD07-45C9-8237-DA1884934881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9573D80B-FD07-45C9-8237-DA1884934881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9573D80B-FD07-45C9-8237-DA1884934881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9573D80B-FD07-45C9-8237-DA1884934881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0958D89-736C-4304-9280-20AE37E0D871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0958D89-736C-4304-9280-20AE37E0D871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0958D89-736C-4304-9280-20AE37E0D871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0958D89-736C-4304-9280-20AE37E0D871}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E78416A-8F6B-4343-AFA6-930B27574415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E78416A-8F6B-4343-AFA6-930B27574415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E78416A-8F6B-4343-AFA6-930B27574415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E78416A-8F6B-4343-AFA6-930B27574415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E8945B5-D2C4-43D1-80D3-F669052815C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8945B5-D2C4-43D1-80D3-F669052815C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8945B5-D2C4-43D1-80D3-F669052815C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8945B5-D2C4-43D1-80D3-F669052815C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7B4893E0-1660-44B1-979A-1C4F19DB0471} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{BDE069C4-F429-4B31-9571-E12CE427F72D} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{9A232CB3-98B5-466D-89F0-A3B0D2FAC184} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{C298DC6F-DD00-4347-9264-A3D1E1FE4FF8} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{1A423488-1FD7-468F-A947-DA11AD84E3F8} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{9573D80B-FD07-45C9-8237-DA1884934881} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{D0958D89-736C-4304-9280-20AE37E0D871} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{3E78416A-8F6B-4343-AFA6-930B27574415} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{3E8945B5-D2C4-43D1-80D3-F669052815C2} = {F18D2D58-282C-4D93-8D9A-3A76CF98F018}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D97BF2AF-6E68-4E88-BF70-773A86E26013}
+	EndGlobalSection
+EndGlobal
