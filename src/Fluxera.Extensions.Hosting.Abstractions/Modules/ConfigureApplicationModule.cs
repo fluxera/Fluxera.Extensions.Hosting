@@ -8,7 +8,7 @@
 	///     shutdown actions.
 	/// </summary>
 	[PublicAPI]
-	public abstract class ApplicationInitializationModule : IConfigureServicesModule, IApplicationInitializationModule, IApplicationShutdownModule
+	public abstract class ConfigureApplicationModule : IConfigureServicesModule, IConfigureApplicationModule, IShutdownApplicationModule
 	{
 		/// <inheritdoc />
 		public virtual void PreConfigure(IApplicationInitializationContext context)
@@ -26,11 +26,6 @@
 		}
 
 		/// <inheritdoc />
-		public virtual void OnApplicationShutdown(IApplicationShutdownContext context)
-		{
-		}
-
-		/// <inheritdoc />
 		public virtual void PreConfigureServices(IServiceConfigurationContext context)
 		{
 		}
@@ -42,6 +37,11 @@
 
 		/// <inheritdoc />
 		public virtual void PostConfigureServices(IServiceConfigurationContext context)
+		{
+		}
+
+		/// <inheritdoc />
+		public virtual void OnApplicationShutdown(IApplicationShutdownContext context)
 		{
 		}
 	}

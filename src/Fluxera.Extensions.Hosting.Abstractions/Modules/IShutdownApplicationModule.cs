@@ -6,7 +6,7 @@
 	///     A contract for a module that supports the application shutdown action.
 	/// </summary>
 	[PublicAPI]
-	public interface IOnApplicationShutdown : IModule
+	public interface IShutdownApplicationModule : IModule
 	{
 		/// <summary>
 		///     This method is called when the application shuts down.

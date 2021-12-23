@@ -6,7 +6,7 @@
 	///     A contract for a module that supports the post-configure action.
 	/// </summary>
 	[PublicAPI]
-	public interface IOnPostApplicationInitialization : IModule
+	public interface IPostConfigureApplication : IModule
 	{
 		/// <summary>
 		///     This method is called after the actual configure action.

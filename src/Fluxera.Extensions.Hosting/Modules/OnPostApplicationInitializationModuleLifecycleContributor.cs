@@ -7,7 +7,7 @@
 	{
 		public override void Initialize(IApplicationInitializationContext context, IModule module)
 		{
-			(module as IOnPostApplicationInitialization)?.PostConfigure(context);
+			(module as IPostConfigureApplication)?.PostConfigure(context);
 		}
 	}
 }

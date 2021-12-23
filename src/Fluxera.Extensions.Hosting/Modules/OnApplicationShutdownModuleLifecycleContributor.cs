@@ -7,7 +7,7 @@
 	{
 		public override void Shutdown(IApplicationShutdownContext context, IModule module)
 		{
-			(module as IOnApplicationShutdown)?.OnApplicationShutdown(context);
+			(module as IShutdownApplicationModule)?.OnApplicationShutdown(context);
 		}
 	}
 }

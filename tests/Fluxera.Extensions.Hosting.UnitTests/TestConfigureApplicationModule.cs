@@ -4,7 +4,7 @@
 	using JetBrains.Annotations;
 
 	[PublicAPI]
-	public class TestModule : ApplicationInitializationModule
+	public class TestApplicationModule : ConfigureApplicationModule
 	{
 		public bool PreConfigureServicesWasCalled { get; set; }
 

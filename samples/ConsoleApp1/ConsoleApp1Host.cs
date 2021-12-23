@@ -1,46 +1,46 @@
 ﻿namespace ConsoleApp1
 {
-	using Autofac.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting;
+	using Fluxera.Extensions.Hosting.Plugins;
 	using JetBrains.Annotations;
-	using Microsoft.Extensions.Configuration;
-	using Microsoft.Extensions.Hosting;
-	using Microsoft.Extensions.Logging;
-	using Serilog;
-	using Serilog.Extensions.Hosting;
-	using Serilog.Extensions.Logging;
 
 	[PublicAPI]
 	[UsedImplicitly]
 	internal sealed class ConsoleApp1Host : ConsoleApplicationHost<ConsoleApp1Module> // WindowsServiceApplicationHost<ConsoleApp1Module>
 	{
 		/// <inheritdoc />
-		protected override void ConfigureHostBuilder(IHostBuilder builder)
+		protected override void ConfigureApplicationPlugins(IPluginConfigurationContext context)
 		{
-			base.ConfigureHostBuilder(builder);
-
-			// Use Autofac as default container.
-			builder.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-
-			// Use Serilog as default logger.
-			builder.UseSerilog((context, services, configuration) => configuration
-				.Enrich.FromLogContext()
-				.WriteTo.Console()
-				.ReadFrom.Configuration(context.Configuration)
-				.ReadFrom.Services(services));
+			base.ConfigureApplicationPlugins(context);
 		}
 
-		/// <inheritdoc />
-		protected override ILoggerFactory CreateBootstrapperLoggerFactory(IConfiguration configuration)
-		{
-			ReloadableLogger? bootstrapLogger = new LoggerConfiguration()
-				.Enrich.FromLogContext()
-				.WriteTo.Console()
-				.ReadFrom.Configuration(configuration)
-				.CreateBootstrapLogger();
+		///// <inheritdoc />
+		//protected override void ConfigureHostBuilder(IHostBuilder builder)
+		//{
+		//	base.ConfigureHostBuilder(builder);
 
-			ILoggerFactory loggerFactory = new SerilogLoggerFactory(bootstrapLogger);
-			return loggerFactory;
-		}
+		//	// Use Autofac as default container.
+		//	builder.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+		//	// Use Serilog as default logger.
+		//	builder.UseSerilog((context, services, configuration) => configuration
+		//		.Enrich.FromLogContext()
+		//		.WriteTo.Console()
+		//		.ReadFrom.Configuration(context.Configuration)
+		//		.ReadFrom.Services(services));
+		//}
+
+		///// <inheritdoc />
+		//protected override ILoggerFactory CreateBootstrapperLoggerFactory(IConfiguration configuration)
+		//{
+		//	ReloadableLogger? bootstrapLogger = new LoggerConfiguration()
+		//		.Enrich.FromLogContext()
+		//		.WriteTo.Console()
+		//		.ReadFrom.Configuration(configuration)
+		//		.CreateBootstrapLogger();
+
+		//	ILoggerFactory loggerFactory = new SerilogLoggerFactory(bootstrapLogger);
+		//	return loggerFactory;
+		//}
 	}
 }

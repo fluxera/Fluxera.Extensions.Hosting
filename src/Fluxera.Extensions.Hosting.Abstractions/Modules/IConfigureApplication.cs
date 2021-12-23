@@ -6,7 +6,7 @@
 	///     A contract for a module that supports the configure application action.
 	/// </summary>
 	[PublicAPI]
-	public interface IOnApplicationInitialization : IModule
+	public interface IConfigureApplication : IModule
 	{
 		/// <summary>
 		///     This method is called after the pre-configure and before the
