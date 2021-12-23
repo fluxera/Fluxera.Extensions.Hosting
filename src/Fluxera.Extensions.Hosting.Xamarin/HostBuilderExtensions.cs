@@ -36,6 +36,7 @@
 			{
 				services.AddSingleton<TApplication>();
 				services.AddSingleton<IHostApplicationLifetime, XamarinHostApplicationLifetime>();
+				services.AddSingleton(serviceProvider => (IXamarinHostApplicationLifetime)serviceProvider.GetRequiredService<IHostApplicationLifetime>());
 				services.AddSingleton<IHostLifetime, XamarinHostLifetime>();
 			});
 		}

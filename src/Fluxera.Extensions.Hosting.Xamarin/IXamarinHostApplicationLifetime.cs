@@ -4,19 +4,34 @@
 	using Microsoft.Extensions.Hosting;
 
 	/// <summary>
-	/// Allows consumers to perform cleanup during application sleep/resume.
+	///     A contract for a service that allows to perform execution of custom action
+	///     during application sleep/resume cycle.
 	/// </summary>
 	[PublicAPI]
 	public interface IXamarinHostApplicationLifetime : IHostApplicationLifetime
 	{
 		/// <summary>
-		/// Triggered when the application has gone to sleep.
+		///     The registered actions are executed when the application has gone to sleep.
 		/// </summary>
-		ILifecycleRegister ApplicationSleeping { get; }
+		ILifecycleRegister Sleeping { get; }
 
 		/// <summary>
-		/// Triggered when the application has resumed.
+		///     The registered actions are executed when the application has resumed.
 		/// </summary>
-		ILifecycleRegister ApplicationResuming { get; }
+		ILifecycleRegister Resuming { get; }
+
+		/// <summary>
+		///     Notifies that the application is going to sleep by executing
+		///     the registered action of the <see cref="Sleeping" />
+		///     register.
+		/// </summary>
+		internal void NotifySleeping();
+
+		/// <summary>
+		///     Notifies that the application is going to sleep by executing
+		///     the registered action of the <see cref="Resuming" />
+		///     register.
+		/// </summary>
+		internal void NotifyResuming();
 	}
 }

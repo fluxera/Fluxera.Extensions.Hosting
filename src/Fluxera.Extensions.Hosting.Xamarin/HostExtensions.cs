@@ -27,7 +27,7 @@
 		}
 
 		/// <summary>
-		///     Signals that the <see cref="IHost" /> will be sleeping.
+		///     Notifies that the <see cref="IHost" /> will sleep.
 		/// </summary>
 		/// <param name="host">The host.</param>
 		/// <param name="cancellationToken">The cancellation token.</param>
@@ -36,15 +36,12 @@
 			IEnumerable<IHostedService> hostedServices = host.Services.GetServices<IHostedService>();
 
 			IList<Exception> exceptions = new List<Exception>();
-			foreach(IHostedService? hostedService in hostedServices.Reverse())
+			foreach(IHostedService hostedService in hostedServices.Reverse())
 			{
 				cancellationToken.ThrowIfCancellationRequested();
 				try
 				{
-					if(hostedService is IXamarinHostedService service)
-					{
-						await service.SleepAsync(cancellationToken).ConfigureAwait(false);
-					}
+					await hostedService.StopAsync(cancellationToken).ConfigureAwait(false);
 				}
 				catch(Exception ex)
 				{
@@ -52,19 +49,18 @@
 				}
 			}
 
-			XamarinHostApplicationLifetime? lifetime = host.Services.GetRequiredService<IHostApplicationLifetime>() as XamarinHostApplicationLifetime;
-			lifetime?.NotifySleeping();
-
-			ILogger<IHost> logger = host.Services.GetRequiredService<ILogger<IHost>>();
+			IXamarinHostApplicationLifetime lifetime = host.Services.GetRequiredService<IXamarinHostApplicationLifetime>();
+			lifetime.NotifySleeping();
 
 			if(exceptions.Count > 0)
 			{
 				AggregateException ex = new AggregateException("One or more hosted services failed to stop.", exceptions);
-				logger.StoppedWithException(ex);
+
+				ILogger<IHost> logger = host.Services.GetRequiredService<ILogger<IHost>>();
+				logger.LogCritical(ex, "An error occurred while stopping hosted services.");
+
 				throw ex;
 			}
-
-			logger.Sleeping();
 		}
 
 		/// <summary>
@@ -77,7 +73,7 @@
 		}
 
 		/// <summary>
-		///     Signals that the <see cref="IHost" /> will be resuming.
+		///     Notifies that the <see cref="IHost" /> will resume.
 		/// </summary>
 		/// <param name="host">The host.</param>
 		/// <param name="cancellationToken">The cancellation token.</param>
@@ -86,17 +82,11 @@
 			IEnumerable<IHostedService> hostedServices = host.Services.GetServices<IHostedService>();
 			foreach(IHostedService hostedService in hostedServices)
 			{
-				if(hostedService is IXamarinHostedService service)
-				{
-					await service.ResumeAsync(cancellationToken).ConfigureAwait(false);
-				}
+				await hostedService.StartAsync(cancellationToken).ConfigureAwait(false);
 			}
 
-			XamarinHostApplicationLifetime? lifetime = host.Services.GetRequiredService<IHostApplicationLifetime>() as XamarinHostApplicationLifetime;
-			lifetime?.NotifyResuming();
-
-			ILogger<IHost> logger = host.Services.GetRequiredService<ILogger<IHost>>();
-			logger.Resuming();
+			IXamarinHostApplicationLifetime lifetime = host.Services.GetRequiredService<IXamarinHostApplicationLifetime>();
+			lifetime.NotifyResuming();
 		}
 	}
 }

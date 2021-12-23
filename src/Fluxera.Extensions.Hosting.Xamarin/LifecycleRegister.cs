@@ -7,9 +7,9 @@
 	{
 		private readonly HashSet<Action> actions = new HashSet<Action>();
 
-		public void Register(Action callback)
+		public void Register(Action action)
 		{
-			this.actions.Add(callback);
+			this.actions.Add(action);
 		}
 
 		public void Notify()

@@ -5,67 +5,53 @@
 	using Microsoft.Extensions.Logging;
 
 	/// <summary>
-	///     Allows consumers to perform cleanup during a graceful shutdown.
+	///     A service that allows to perform execution of custom action during application sleep/resume cycle.
 	/// </summary>
 	public class XamarinHostApplicationLifetime : ApplicationLifetime, IXamarinHostApplicationLifetime
 	{
 		private readonly ILogger logger;
 
 		/// <summary>
-		///     Creates a new instance of <see cref="XamarinHostApplicationLifetime" />.
+		///     Creates a new instance of the <see cref="XamarinHostApplicationLifetime" /> type.
 		/// </summary>
-		/// <param name="logger">The <see cref="ILogger" /> used to log messages.</param>
-		public XamarinHostApplicationLifetime(ILogger<ApplicationLifetime> logger) : base(logger)
+		/// <param name="logger"></param>
+		public XamarinHostApplicationLifetime(ILogger<ApplicationLifetime> logger)
+			: base(logger)
 		{
 			this.logger = logger;
-			this.ApplicationSleeping = new LifecycleRegister();
-			this.ApplicationResuming = new LifecycleRegister();
+			this.Sleeping = new LifecycleRegister();
+			this.Resuming = new LifecycleRegister();
 		}
 
-		/// <summary>
-		///     Triggered when the application host has gone to sleep.
-		/// </summary>
-		public ILifecycleRegister ApplicationSleeping { get; }
+		/// <inheritdoc />
+		public ILifecycleRegister Sleeping { get; }
 
-		/// <summary>
-		///     Triggered when the application host is resuming.
-		/// </summary>
+		/// <inheritdoc />
+		public ILifecycleRegister Resuming { get; }
 
-		public ILifecycleRegister ApplicationResuming { get; }
-
-		/// <summary>
-		///     Signals the ApplicationSleeping event and blocks until it completes.
-		/// </summary>
-		public void NotifySleeping()
+		/// <inheritdoc />
+		void IXamarinHostApplicationLifetime.NotifySleeping()
 		{
 			try
 			{
-				(this.ApplicationSleeping as LifecycleRegister)?.Notify();
+				this.Sleeping.Notify();
 			}
 			catch(Exception ex)
 			{
-				this.logger.ApplicationError(
-					LoggerEventIds.ApplicationSleepingException,
-					"An error occurred while starting the application",
-					ex);
+				this.logger.LogCriticalEx("An error occurred while pausing the application.", ex);
 			}
 		}
 
-		/// <summary>
-		///     Signals the ApplicationResuming event and blocks until it completes.
-		/// </summary>
-		public void NotifyResuming()
+		/// <inheritdoc />
+		void IXamarinHostApplicationLifetime.NotifyResuming()
 		{
 			try
 			{
-				(this.ApplicationResuming as LifecycleRegister)?.Notify();
+				this.Resuming.Notify();
 			}
 			catch(Exception ex)
 			{
-				this.logger.ApplicationError(
-					LoggerEventIds.ApplicationResumingException,
-					"An error occurred resuming the application",
-					ex);
+				this.logger.LogCriticalEx("An error occurred while resuming the application.", ex);
 			}
 		}
 	}

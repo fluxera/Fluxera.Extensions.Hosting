@@ -4,15 +4,20 @@
 	using JetBrains.Annotations;
 
 	/// <summary>
-	///     Handles registration of events.
+	///     A contract for a class that handles registration of actions.
 	/// </summary>
 	[PublicAPI]
 	public interface ILifecycleRegister
 	{
 		/// <summary>
-		///     Registers a given action.
+		///     Registers the given action.
 		/// </summary>
 		/// <param name="action">The action to be registered.</param>
 		void Register(Action action);
+
+		/// <summary>
+		///     Executes all registered action of this register.
+		/// </summary>
+		void Notify();
 	}
 }
