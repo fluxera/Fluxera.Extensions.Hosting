@@ -23,13 +23,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="GitVersion.MsBuild" Version="5.8.1">
+	  <PackageReference Include="GitVersion.MsBuild" Version="5.8.2">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
-	  <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
-	  <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+	  <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.2" />
+	  <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
 	</ItemGroup>
 
 	<ItemGroup>
