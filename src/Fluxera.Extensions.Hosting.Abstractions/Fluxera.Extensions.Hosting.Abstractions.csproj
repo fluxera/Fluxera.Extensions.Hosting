@@ -23,16 +23,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Extensions.DependencyInjection.Abstractions" Version="6.0.18" />
-		<PackageReference Include="Fluxera.Guards" Version="6.0.10" />
-		<PackageReference Include="GitVersion.MsBuild" Version="5.8.2">
+		<PackageReference Include="Fluxera.Extensions.DependencyInjection.Abstractions" Version="6.0.19" />
+		<PackageReference Include="Fluxera.Guards" Version="6.0.11" />
+		<PackageReference Include="GitVersion.MsBuild" Version="5.9.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 	</ItemGroup>
 
 </Project>
