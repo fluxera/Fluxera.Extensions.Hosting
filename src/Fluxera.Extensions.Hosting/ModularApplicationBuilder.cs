@@ -23,7 +23,7 @@
 			this.PluginSources = new PluginSourceList();
 		}
 
-		public IApplicationLoader Build(ApplicationLoaderBuilderFunc? applicationLoaderFactory = null)
+		public IApplicationLoader Build(ApplicationLoaderBuilderFunc applicationLoaderFactory = null)
 		{
 			// Update configuration.
 			this.services.UpdateConfiguration();

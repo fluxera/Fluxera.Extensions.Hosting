@@ -68,8 +68,8 @@
 		/// <returns></returns>
 		public static IHostBuilder ConfigureApplicationLoader<TStartupModule>(this IHostBuilder hostBuilder,
 			ILogger logger,
-			Action<IPluginConfigurationContext>? configurePlugins = null,
-			ApplicationLoaderBuilderFunc? applicationLoaderFactory = null)
+			Action<IPluginConfigurationContext> configurePlugins = null,
+			ApplicationLoaderBuilderFunc applicationLoaderFactory = null)
 			where TStartupModule : class, IModule
 		{
 			hostBuilder.ConfigureServices((context, services) =>

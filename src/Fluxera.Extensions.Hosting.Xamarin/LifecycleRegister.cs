@@ -14,7 +14,7 @@
 
 		public void Notify()
 		{
-			foreach(Action? action in this.actions)
+			foreach(Action action in this.actions)
 			{
 				action.Invoke();
 			}

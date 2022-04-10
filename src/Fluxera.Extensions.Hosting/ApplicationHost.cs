@@ -77,7 +77,7 @@ namespace Fluxera.Extensions.Hosting
 		/// <summary>
 		///     Gets the optional allocation loader builder function.
 		/// </summary>
-		protected virtual ApplicationLoaderBuilderFunc? ApplicationLoaderBuilder { get; }
+		protected virtual ApplicationLoaderBuilderFunc ApplicationLoaderBuilder { get; }
 
 		/// <summary>
 		///     Gets the prefixes of environment variables that should be loaded into the

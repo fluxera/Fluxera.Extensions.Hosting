@@ -18,17 +18,17 @@
 		/// <summary>
 		///     An event that is raised before the host is created.
 		/// </summary>
-		public event EventHandler? HostCreating;
+		public event EventHandler HostCreating;
 
 		/// <summary>
 		///     An event that is raised after the host was created.
 		/// </summary>
-		public event EventHandler? HostCreated;
+		public event EventHandler HostCreated;
 
 		/// <summary>
 		///     An event that is raised, if the host creation failed.
 		/// </summary>
-		public event EventHandler<HostInitializationFailedEventArgs>? HostCreationFailed;
+		public event EventHandler<HostInitializationFailedEventArgs> HostCreationFailed;
 
 		/// <summary>
 		///     Raise the <see cref="HostCreating" /> event.

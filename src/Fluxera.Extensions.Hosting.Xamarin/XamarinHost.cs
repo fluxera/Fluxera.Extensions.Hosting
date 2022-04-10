@@ -26,7 +26,7 @@
 
 			builder.ConfigureAppConfiguration((hostingContext, configurationBuilder) =>
 			{
-				IHostEnvironment? environment = hostingContext.HostingEnvironment;
+				IHostEnvironment environment = hostingContext.HostingEnvironment;
 
 				configurationBuilder.SetFileProvider(new EmbeddedFileProvider(typeof(TApplication).Assembly));
 				configurationBuilder.AddJsonFile("appsettings.json", true);

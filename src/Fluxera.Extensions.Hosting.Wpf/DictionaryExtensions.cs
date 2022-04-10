@@ -11,7 +11,7 @@
 			string contextKey, out TContext context)
 			where TContext : class, new()
 		{
-			if(properties.TryGetValue(contextKey, out object? value))
+			if(properties.TryGetValue(contextKey, out object value))
 			{
 				context = (TContext)value;
 				return true;

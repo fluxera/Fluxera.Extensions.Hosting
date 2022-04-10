@@ -49,6 +49,6 @@
 		/// </summary>
 		/// <param name="key">The key.</param>
 		/// <returns>The stored object or <c>null</c>.</returns>
-		object? this[string key] { get; set; }
+		object this[string key] { get; set; }
 	}
 }

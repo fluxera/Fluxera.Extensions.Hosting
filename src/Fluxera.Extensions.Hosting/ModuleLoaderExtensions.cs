@@ -49,7 +49,7 @@
 				services.Remove(serviceDescriptor);
 				if(serviceDescriptor != null)
 				{
-					IObjectAccessor? accessor = serviceDescriptor.ImplementationInstance as IObjectAccessor;
+					IObjectAccessor accessor = serviceDescriptor.ImplementationInstance as IObjectAccessor;
 					accessor?.Dispose();
 				}
 			}

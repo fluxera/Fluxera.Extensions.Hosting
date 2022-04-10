@@ -29,7 +29,7 @@
 			return logLevel != LogLevel.None;
 		}
 
-		public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+		public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
 		{
 			if(!this.IsEnabled(logLevel))
 			{
@@ -49,7 +49,7 @@
 			}
 		}
 
-		private static void WriteMessage(LogLevel logLevel, string logName, int eventId, string message, Exception? exception)
+		private static void WriteMessage(LogLevel logLevel, string logName, int eventId, string message, Exception exception)
 		{
 			lock(logBuilder)
 			{
@@ -90,7 +90,7 @@
 			}
 		}
 
-		private static void CreateDefaultLogMessage(StringBuilder stringBuilder, LogLevel logLevel, string logName, int eventId, string message, Exception? exception)
+		private static void CreateDefaultLogMessage(StringBuilder stringBuilder, LogLevel logLevel, string logName, int eventId, string message, Exception exception)
 		{
 			stringBuilder.Append(GetLogLevelString(logLevel));
 			stringBuilder.Append(LogLevelPadding);

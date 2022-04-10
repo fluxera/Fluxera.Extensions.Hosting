@@ -20,6 +20,6 @@
 		/// </summary>
 		/// <param name="applicationLoaderFactory"></param>
 		/// <returns></returns>
-		IApplicationLoader Build(ApplicationLoaderBuilderFunc? applicationLoaderFactory = null);
+		IApplicationLoader Build(ApplicationLoaderBuilderFunc applicationLoaderFactory = null);
 	}
 }

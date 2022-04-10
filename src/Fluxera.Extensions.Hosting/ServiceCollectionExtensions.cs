@@ -31,8 +31,8 @@
 			IConfiguration configuration,
 			IHostEnvironment environment,
 			ILogger bootstrapperLogger,
-			Action<IPluginConfigurationContext>? configurePlugins = null,
-			ApplicationLoaderBuilderFunc? applicationLoaderFactory = null)
+			Action<IPluginConfigurationContext> configurePlugins = null,
+			ApplicationLoaderBuilderFunc applicationLoaderFactory = null)
 			where TStartupModule : class, IModule
 		{
 			// Add configuration.
