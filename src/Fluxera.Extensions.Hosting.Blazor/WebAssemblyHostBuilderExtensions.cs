@@ -44,8 +44,8 @@
 
 		public static void ConfigureApplicationLoader<TStartupModule>(this WebAssemblyHostBuilder hostBuilder,
 			ILogger logger,
-			Action<IPluginConfigurationContext>? configurePlugins = null,
-			ApplicationLoaderBuilderFunc? applicationLoaderFactory = null)
+			Action<IPluginConfigurationContext> configurePlugins = null,
+			ApplicationLoaderBuilderFunc applicationLoaderFactory = null)
 			where TStartupModule : class, IModule
 		{
 			BlazorHostEnvironment environment = new BlazorHostEnvironment(hostBuilder.HostEnvironment, Assembly.GetEntryAssembly()?.GetName().Name ?? string.Empty);

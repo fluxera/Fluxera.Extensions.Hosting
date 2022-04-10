@@ -24,7 +24,7 @@
 
 		private CancellationTokenRegistration applicationStartedRegistration;
 		private CancellationTokenRegistration applicationStoppingRegistration;
-		private Thread? thread;
+		private Thread thread;
 
 		public WpfApplicationLifetime(
 			IServiceProvider serviceProvider,
@@ -156,7 +156,7 @@
 			application.Startup += (_, _) =>
 			{
 				// Open the specified shell window.
-				IMainWindow? mainWindow = this.serviceProvider.GetService<IMainWindow>();
+				IMainWindow mainWindow = this.serviceProvider.GetService<IMainWindow>();
 				if(mainWindow != null)
 				{
 					taskCompletionSource.SetResult(true);
