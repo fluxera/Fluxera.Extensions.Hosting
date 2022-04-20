@@ -8,9 +8,9 @@
 	internal sealed class ConsoleOutLogger : ILogger
 	{
 		private const string LogLevelPadding = ": ";
-		private static readonly string messagePadding = new string(' ', GetLogLevelString(LogLevel.Information).Length + LogLevelPadding.Length);
-		private static readonly string newLineWithMessagePadding = Environment.NewLine + messagePadding;
-		private static readonly StringBuilder logBuilder = new StringBuilder();
+		private static readonly string MessagePadding = new string(' ', GetLogLevelString(LogLevel.Information).Length + LogLevelPadding.Length);
+		private static readonly string NewLineWithMessagePadding = Environment.NewLine + MessagePadding;
+		private static readonly StringBuilder LogBuilder = new StringBuilder();
 
 		private readonly string name;
 
@@ -51,12 +51,12 @@
 
 		private static void WriteMessage(LogLevel logLevel, string logName, int eventId, string message, Exception exception)
 		{
-			lock(logBuilder)
+			lock(LogBuilder)
 			{
 				try
 				{
-					CreateDefaultLogMessage(logBuilder, logLevel, logName, eventId, message, exception);
-					string formattedMessage = logBuilder.ToString();
+					CreateDefaultLogMessage(LogBuilder, logLevel, logName, eventId, message, exception);
+					string formattedMessage = LogBuilder.ToString();
 
 					switch(logLevel)
 					{
@@ -85,7 +85,7 @@
 				}
 				finally
 				{
-					logBuilder.Clear();
+					LogBuilder.Clear();
 				}
 			}
 		}
@@ -103,11 +103,11 @@
 			{
 				// message
 				stringBuilder.AppendLine();
-				stringBuilder.Append(messagePadding);
+				stringBuilder.Append(MessagePadding);
 
 				int len = stringBuilder.Length;
 				stringBuilder.Append(message);
-				stringBuilder.Replace(Environment.NewLine, newLineWithMessagePadding, len, message.Length);
+				stringBuilder.Replace(Environment.NewLine, NewLineWithMessagePadding, len, message.Length);
 			}
 
 			// Example:
