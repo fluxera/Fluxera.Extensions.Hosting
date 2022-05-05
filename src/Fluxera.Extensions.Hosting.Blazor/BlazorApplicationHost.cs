@@ -93,7 +93,8 @@
 			catch(Exception ex)
 			{
 				this.events.OnHostCreationFailed(ex);
-				this.logger.LogCritical(ex, "Application terminated unexpectedly.");
+				this.logger?.LogCritical(ex, "Application terminated unexpectedly.");
+				Console.Error.WriteLine(ex);
 			}
 			finally
 			{
