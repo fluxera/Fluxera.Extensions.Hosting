@@ -3,13 +3,12 @@
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.Hosting;
-	using Microsoft.Extensions.Logging;
 
 	/// <summary>
 	///     A contract for a context type that is given to the plugin module configuration.
 	/// </summary>
 	[PublicAPI]
-	public interface IPluginConfigurationContext
+	public interface IPluginConfigurationContext : ILoggingContext<IPluginSourceList>
 	{
 		/// <summary>
 		///     The list of plugin sources. One may add additional sources to configure
@@ -26,10 +25,5 @@
 		///     Gets the environment the application runs under.
 		/// </summary>
 		IHostEnvironment Environment { get; }
-
-		/// <summary>
-		///     Gets a logger.
-		/// </summary>
-		ILogger Logger { get; }
 	}
 }

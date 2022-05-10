@@ -9,14 +9,14 @@
 	[UsedImplicitly]
 	internal sealed class PluginSourceList : List<IPluginSource>, IPluginSourceList
 	{
-		public IEnumerable<Assembly> GetAllAssemblies()
+		IEnumerable<Assembly> IPluginSourceList.GetAllAssemblies()
 		{
 			return this
 				.SelectMany(pluginSource => pluginSource.GetAssemblies())
 				.Distinct();
 		}
 
-		public IEnumerable<Type> GetAllModules()
+		IEnumerable<Type> IPluginSourceList.GetAllModules()
 		{
 			return this
 				.SelectMany(pluginSource => pluginSource.GetModulesWithAllDependencies())

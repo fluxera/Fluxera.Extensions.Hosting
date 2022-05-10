@@ -45,5 +45,8 @@
 			get => this.Items.TryGetValue(key, out object obj) ? obj : null;
 			set => this.Items[key] = value!;
 		}
+
+		/// <inheritdoc />
+		IServiceCollection ILoggingContext<IServiceCollection>.LogContextData => this.Services;
 	}
 }

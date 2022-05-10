@@ -11,7 +11,7 @@
 		[Test]
 		public void ShouldCallConfigure()
 		{
-			IModuleDescriptor descriptor = this.ApplicationLoader!.Modules.First();
+			IModuleDescriptor descriptor = this.ApplicationLoader.Modules.First();
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
@@ -21,7 +21,7 @@
 		[Test]
 		public void ShouldCallConfigureServices()
 		{
-			IModuleDescriptor descriptor = this.ApplicationLoader!.Modules.First();
+			IModuleDescriptor descriptor = this.ApplicationLoader.Modules.First();
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
@@ -31,8 +31,8 @@
 		[Test]
 		public void ShouldCallOnApplicationShutdown()
 		{
-			this.ApplicationLoader!.Shutdown();
-			IModuleDescriptor descriptor = this.ApplicationLoader!.Modules.First();
+			this.ApplicationLoader.Shutdown();
+			IModuleDescriptor descriptor = this.ApplicationLoader.Modules.First();
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
@@ -42,7 +42,7 @@
 		[Test]
 		public void ShouldCallPostConfigure()
 		{
-			IModuleDescriptor descriptor = this.ApplicationLoader!.Modules.First();
+			IModuleDescriptor descriptor = this.ApplicationLoader.Modules.First();
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
@@ -52,7 +52,7 @@
 		[Test]
 		public void ShouldCallPostConfigureServices()
 		{
-			IModuleDescriptor descriptor = this.ApplicationLoader!.Modules.First();
+			IModuleDescriptor descriptor = this.ApplicationLoader.Modules.First();
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
@@ -62,7 +62,7 @@
 		[Test]
 		public void ShouldCallPreConfigure()
 		{
-			IModuleDescriptor descriptor = this.ApplicationLoader!.Modules.First();
+			IModuleDescriptor descriptor = this.ApplicationLoader.Modules.First();
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
@@ -72,7 +72,7 @@
 		[Test]
 		public void ShouldCallPreConfigureServices()
 		{
-			IModuleDescriptor descriptor = this.ApplicationLoader!.Modules.First();
+			IModuleDescriptor descriptor = this.ApplicationLoader.Modules.First();
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();

@@ -5,7 +5,6 @@
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
-	using Microsoft.Extensions.Logging;
 
 	/// <summary>
 	///     A contract for a context type that is available during the service
@@ -13,7 +12,7 @@
 	///     down the module list.
 	/// </summary>
 	[PublicAPI]
-	public interface IServiceConfigurationContext
+	public interface IServiceConfigurationContext : ILoggingContext<IServiceCollection>
 	{
 		/// <summary>
 		///     Gets the service collection.
@@ -29,11 +28,6 @@
 		///     Gets the environment to application runs under.
 		/// </summary>
 		IHostEnvironment Environment { get; }
-
-		/// <summary>
-		///     Gets a logger.
-		/// </summary>
-		ILogger Logger { get; }
 
 		/// <summary>
 		///     Gets additional items that can be passed down the module service configuration pipeline.

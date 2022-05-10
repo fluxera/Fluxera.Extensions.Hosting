@@ -17,13 +17,13 @@
 		///     all available <see cref="IPluginSource" /> instances.
 		/// </summary>
 		/// <returns></returns>
-		IEnumerable<Assembly> GetAllAssemblies();
+		internal IEnumerable<Assembly> GetAllAssemblies();
 
 		/// <summary>
 		///     Gets all <see cref="IModule" /> types from all available
 		///     <see cref="IPluginSource" /> instances including their dependencies.
 		/// </summary>
 		/// <returns></returns>
-		IEnumerable<Type> GetAllModules();
+		internal IEnumerable<Type> GetAllModules();
 	}
 }

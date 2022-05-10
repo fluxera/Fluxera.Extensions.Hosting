@@ -35,6 +35,9 @@
 		public IHostEnvironment Environment { get; }
 
 		/// <inheritdoc />
-		public ILogger Logger { get; set; }
+		public ILogger Logger { get; }
+
+		/// <inheritdoc />
+		IServiceProvider ILoggingContext<IServiceProvider>.LogContextData => this.ServiceProvider;
 	}
 }

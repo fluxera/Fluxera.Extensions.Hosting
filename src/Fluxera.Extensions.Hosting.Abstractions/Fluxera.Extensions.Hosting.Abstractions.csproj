@@ -23,7 +23,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Extensions.DependencyInjection.Abstractions" Version="6.0.28" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.AspNetCore" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Fluxera.Extensions.DependencyInjection.Abstractions" Version="6.0.29" />
 		<PackageReference Include="Fluxera.Guards" Version="6.0.22" />
 		<PackageReference Include="GitVersion.MsBuild" Version="5.10.1">
 		  <PrivateAssets>all</PrivateAssets>

@@ -34,5 +34,8 @@
 
 		/// <inheritdoc />
 		public ILogger Logger { get; }
+
+		/// <inheritdoc />
+		IPluginSourceList ILoggingContext<IPluginSourceList>.LogContextData => this.PluginSources;
 	}
 }
