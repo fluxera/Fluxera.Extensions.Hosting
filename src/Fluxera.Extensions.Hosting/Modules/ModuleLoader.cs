@@ -38,7 +38,7 @@
 		}
 
 		private static void FillModules(
-			IList<IModuleDescriptor> modules,
+			ICollection<IModuleDescriptor> modules,
 			IServiceCollection services,
 			Type startupModuleType,
 			IPluginSourceList pluginSources)
@@ -69,7 +69,7 @@
 			}
 		}
 
-		private static IList<IModuleDescriptor> SortByDependency(IList<IModuleDescriptor> modules,
+		private static IList<IModuleDescriptor> SortByDependency(ICollection<IModuleDescriptor> modules,
 			Type startupModuleType)
 		{
 			IList<IModuleDescriptor> sortedModules = modules.SortByDependencies(m => m.Dependencies);
