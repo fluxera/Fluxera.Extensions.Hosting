@@ -11,6 +11,6 @@
 
 		public ShutdownMode ShutdownMode { get; set; } = ShutdownMode.OnLastWindowClose;
 
-		public Application Application { get; set; } = null!;
+		public Application Application { get; set; }
 	}
 }

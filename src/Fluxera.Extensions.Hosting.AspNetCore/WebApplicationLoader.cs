@@ -11,7 +11,7 @@
 	/// </summary>
 	internal sealed class WebApplicationLoader : ApplicationLoader
 	{
-		private WebApplicationLoaderInitializationContext webContext = null!;
+		private WebApplicationLoaderInitializationContext webContext;
 
 		public WebApplicationLoader(
 			Type startupModuleType,

@@ -43,7 +43,7 @@
 		public object this[string key]
 		{
 			get => this.Items.TryGetValue(key, out object obj) ? obj : null;
-			set => this.Items[key] = value!;
+			set => this.Items[key] = value;
 		}
 
 		/// <inheritdoc />

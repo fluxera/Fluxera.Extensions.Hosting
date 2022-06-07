@@ -64,15 +64,15 @@ namespace Fluxera.Extensions.Hosting
 	public abstract class ApplicationHost<TStartupModule> : IApplicationHost
 		where TStartupModule : class, IModule
 	{
-		private IHostEnvironment environment = null!;
+		private IHostEnvironment environment;
 		private ApplicationHostEvents events = new ApplicationHostEvents();
-		private IHostBuilder hostBuilder = null!;
-		private ILogger logger = null!;
+		private IHostBuilder hostBuilder;
+		private ILogger logger;
 
 		/// <summary>
 		///     Gets the command line arguments of the application.
 		/// </summary>
-		protected string[] CommandLineArgs { get; private set; } = null!;
+		protected string[] CommandLineArgs { get; private set; }
 
 		/// <summary>
 		///     Gets the optional allocation loader builder function.

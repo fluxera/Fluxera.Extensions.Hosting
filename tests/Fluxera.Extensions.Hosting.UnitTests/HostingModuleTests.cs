@@ -15,7 +15,7 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
-			module!.ConfigureWasCalled.Should().BeTrue();
+			module.ConfigureWasCalled.Should().BeTrue();
 		}
 
 		[Test]
@@ -25,7 +25,7 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
-			module!.ConfigureServicesWasCalled.Should().BeTrue();
+			module.ConfigureServicesWasCalled.Should().BeTrue();
 		}
 
 		[Test]
@@ -36,7 +36,7 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
-			module!.OnApplicationShutdownWasCalled.Should().BeTrue();
+			module.OnApplicationShutdownWasCalled.Should().BeTrue();
 		}
 
 		[Test]
@@ -46,7 +46,7 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
-			module!.PostConfigureWasCalled.Should().BeTrue();
+			module.PostConfigureWasCalled.Should().BeTrue();
 		}
 
 		[Test]
@@ -56,7 +56,7 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
-			module!.PostConfigureServicesWasCalled.Should().BeTrue();
+			module.PostConfigureServicesWasCalled.Should().BeTrue();
 		}
 
 		[Test]
@@ -66,7 +66,7 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
-			module!.PreConfigureWasCalled.Should().BeTrue();
+			module.PreConfigureWasCalled.Should().BeTrue();
 		}
 
 		[Test]
@@ -76,7 +76,7 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.Should().NotBeNull();
-			module!.PreConfigureServicesWasCalled.Should().BeTrue();
+			module.PreConfigureServicesWasCalled.Should().BeTrue();
 		}
 	}
 }

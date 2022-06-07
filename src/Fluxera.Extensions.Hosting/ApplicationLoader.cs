@@ -53,7 +53,7 @@
 		public Type StartupModuleType { get; }
 
 		/// <inheritdoc />
-		public IServiceProvider ServiceProvider { get; private set; } = null!;
+		public IServiceProvider ServiceProvider { get; private set; }
 
 		/// <inheritdoc />
 		public IReadOnlyCollection<IModuleDescriptor> Modules { get; }
