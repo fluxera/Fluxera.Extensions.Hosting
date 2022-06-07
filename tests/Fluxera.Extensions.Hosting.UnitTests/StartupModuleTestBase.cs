@@ -42,7 +42,7 @@
 		public void TearDown()
 		{
 			this.ApplicationLoader?.Shutdown();
-			this.ApplicationLoader = null!;
+			this.ApplicationLoader = null;
 		}
 	}
 }

@@ -15,7 +15,7 @@
 	public abstract class WebApplicationHost<TStartupModule> : ApplicationHost<TStartupModule>
 		where TStartupModule : class, IModule
 	{
-		private WebApplicationBuilder webApplicationBuilder = null!;
+		private WebApplicationBuilder webApplicationBuilder;
 
 		/// <inheritdoc />
 		protected override ApplicationLoaderBuilderFunc ApplicationLoaderBuilder => ApplicationLoaderBuilderFuncFactory.CreateApplication;

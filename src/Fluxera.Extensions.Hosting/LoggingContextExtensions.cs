@@ -1,4 +1,6 @@
-﻿namespace Fluxera.Extensions.Hosting
+﻿// ReSharper disable PossibleNullReferenceException
+
+namespace Fluxera.Extensions.Hosting
 {
 	using System;
 	using System.Linq.Expressions;
@@ -22,7 +24,7 @@
 			Guard.Against.Null(context);
 			Guard.Against.Null(expression);
 
-			MethodCallExpression methodCallExpression = (expression.Body as MethodCallExpression)!;
+			MethodCallExpression methodCallExpression = expression.Body as MethodCallExpression;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -43,7 +45,7 @@
 			Guard.Against.Null(context);
 			Guard.Against.Null(expression);
 
-			MethodCallExpression methodCallExpression = (expression.Body as MethodCallExpression)!;
+			MethodCallExpression methodCallExpression = expression.Body as MethodCallExpression;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
@@ -81,7 +83,7 @@
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(expression, nameof(expression));
 
-			MethodCallExpression methodCallExpression = (expression.Body as MethodCallExpression)!;
+			MethodCallExpression methodCallExpression = expression.Body as MethodCallExpression;
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;

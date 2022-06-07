@@ -45,11 +45,11 @@
 		where TStartupModule : class, IModule
 		where TApplication : XamarinApplication
 	{
-		private IHostEnvironment environment = null!;
+		private IHostEnvironment environment;
 		private ApplicationHostEvents events = new ApplicationHostEvents();
-		private IHost host = null!;
-		private IHostBuilder hostBuilder = null!;
-		private ILogger logger = null!;
+		private IHost host;
+		private IHostBuilder hostBuilder;
+		private ILogger logger;
 
 		/// <inheritdoc />
 		public Task StartAsync(CancellationToken cancellationToken = default)

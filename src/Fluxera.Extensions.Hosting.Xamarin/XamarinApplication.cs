@@ -13,6 +13,6 @@
 		/// <summary>
 		///     Gets or sets the host.
 		/// </summary>
-		public IHost Host { get; internal set; } = null!;
+		public IHost Host { get; internal set; }
 	}
 }

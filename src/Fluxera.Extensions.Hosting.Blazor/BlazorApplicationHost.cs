@@ -26,12 +26,12 @@
 		where TRootComponent : class, IComponent
 	{
 		private ApplicationHostEvents events = new ApplicationHostEvents();
-		private ILogger logger = null!;
+		private ILogger logger;
 
 		/// <summary>
 		///     Gets the command line arguments.
 		/// </summary>
-		protected string[] CommandLineArgs { get; private set; } = null!;
+		protected string[] CommandLineArgs { get; private set; }
 
 		/// <inheritdoc />
 		public async Task RunAsync(string[] args)
