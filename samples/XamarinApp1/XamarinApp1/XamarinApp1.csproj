@@ -20,13 +20,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
-		<PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference
-			Include="..\..\..\src\Fluxera.Extensions.Hosting.Abstractions\Fluxera.Extensions.Hosting.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting.Abstractions\Fluxera.Extensions.Hosting.Abstractions.csproj" />
 		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting.Xamarin\Fluxera.Extensions.Hosting.Xamarin.csproj" />
 		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
 	</ItemGroup>

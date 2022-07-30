@@ -28,8 +28,8 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
-	  <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.6" />
-	  <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
+	  <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.7" />
+	  <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
 	</ItemGroup>
 
 	<ItemGroup>
