@@ -6,7 +6,6 @@
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
 
-	[DependsOn(typeof(WebModule))]
 	public class WebApplication1Module : ConfigureApplicationModule
 	{
 		/// <inheritdoc />
