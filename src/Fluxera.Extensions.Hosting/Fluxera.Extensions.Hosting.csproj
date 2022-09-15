@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="6.1.5" />
+		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="6.1.6" />
 		<PackageReference Include="Fluxera.Guards" Version="6.1.0" />
 		<PackageReference Include="Fluxera.Utilities" Version="6.1.1" />
 		<PackageReference Include="GitVersion.MsBuild" Version="5.10.3">

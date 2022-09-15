@@ -20,7 +20,8 @@
 		/// </summary>
 		/// <typeparam name="TApplication">The type containing the static <see cref="IHost" /> method.</typeparam>
 		/// <returns>The initialized <see cref="IHostBuilder" />.</returns>
-		public static IHostBuilder CreateDefaultBuilder<TApplication>() where TApplication : Application
+		public static IHostBuilder CreateDefaultBuilder<TApplication>()
+			where TApplication : Application
 		{
 			IHostBuilder builder = new HostBuilder();
 

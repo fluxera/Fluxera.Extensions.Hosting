@@ -1,7 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<UseMaui>true</UseMaui>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -28,12 +32,17 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
-		<PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.486" />
-		<PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.486" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.9" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Microsoft.Maui">
+	    <HintPath>C:\Program Files\dotnet\packs\Microsoft.Maui.Core.Ref.android\6.0.486\ref\net6.0-android30.0\Microsoft.Maui.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>
