@@ -23,7 +23,7 @@
 	public static class XamarinApplicationHost
 	{
 		/// <summary>
-		///     Creates the application host.
+		///     Creates the application.
 		/// </summary>
 		/// <typeparam name="TApplicationHost">The type of the host.</typeparam>
 		/// <returns></returns>
@@ -237,17 +237,15 @@
 
 			ILoggerFactory loggerFactory = this.CreateBootstrapperLoggerFactory(configuration);
 			return loggerFactory.CreateLogger(ApplicationHost.LoggerName);
-
-			//return NullLogger.Instance;
 		}
 
-		internal virtual IHostBuilder CreateHostBuilder()
+		private IHostBuilder CreateHostBuilder()
 		{
 			IHostBuilder builder = XamarinHost.CreateDefaultBuilder<TApplication>();
 			return builder;
 		}
 
-		internal virtual IHost BuildHost()
+		private IHost BuildHost()
 		{
 			// Build the host.
 			return this.hostBuilder.Build();
