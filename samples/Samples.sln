@@ -33,14 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinApp1", "XamarinApp1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinApp1.Android", "XamarinApp1\XamarinApp1.Android\XamarinApp1.Android.csproj", "{22BF38E4-DF0E-4A91-823A-AE9D824760FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.Maui", "..\src\Fluxera.Extensions.Hosting.Maui\Fluxera.Extensions.Hosting.Maui.csproj", "{4BB228FB-7907-4F68-8982-A6BB2B5CCFB6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{6D85FEE6-75DA-4351-985D-34FF655DB84C}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1", "MauiApp1\MauiApp1.csproj", "{C842CA4B-D424-4586-AB00-6040E2410A85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,16 +102,6 @@ Global
 		{22BF38E4-DF0E-4A91-823A-AE9D824760FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22BF38E4-DF0E-4A91-823A-AE9D824760FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22BF38E4-DF0E-4A91-823A-AE9D824760FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{4BB228FB-7907-4F68-8982-A6BB2B5CCFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BB228FB-7907-4F68-8982-A6BB2B5CCFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BB228FB-7907-4F68-8982-A6BB2B5CCFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BB228FB-7907-4F68-8982-A6BB2B5CCFB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C842CA4B-D424-4586-AB00-6040E2410A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C842CA4B-D424-4586-AB00-6040E2410A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C842CA4B-D424-4586-AB00-6040E2410A85}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C842CA4B-D424-4586-AB00-6040E2410A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C842CA4B-D424-4586-AB00-6040E2410A85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C842CA4B-D424-4586-AB00-6040E2410A85}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,8 +121,6 @@ Global
 		{DE04A7B6-212C-4252-8A7A-E15D2B9CDBDD} = {6D85FEE6-75DA-4351-985D-34FF655DB84C}
 		{8B261F84-5659-4172-81EE-1DB9F51ABEE1} = {6D85FEE6-75DA-4351-985D-34FF655DB84C}
 		{22BF38E4-DF0E-4A91-823A-AE9D824760FF} = {6D85FEE6-75DA-4351-985D-34FF655DB84C}
-		{4BB228FB-7907-4F68-8982-A6BB2B5CCFB6} = {A45137A0-3DE2-4862-BC9E-400B73CC9480}
-		{C842CA4B-D424-4586-AB00-6040E2410A85} = {6D85FEE6-75DA-4351-985D-34FF655DB84C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2552514A-A13C-4FFA-B983-2A00C60A72F4}
