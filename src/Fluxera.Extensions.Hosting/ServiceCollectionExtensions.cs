@@ -4,6 +4,7 @@
 	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
+	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +36,11 @@
 			ApplicationLoaderBuilderFunc applicationLoaderFactory = null)
 			where TStartupModule : class, IModule
 		{
+			Guard.Against.Null(services);
+			Guard.Against.Null(configuration);
+			Guard.Against.Null(environment);
+			Guard.Against.Null(bootstrapperLogger);
+
 			// Add configuration.
 			services.AddObjectAccessor(configuration, ObjectAccessorLifetime.Application);
 
