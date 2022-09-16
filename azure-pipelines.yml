@@ -28,11 +28,11 @@ stages:
         includePreviewVersions: false   
     # Restore the workloads.
     - task: DotNetCoreCLI@2
-        displayName: "dotnet workload restore"
-        inputs:
-            command: 'custom'
-            custom: 'workload'
-            arguments: 'restore'
+      displayName: 'dotnet workload restore'
+      inputs:
+        command: 'custom'
+        custom: 'workload'
+        arguments: 'restore'
     # Build all projects.
     - task: DotNetCoreCLI@2
       displayName: 'Build Projects'
