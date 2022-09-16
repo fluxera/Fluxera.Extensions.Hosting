@@ -39,12 +39,6 @@ stages:
       inputs:
         projects: 'src/**/*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
-    # Updating pipeline build number to actual semantic version
-    - script: echo %Action%%BuildVersion%
-      displayName: 'Updating build # to SemVer'
-      env:
-        Action: '##vso[build.updatebuildnumber]'
-        BuildVersion: $(GitVersion.FullSemVer)
     # Run all available tests.
     - task: DotNetCoreCLI@2
       displayName: 'Execute Tests'
