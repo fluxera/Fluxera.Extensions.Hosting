@@ -8,7 +8,7 @@ trigger:
 variables:
   BuildConfiguration: Release
   DotNetCoreVersion: 6.0.x
-  GITVERSION_FullSemVer: ''
+  GitVersion.SemVer: ''
 
 stages:
 - stage: BuildAndTest
@@ -45,7 +45,7 @@ stages:
       displayName: 'Updating build # to SemVer'
       env:
         Action: '##vso[build.updatebuildnumber]'
-        BuildVersion: '$(GITVERSION_FullSemVer)'
+        BuildVersion: '$(GitVersion.SemVer)'
     # Run all available tests.
     - task: DotNetCoreCLI@2
       displayName: 'Execute Tests'
