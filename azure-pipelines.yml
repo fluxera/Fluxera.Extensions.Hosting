@@ -44,7 +44,7 @@ stages:
       displayName: 'Updating build # to SemVer'
       env:
         Action: '##vso[build.updatebuildnumber]'
-        BuildVersion: '$(GitVersion.FullSemVer)'
+        BuildVersion: '$(GITVERSION_FullSemVer)'
     # Run all available tests.
     - task: DotNetCoreCLI@2
       displayName: 'Execute Tests'
