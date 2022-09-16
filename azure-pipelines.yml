@@ -8,6 +8,8 @@ trigger:
 variables:
   BuildConfiguration: Release
   DotNetCoreVersion: 6.0.x
+  GitVersion.FullSemVer: ''
+
 
 stages:
 - stage: BuildAndTest
@@ -39,6 +41,11 @@ stages:
       inputs:
         projects: 'src/**/*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
+    - task: UseGitVersion@5
+      displayName: gitversion
+      inputs:
+        versionSpec: '5.x'
+        updateAssemblyInfo: false
     # Updating pipeline build number to actual semantic version
     - script: echo %Action%%BuildVersion%
       displayName: 'Updating build # to SemVer'
