@@ -8,7 +8,7 @@ trigger:
 variables:
   BuildConfiguration: Release
   DotNetCoreVersion: 6.0.x
-  BUILD_BUILDNUMBER: '$(GitVersion_FullSemVer)'
+  BUILD_BUILDNUMBER: $(GitVersion_FullSemVer)
 
 stages:
 - stage: BuildAndTest
