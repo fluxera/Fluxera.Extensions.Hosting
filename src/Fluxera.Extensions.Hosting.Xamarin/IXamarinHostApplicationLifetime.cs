@@ -1,5 +1,6 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
+	using System;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Hosting;
 
@@ -8,6 +9,7 @@
 	///     during application sleep/resume cycle.
 	/// </summary>
 	[PublicAPI]
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
 	public interface IXamarinHostApplicationLifetime : IHostApplicationLifetime
 	{
 		/// <summary>

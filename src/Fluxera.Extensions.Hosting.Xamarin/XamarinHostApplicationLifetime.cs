@@ -7,7 +7,8 @@
 	/// <summary>
 	///     A service that allows to perform execution of custom action during application sleep/resume cycle.
 	/// </summary>
-	public class XamarinHostApplicationLifetime : ApplicationLifetime, IXamarinHostApplicationLifetime
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
+	public sealed class XamarinHostApplicationLifetime : ApplicationLifetime, IXamarinHostApplicationLifetime
 	{
 		private readonly ILogger logger;
 

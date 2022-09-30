@@ -1,6 +1,5 @@
 ﻿namespace Fluxera.Extensions.Hosting.Modules
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using JetBrains.Annotations;
@@ -37,7 +36,7 @@
 				}
 			}
 
-			this.logger.LogDebug("Initialized all modules.");
+			this.logger.LogModulesInitialized();
 		}
 
 		public void ShutdownModules(IApplicationShutdownContext context)
@@ -55,14 +54,10 @@
 
 		private void LogListOfModules()
 		{
-			string message = $"Loaded modules:{Environment.NewLine}";
-
 			foreach(IModuleDescriptor module in this.moduleContainer.Modules)
 			{
-				message += $"\t- {module.Type.FullName}{Environment.NewLine}";
+				this.logger.LogLoadedModule(module.Type.FullName);
 			}
-
-			this.logger.LogInformation(message.TrimEnd(Environment.NewLine.ToCharArray()));
 		}
 	}
 }

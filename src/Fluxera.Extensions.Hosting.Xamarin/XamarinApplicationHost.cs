@@ -20,6 +20,7 @@
 	///     A static entry-point the a Xamarin Forms application.
 	/// </summary>
 	[PublicAPI]
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
 	public static class XamarinApplicationHost
 	{
 		/// <summary>
@@ -41,6 +42,7 @@
 	/// <typeparam name="TStartupModule">The type of the startup module.</typeparam>
 	/// <typeparam name="TApplication">The application type.</typeparam>
 	[PublicAPI]
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
 	public abstract class XamarinApplicationHost<TStartupModule, TApplication> : IXamarinApplicationHost
 		where TStartupModule : class, IModule
 		where TApplication : XamarinApplication
@@ -83,7 +85,7 @@
 				// Create a logger as soon as possible to support early logging.
 				this.logger = this.CreateLogger();
 
-				this.logger.LogDebug("Host configuration starting.");
+				this.logger.LogHostConfigurationStarting();
 
 				// Create the host builder and configure it.
 				this.hostBuilder = this.CreateHostBuilder()
@@ -101,7 +103,7 @@
 				applicationLoader.Initialize(new ApplicationLoaderInitializationContext(this.host.Services));
 
 				IHostLifetime hostLifetime = this.host.Services.GetRequiredService<IHostLifetime>();
-				this.logger.LogDebug("Running host using '{HostLifetime}'.", hostLifetime.GetType().Name);
+				this.logger.LogHostLifetime(hostLifetime.GetType().Name);
 
 				// Create the app instance.
 				application = this.host.Services.GetRequiredService<TApplication>();
@@ -109,14 +111,14 @@
 
 				// Stop the stopwatch and log the startup time.
 				stopwatch.Stop();
-				this.logger.LogInformation("Host configured in {Duration} ms.", stopwatch.ElapsedMilliseconds);
+				this.logger.LogHostConfigurationDuration(stopwatch.ElapsedMilliseconds);
 
 				this.events.OnHostCreated();
 			}
 			catch(Exception ex)
 			{
 				this.events.OnHostCreationFailed(ex);
-				this.logger?.LogCritical(ex, "Application terminated unexpectedly.");
+				this.logger?.LogHostTerminatedUnexpectedly(ex);
 				Trace.WriteLine(ex);
 				Debug.WriteLine(ex);
 				Console.Error.WriteLine(ex);

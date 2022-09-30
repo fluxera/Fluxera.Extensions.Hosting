@@ -28,7 +28,7 @@ namespace Fluxera.Extensions.Hosting
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
-			context.Logger.LogDebug($"{callerMemberName}: {methodName}");
+			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
 
 			ExecuteTryCatch(context.Logger, () =>
 			{
@@ -49,7 +49,7 @@ namespace Fluxera.Extensions.Hosting
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
-			context.Logger.LogDebug($"{callerMemberName}: {methodName}");
+			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
 
 			ExecuteTryCatch(context.Logger, () =>
 			{
@@ -66,7 +66,7 @@ namespace Fluxera.Extensions.Hosting
 			Guard.Against.Null(context);
 			Guard.Against.Null(function);
 
-			context.Logger.LogDebug($"{callerMemberName}: {methodName}");
+			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
 
 			ExecuteTryCatch(context.Logger, () =>
 			{
@@ -87,7 +87,7 @@ namespace Fluxera.Extensions.Hosting
 			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
-			context.Logger.LogDebug($"{callerMemberName}: {methodName}");
+			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
 
 			return ExecuteTryCatch(context.Logger, () => expression.Compile().Invoke(context.LogContextData));
 		}
@@ -102,7 +102,7 @@ namespace Fluxera.Extensions.Hosting
 			Guard.Against.Null(context, nameof(context));
 			Guard.Against.Null(function, nameof(function));
 
-			context.Logger.LogDebug($"{callerMemberName}: {methodName}");
+			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
 
 			return ExecuteTryCatch(context.Logger, () => function.Invoke(context.LogContextData));
 		}
@@ -115,7 +115,7 @@ namespace Fluxera.Extensions.Hosting
 			}
 			catch(Exception ex)
 			{
-				logger.LogCritical(ex, ex.Message);
+				logger.LogServiceConfigurationError(ex);
 				throw;
 			}
 		}
@@ -128,7 +128,7 @@ namespace Fluxera.Extensions.Hosting
 			}
 			catch(Exception ex)
 			{
-				logger.LogCritical(ex, ex.Message);
+				logger.LogServiceConfigurationError(ex);
 				throw;
 			}
 		}

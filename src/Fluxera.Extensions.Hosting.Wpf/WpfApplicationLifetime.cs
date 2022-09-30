@@ -58,14 +58,14 @@
 			{
 				this.applicationStartedRegistration = this.applicationLifetime.ApplicationStarted.Register(() =>
 				{
-					this.logger.LogInformation("Application started.");
-					this.logger.LogInformation("Hosting environment: {EnvironmentName}", this.hostEnvironment.EnvironmentName);
-					this.logger.LogInformation("Content root path: {ContentRootPath}", this.hostEnvironment.ContentRootPath);
+					this.logger.LogApplicationStarted();
+					this.logger.LogEnvironment(this.hostEnvironment.EnvironmentName);
+					this.logger.LogContentRootPath(this.hostEnvironment.ContentRootPath);
 				});
 
 				this.applicationStoppingRegistration = this.applicationLifetime.ApplicationStopping.Register(() =>
 				{
-					this.logger.LogInformation("Application is shutting down...");
+					this.logger.LogApplicationStopping();
 				});
 			}
 
@@ -165,8 +165,6 @@
 				else
 				{
 					const string message = "The main window was not available. The application is now terminated.";
-
-					this.logger.LogCritical(message);
 
 					MessageBox.Show(
 						$"The main window was not available.{Environment.NewLine}{Environment.NewLine}The application is now terminated.",

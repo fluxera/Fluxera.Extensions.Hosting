@@ -9,6 +9,7 @@
 	///     A contract for an Xamarin Forms application host.
 	/// </summary>
 	[PublicAPI]
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
 	public interface IXamarinApplicationHost
 	{
 		/// <summary>
