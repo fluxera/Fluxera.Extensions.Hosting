@@ -53,7 +53,7 @@
 				// Create a logger as soon as possible to support early logging.
 				this.logger = this.CreateLogger();
 
-				this.logger.LogDebug("Host configuration starting.");
+				this.logger.LogHostConfigurationStarting();
 
 				// Create the host builder and configure it.
 				WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -79,11 +79,11 @@
 				applicationLoader.Initialize(new ApplicationLoaderInitializationContext(host.Services));
 
 				IHostLifetime hostLifetime = host.Services.GetRequiredService<IHostLifetime>();
-				this.logger.LogDebug("Running host using '{HostLifetime}'.", hostLifetime.GetType().Name);
+				this.logger.LogHostLifetime(hostLifetime.GetType().Name);
 
 				// Stop the stopwatch and log the startup time.
 				stopwatch.Stop();
-				this.logger.LogDebug("Host configured in {Duration} ms.", stopwatch.ElapsedMilliseconds);
+				this.logger.LogHostConfigurationDuration(stopwatch.ElapsedMilliseconds);
 
 				this.events.OnHostCreated();
 
@@ -93,7 +93,7 @@
 			catch(Exception ex)
 			{
 				this.events.OnHostCreationFailed(ex);
-				this.logger?.LogCritical(ex, "Application terminated unexpectedly.");
+				this.logger?.LogHostTerminatedUnexpectedly(ex);
 				Console.Error.WriteLine(ex);
 			}
 			finally

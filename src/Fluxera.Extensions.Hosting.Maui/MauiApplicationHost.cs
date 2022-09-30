@@ -11,7 +11,6 @@
 	using Microsoft.Maui.Controls;
 	using Microsoft.Maui.Controls.Hosting;
 	using Microsoft.Maui.Hosting;
-	using Debug = System.Diagnostics.Debug;
 
 	/// <summary>
 	///     A static entry-point the a MAUI application.
@@ -63,7 +62,7 @@
 				// Create a logger as soon as possible to support early logging.
 				this.logger = this.CreateLogger();
 
-				this.logger.LogDebug("Host configuration starting.");
+				this.logger.LogHostConfigurationStarting();
 
 				// Create the host builder and configure it.
 				MauiAppBuilder builder = MauiApp.CreateBuilder();
@@ -84,18 +83,18 @@
 				applicationLoader.Initialize(new ApplicationLoaderInitializationContext(app.Services));
 
 				IHostLifetime hostLifetime = app.Services.GetRequiredService<IHostLifetime>();
-				this.logger.LogDebug("Running host using '{HostLifetime}'.", hostLifetime.GetType().Name);
+				this.logger.LogHostLifetime(hostLifetime.GetType().Name);
 
 				// Stop the stopwatch and log the startup time.
 				stopwatch.Stop();
-				this.logger.LogDebug("Host configured in {Duration} ms.", stopwatch.ElapsedMilliseconds);
+				this.logger.LogHostConfigurationDuration(stopwatch.ElapsedMilliseconds);
 
 				this.events.OnHostCreated();
 			}
 			catch(Exception ex)
 			{
 				this.events.OnHostCreationFailed(ex);
-				this.logger?.LogCritical(ex, "Application terminated unexpectedly.");
+				this.logger?.LogHostTerminatedUnexpectedly(ex);
 				Trace.WriteLine(ex);
 				Debug.WriteLine(ex);
 				Console.Error.WriteLine(ex);

@@ -7,6 +7,7 @@
 	///     A contract for a class that handles registration of actions.
 	/// </summary>
 	[PublicAPI]
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
 	public interface ILifecycleRegister
 	{
 		/// <summary>

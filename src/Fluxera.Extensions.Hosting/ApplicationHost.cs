@@ -115,7 +115,7 @@ namespace Fluxera.Extensions.Hosting
 				// Create a logger as soon as possible to support early logging.
 				this.logger = this.CreateLogger();
 
-				this.logger.LogDebug("Host configuration starting.");
+				this.logger.LogHostConfigurationStarting();
 
 				// Create the host builder and configure it.
 				this.hostBuilder = this.CreateHostBuilder()
@@ -133,11 +133,11 @@ namespace Fluxera.Extensions.Hosting
 				this.InitializeApplicationLoader(host);
 
 				IHostLifetime hostLifetime = host.Services.GetRequiredService<IHostLifetime>();
-				this.logger.LogDebug("Running host using '{HostLifetime}'.", hostLifetime.GetType().Name);
+				this.logger.LogHostLifetime(hostLifetime.GetType().Name);
 
 				// Stop the stopwatch and log the startup time.
 				stopwatch.Stop();
-				this.logger.LogInformation("Host configured in {Duration} ms.", stopwatch.ElapsedMilliseconds);
+				this.logger.LogHostConfigurationDuration(stopwatch.ElapsedMilliseconds);
 
 				this.events.OnHostCreated();
 
@@ -147,7 +147,7 @@ namespace Fluxera.Extensions.Hosting
 			catch(Exception ex)
 			{
 				this.events.OnHostCreationFailed(ex);
-				this.logger?.LogCritical(ex, "Application terminated unexpectedly.");
+				this.logger?.LogHostTerminatedUnexpectedly(ex);
 				Trace.WriteLine(ex);
 				Debug.WriteLine(ex);
 				Console.Error.WriteLine(ex);

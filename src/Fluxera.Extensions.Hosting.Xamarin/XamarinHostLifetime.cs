@@ -11,7 +11,8 @@
 	/// <summary>
 	///     A <see cref="IHostLifetime" /> implementation for Xamarin Forms applications.
 	/// </summary>
-	public class XamarinHostLifetime : IHostLifetime, IDisposable
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
+	public sealed class XamarinHostLifetime : IHostLifetime, IDisposable
 	{
 		private CancellationTokenRegistration applicationStartedRegistration;
 

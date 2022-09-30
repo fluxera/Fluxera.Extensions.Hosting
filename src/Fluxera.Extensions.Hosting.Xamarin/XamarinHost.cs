@@ -13,6 +13,7 @@
 	///     pre-configured defaults.
 	/// </summary>
 	[PublicAPI]
+	[Obsolete("The hosting library for Xamarin.Forms will be remove in the 7.0 release.")]
 	public static class XamarinHost
 	{
 		/// <summary>
