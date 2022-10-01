@@ -95,8 +95,8 @@
 			{
 				this.events.OnHostCreationFailed(ex);
 				this.logger?.LogHostTerminatedUnexpectedly(ex);
-				Trace.WriteLine(ex);
-				Debug.WriteLine(ex);
+				System.Diagnostics.Trace.WriteLine(ex);
+				System.Diagnostics.Debug.WriteLine(ex);
 				Console.Error.WriteLine(ex);
 			}
 			finally
