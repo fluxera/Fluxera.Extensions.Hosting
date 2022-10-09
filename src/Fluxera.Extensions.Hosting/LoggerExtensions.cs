@@ -25,7 +25,7 @@ namespace Fluxera.Extensions.Hosting
 		public static partial void LogHostTerminatedUnexpectedly(this ILogger logger, Exception exception);
 
 		[DebuggerStepThrough]
-		[LoggerMessage(0, LogLevel.Debug, "{CallerMemberName}: {MethodName}")]
+		[LoggerMessage(0, LogLevel.Debug, "Executing service configuration {CallerMemberName}: {MethodName}")]
 		internal static partial void LogServiceConfiguration(this ILogger logger, string callerMemberName, string methodName);
 
 		[DebuggerStepThrough]
