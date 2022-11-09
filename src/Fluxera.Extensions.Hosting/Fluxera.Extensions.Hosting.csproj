@@ -22,6 +22,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.Maui" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.Blazor" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="7.0.0" />
 		<PackageReference Include="Fluxera.Guards" Version="7.0.0" />
 		<PackageReference Include="Fluxera.Utilities" Version="7.0.0" />
