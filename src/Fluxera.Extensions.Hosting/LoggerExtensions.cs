@@ -6,7 +6,7 @@ namespace Fluxera.Extensions.Hosting
 	using Microsoft.Extensions.Logging;
 
 	[PublicAPI]
-	public static partial class LoggerExtensions
+	internal static partial class LoggerExtensions
 	{
 		[DebuggerStepThrough]
 		[LoggerMessage(0, LogLevel.Information, "Host configuration starting.")]
