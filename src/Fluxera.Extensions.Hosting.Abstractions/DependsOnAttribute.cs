@@ -1,6 +1,7 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
 	using System;
+	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
 
 	/// <summary>
@@ -8,8 +9,25 @@
 	/// </summary>
 	[PublicAPI]
 	[MeansImplicitUse]
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-	public sealed class DependsOnAttribute : Attribute
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+	public class DependsOnAttribute<TModule> : DependsOnAttribute
+		where TModule : class, IModule
+	{
+		/// <summary>
+		///     Creates a new instance of the <see cref="DependsOnAttribute" /> type.
+		/// </summary>
+		public DependsOnAttribute() : base(typeof(TModule))
+		{
+		}
+	}
+
+	/// <summary>
+	///     Defines a dependency of a modules. Can be used multiple times on a module class.
+	/// </summary>
+	[PublicAPI]
+	[MeansImplicitUse]
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+	public class DependsOnAttribute : Attribute
 	{
 		/// <summary>
 		///     Creates a new instance of the <see cref="DependsOnAttribute" /> type.

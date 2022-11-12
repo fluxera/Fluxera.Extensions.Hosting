@@ -16,10 +16,7 @@ The modular host is available for the following applicattion types:
 - Blazor WebAssembly
 - Console / Windows Service
 - WPF
-- Xamarin Forms
-
-After the final release of .NET MAUI which is already built upon the generic host infrastructure
-we will add the modular capabilities to it.
+- MAUI
 
 ## Usage
 
