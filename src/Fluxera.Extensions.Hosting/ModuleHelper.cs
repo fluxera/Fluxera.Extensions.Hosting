@@ -28,7 +28,7 @@
 
 			IList<Type> dependencies = new List<Type>();
 
-			IEnumerable<DependsOnAttribute> dependencyAttributes = moduleType.GetCustomAttributes<DependsOnAttribute>();
+			IEnumerable<DependsOnAttribute> dependencyAttributes = moduleType.GetCustomAttributes<DependsOnAttribute>(true);
 			foreach(DependsOnAttribute dependencyAttribute in dependencyAttributes)
 			{
 				if(!dependencies.Contains(dependencyAttribute.DependentModuleType))
