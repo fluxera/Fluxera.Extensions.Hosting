@@ -47,7 +47,6 @@
 			return
 				typeInfo.IsClass &&
 				!typeInfo.IsAbstract &&
-				!typeInfo.IsGenericType &&
 				typeof(IModule).GetTypeInfo().IsAssignableFrom(type);
 		}
 
