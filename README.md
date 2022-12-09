@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/fluxera/Foundation/_apis/build/status/GitHub/fluxera.Fluxera.Extensions.Hosting?branchName=main)](https://dev.azure.com/fluxera/Foundation/_build/latest?definitionId=67&branchName=main)
+[![Build Status](https://dev.azure.com/fluxera/Foundation/_apis/build/status/GitHub/fluxera.Fluxera.Extensions.Hosting?branchName=main&stageName=BuildAndTest)](https://dev.azure.com/fluxera/Foundation/_build/latest?definitionId=87&branchName=main)
 
 # Fluxera.Extensions.Hosting
 A library that extends the Microsoft.Extensions.Hosting library with modular host implementations 
