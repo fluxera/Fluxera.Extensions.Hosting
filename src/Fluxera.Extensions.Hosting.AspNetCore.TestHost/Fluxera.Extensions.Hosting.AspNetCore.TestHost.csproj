@@ -5,10 +5,10 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Title>Fluxera.Extensions.Hosting.AspNetCore</Title>
-		<Description>A modular application host for ASP.NET.</Description>
-		<PackageTags>library;extensions;hosting;modular;aspnet</PackageTags>
-		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".AspNetCore",""))</RootNamespace>
+		<Title>Fluxera.Extensions.Hosting.AspNetCore.TestHost</Title>
+		<Description>A modular application host for the ASP.NET test host.</Description>
+		<PackageTags>library;extensions;hosting;modular;aspnet;testserver</PackageTags>
+		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".AspNetCore.TestHost",""))</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,10 +23,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.AspNetCore.TestHost" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
@@ -36,10 +32,12 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Fluxera.Extensions.Hosting.AspNetCore\Fluxera.Extensions.Hosting.AspNetCore.csproj" />
 		<ProjectReference Include="..\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
 	</ItemGroup>
 
-</Project>
+</Project> 

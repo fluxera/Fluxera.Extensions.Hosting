@@ -1,10 +1,10 @@
 ﻿namespace WebApplication1
 {
+	using System.Reflection;
 	using Fluxera.Extensions.Hosting;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.DependencyInjection;
-	using Microsoft.Extensions.Hosting;
 
 	public class WebApplication1Module : ConfigureApplicationModule
 	{
@@ -12,30 +12,23 @@
 		public override void ConfigureServices(IServiceConfigurationContext context)
 		{
 			context.Services.AddControllers();
-			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-			context.Services.AddEndpointsApiExplorer();
-			context.Services.AddSwaggerGen();
+			context.Services
+				.AddMvc()
+				.AddApplicationPart(Assembly.GetExecutingAssembly())
+				.AddControllersAsServices();
+			context.Services.AddHttpClient();
 		}
 
 		/// <inheritdoc />
 		public override void Configure(IApplicationInitializationContext context)
 		{
-			WebApplication app = context.GetApplicationBuilder();
+			IApplicationBuilder app = context.GetApplicationBuilder();
 
-			// Configure the HTTP request pipeline.
-			if(context.Environment.IsDevelopment())
+			app.UseRouting();
+			app.UseEndpoints(builder =>
 			{
-				app.UseSwagger();
-				app.UseSwaggerUI();
-			}
-
-			app.UseHttpsRedirection();
-
-			app.UseAuthorization();
-
-			app.MapControllers();
-
-			app.Run();
+				builder.MapControllers();
+			});
 		}
 	}
 }

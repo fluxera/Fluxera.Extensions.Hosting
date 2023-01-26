@@ -14,10 +14,10 @@
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public static WebApplication GetApplicationBuilder(this IApplicationInitializationContext context)
+		public static IApplicationBuilder GetApplicationBuilder(this IApplicationInitializationContext context)
 		{
 			WebApplicationInitializationContext webContext = (WebApplicationInitializationContext)context;
-			return (WebApplication)webContext.ApplicationBuilder;
+			return webContext.ApplicationBuilder;
 		}
 	}
 }
