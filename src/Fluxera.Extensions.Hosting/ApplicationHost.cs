@@ -56,7 +56,6 @@ namespace Fluxera.Extensions.Hosting
 		}
 	}
 
-
 	/// <summary>
 	///     A static entry-point for modular host-based applications.
 	/// </summary>
