@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.Maui", "src\Fluxera.Extensions.Hosting.Maui\Fluxera.Extensions.Hosting.Maui.csproj", "{182D9ACC-CE06-4386-A892-5A7157FEB16A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxera.Extensions.Hosting.AspNetCore.TestServer", "src\Fluxera.Extensions.Hosting.AspNetCore.TestServer\Fluxera.Extensions.Hosting.AspNetCore.TestServer.csproj", "{43FEE3EF-AC53-4B89-8D0C-1FC2FBED7473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxera.Extensions.Hosting.AspNetCore.TestHost", "src\Fluxera.Extensions.Hosting.AspNetCore.TestHost\Fluxera.Extensions.Hosting.AspNetCore.TestHost.csproj", "{73BB01EA-7C51-46B8-BCF1-0E51DA0A5E7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,10 +86,10 @@ Global
 		{182D9ACC-CE06-4386-A892-5A7157FEB16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{182D9ACC-CE06-4386-A892-5A7157FEB16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{182D9ACC-CE06-4386-A892-5A7157FEB16A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43FEE3EF-AC53-4B89-8D0C-1FC2FBED7473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43FEE3EF-AC53-4B89-8D0C-1FC2FBED7473}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43FEE3EF-AC53-4B89-8D0C-1FC2FBED7473}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43FEE3EF-AC53-4B89-8D0C-1FC2FBED7473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BB01EA-7C51-46B8-BCF1-0E51DA0A5E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BB01EA-7C51-46B8-BCF1-0E51DA0A5E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BB01EA-7C51-46B8-BCF1-0E51DA0A5E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BB01EA-7C51-46B8-BCF1-0E51DA0A5E7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,7 +104,7 @@ Global
 		{3E78416A-8F6B-4343-AFA6-930B27574415} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
 		{3E8945B5-D2C4-43D1-80D3-F669052815C2} = {F18D2D58-282C-4D93-8D9A-3A76CF98F018}
 		{182D9ACC-CE06-4386-A892-5A7157FEB16A} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
-		{43FEE3EF-AC53-4B89-8D0C-1FC2FBED7473} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
+		{73BB01EA-7C51-46B8-BCF1-0E51DA0A5E7D} = {DF28D730-99B3-4811-AAC7-725A73B3F668}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D97BF2AF-6E68-4E88-BF70-773A86E26013}
