@@ -23,6 +23,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.AspNetCore.TestHost" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
@@ -35,7 +39,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
+		<ProjectReference Include="..\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
 	</ItemGroup>
 
 </Project>

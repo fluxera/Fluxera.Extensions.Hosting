@@ -18,7 +18,7 @@
 		private WebApplicationBuilder webApplicationBuilder;
 
 		/// <inheritdoc />
-		protected override ApplicationLoaderBuilderFunc ApplicationLoaderBuilder => ApplicationLoaderBuilderFuncFactory.CreateApplication;
+		protected sealed override ApplicationLoaderBuilderFunc ApplicationLoaderBuilder => ApplicationLoaderBuilderFuncFactory.CreateApplication;
 
 		/// <inheritdoc />
 		protected override IEnumerable<string> HostConfigurationEnvironmentVariablesPrefixes

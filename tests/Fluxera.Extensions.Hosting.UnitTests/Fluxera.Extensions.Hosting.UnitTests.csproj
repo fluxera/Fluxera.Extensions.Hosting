@@ -12,13 +12,13 @@
 		<PackageReference Include="NUnit" Version="3.13.3" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.4.0" />
 		<PackageReference Include="coverlet.collector" Version="3.2.0">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
+		<ProjectReference Include="..\..\src\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
 	</ItemGroup>
 
 </Project>
