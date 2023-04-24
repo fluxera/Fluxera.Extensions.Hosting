@@ -4,6 +4,7 @@
 	using System.Diagnostics;
 	using System.Net.Http;
 	using System.Threading.Tasks;
+	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Guards;
@@ -59,10 +60,6 @@
 				WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
 				builder.RootComponents.Add<TRootComponent>("#app");
 				builder.RootComponents.Add<HeadOutlet>("head::after");
-				builder.Services.AddScoped(_ => new HttpClient
-				{
-					BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-				});
 				builder
 					.ConfigureFoundationDefaults()
 					.ConfigureBlazorDefaults()
@@ -94,7 +91,6 @@
 			{
 				this.events.OnHostCreationFailed(ex);
 				this.logger?.LogHostTerminatedUnexpectedly(ex);
-				Console.Error.WriteLine(ex);
 			}
 			finally
 			{

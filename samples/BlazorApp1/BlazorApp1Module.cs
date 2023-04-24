@@ -1,8 +1,13 @@
 ﻿namespace BlazorApp1
 {
+	using System;
+	using System.Net.Http;
+	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting;
 	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
+	using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+	using Microsoft.Extensions.DependencyInjection;
 
 	[PublicAPI]
 	[UsedImplicitly]
@@ -11,10 +16,11 @@
 		/// <inheritdoc />
 		public override void ConfigureServices(IServiceConfigurationContext context)
 		{
-			//context.Services.AddScoped(serviceProvider => new HttpClient
-			//{
-			//	BaseAddress = new Uri(context.Environment.BaseAddress)
-			//});
+			IWebAssemblyHostEnvironment hostEnvironment = context.Services.GetObject<IWebAssemblyHostEnvironment>();
+			context.Services.AddScoped(_ => new HttpClient
+			{
+				BaseAddress = new Uri(hostEnvironment.BaseAddress)
+			});
 		}
 	}
 }

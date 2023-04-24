@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Reflection;
+	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
 	using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -28,6 +29,9 @@
 
 			// Register the environment.
 			hostBuilder.Services.AddSingleton<IHostEnvironment>(environment);
+
+			// Add the host environment to the services.
+			hostBuilder.Services.AddObjectAccessor(hostBuilder.HostEnvironment, ObjectAccessorLifetime.ConfigureServices);
 
 			// Use the web assembly lifetime.
 			hostBuilder.UseWebAssemblyLifetime();

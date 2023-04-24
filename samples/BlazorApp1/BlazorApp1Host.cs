@@ -2,10 +2,8 @@
 {
 	using Fluxera.Extensions.Hosting;
 	using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-	using Microsoft.Extensions.Logging;
 	using Serilog;
 	using Serilog.Core;
-	using Serilog.Extensions.Logging;
 
 	internal sealed class BlazorApp1Host : BlazorApplicationHost<BlazorApp1Module, App>
 	{
@@ -24,17 +22,17 @@
 			builder.Logging.AddSerilog(logger);
 		}
 
-		/// <inheritdoc />
-		protected override ILoggerFactory CreateBootstrapperLoggerFactory()
-		{
-			// https://github.com/serilog/serilog-sinks-browserconsole
-			Logger bootstrapLogger = new LoggerConfiguration()
-				.MinimumLevel.Debug()
-				.WriteTo.BrowserConsole()
-				.CreateLogger();
+		///// <inheritdoc />
+		//protected override ILoggerFactory CreateBootstrapperLoggerFactory()
+		//{
+		//	// https://github.com/serilog/serilog-sinks-browserconsole
+		//	Logger bootstrapLogger = new LoggerConfiguration()
+		//		.MinimumLevel.Debug()
+		//		.WriteTo.BrowserConsole()
+		//		.CreateLogger();
 
-			ILoggerFactory loggerFactory = new SerilogLoggerFactory(bootstrapLogger);
-			return loggerFactory;
-		}
+		//	ILoggerFactory loggerFactory = new SerilogLoggerFactory(bootstrapLogger);
+		//	return loggerFactory;
+		//}
 	}
 }
