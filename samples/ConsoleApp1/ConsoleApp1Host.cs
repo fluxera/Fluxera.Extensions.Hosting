@@ -33,6 +33,7 @@
 			builder.UseSerilog((context, services, configuration) => configuration
 				.Enrich.FromLogContext()
 				.WriteTo.Console()
+				.WriteTo.OpenTelemetry() // https://github.com/serilog/serilog-sinks-opentelemetry
 				.ReadFrom.Configuration(context.Configuration)
 				.ReadFrom.Services(services));
 		}
@@ -40,9 +41,10 @@
 		/// <inheritdoc />
 		protected override ILoggerFactory CreateBootstrapperLoggerFactory(IConfiguration configuration)
 		{
-			ReloadableLogger? bootstrapLogger = new LoggerConfiguration()
+			ReloadableLogger bootstrapLogger = new LoggerConfiguration()
 				.Enrich.FromLogContext()
 				.WriteTo.Console()
+				.WriteTo.OpenTelemetry() // https://github.com/serilog/serilog-sinks-opentelemetry
 				.ReadFrom.Configuration(configuration)
 				.CreateBootstrapLogger();
 
