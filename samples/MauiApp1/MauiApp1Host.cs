@@ -1,6 +1,7 @@
 ﻿namespace MauiApp1
 {
 	using Fluxera.Extensions.Hosting;
+	using Microsoft.Extensions.Logging;
 
 	public class MauiApp1Host : MauiApplicationHost<MauiApp1Module, App>
 	{
@@ -9,12 +10,15 @@
 		{
 			base.ConfigureHostBuilder(builder);
 
-			builder
-				.ConfigureFonts(fonts =>
-				{
-					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-					fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-				});
+			builder.ConfigureFonts(fonts =>
+			{
+				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+			});
+
+#if DEBUG
+			builder.Logging.AddDebug();
+#endif
 		}
 	}
 }
