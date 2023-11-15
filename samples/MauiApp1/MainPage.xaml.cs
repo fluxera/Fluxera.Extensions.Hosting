@@ -4,7 +4,7 @@
 	{
 		private int count;
 
-		public MainPage(IConnectivity connectivity)
+		public MainPage()
 		{
 			this.InitializeComponent();
 		}
@@ -13,14 +13,9 @@
 		{
 			this.count++;
 
-			if(this.count == 1)
-			{
-				this.CounterBtn.Text = $"Clicked {this.count} time";
-			}
-			else
-			{
-				this.CounterBtn.Text = $"Clicked {this.count} times";
-			}
+			this.CounterBtn.Text = this.count == 1 
+				? $"Clicked {this.count} time" 
+				: $"Clicked {this.count} times";
 
 			SemanticScreenReader.Announce(this.CounterBtn.Text);
 		}
