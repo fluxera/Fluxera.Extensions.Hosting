@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -32,7 +32,9 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="6.0.25" Condition="'$(TargetFramework)' == 'net6.0'"/>
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.14" Condition="'$(TargetFramework)' == 'net7.0'"/>
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="8.0.0" Condition="'$(TargetFramework)' == 'net8.0'"/>
 	</ItemGroup>
 
 	<ItemGroup>

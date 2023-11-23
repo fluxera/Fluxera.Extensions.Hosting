@@ -74,13 +74,21 @@
 		/// <inheritdoc />
 		protected sealed override IHost BuildHost()
 		{
+#if NET6_0
+			throw new NotSupportedException();
+#else
 			throw new UnreachableException();
+#endif
 		}
 
 		/// <inheritdoc />
 		protected sealed override void ConfigureHostBuilder(IHostBuilder builder)
 		{
+#if NET6_0
+			throw new NotSupportedException();
+#else
 			throw new UnreachableException();
+#endif
 		}
 
 		/// <summary>
@@ -94,13 +102,21 @@
 		/// <inheritdoc />
 		protected sealed override IHostBuilder CreateHostBuilder()
 		{
+#if NET6_0
+			throw new NotSupportedException();
+#else
 			throw new UnreachableException();
+#endif
 		}
 
 		/// <inheritdoc />
 		protected sealed override void InitializeApplicationLoader(IHost host)
 		{
+#if NET6_0
+			throw new NotSupportedException();
+#else
 			throw new UnreachableException();
+#endif
 		}
 
 		private ILogger CreateLogger()
