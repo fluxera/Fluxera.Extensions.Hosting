@@ -1,4 +1,4 @@
-﻿namespace BlazorApp1
+﻿namespace BlazorApp2.Client
 {
 	using Fluxera.Extensions.Hosting;
 	using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -7,7 +7,7 @@
 	using Serilog.Core;
 	using Serilog.Extensions.Logging;
 
-	internal sealed class BlazorApp1Host : BlazorApplicationHost<BlazorApp1Module, App>
+	internal sealed class BlazorApp2Host : BlazorApplicationHost<BlazorApp2Module>
 	{
 		/// <inheritdoc />
 		protected override void ConfigureHostBuilder(WebAssemblyHostBuilder builder)

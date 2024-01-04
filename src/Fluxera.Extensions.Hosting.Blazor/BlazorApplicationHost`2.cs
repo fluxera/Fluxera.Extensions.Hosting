@@ -2,9 +2,7 @@
 {
 	using System;
 	using System.Diagnostics;
-	using System.Net.Http;
 	using System.Threading.Tasks;
-	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
 	using Fluxera.Guards;
@@ -37,7 +35,7 @@
 		/// <inheritdoc />
 		public async Task RunAsync(string[] args)
 		{
-			Guard.Against.Null(args, nameof(args));
+			Guard.Against.Null(args);
 
 			try
 			{

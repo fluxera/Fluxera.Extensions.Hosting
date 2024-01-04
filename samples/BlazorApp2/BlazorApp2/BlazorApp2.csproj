@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting.Abstractions\Fluxera.Extensions.Hosting.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting.AspNetCore\Fluxera.Extensions.Hosting.AspNetCore.csproj" />
+		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
+		<ProjectReference Include="..\BlazorApp2.Client\BlazorApp2.Client.csproj" />
+	</ItemGroup>
+
+</Project>
