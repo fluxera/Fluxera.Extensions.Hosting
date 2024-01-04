@@ -6,7 +6,7 @@
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.DependencyInjection;
 
-	public class WebApplication1Module : ConfigureApplicationModule
+	public sealed class WebApplication1Module : ConfigureApplicationModule
 	{
 		/// <inheritdoc />
 		public override void ConfigureServices(IServiceConfigurationContext context)

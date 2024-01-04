@@ -10,6 +10,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting.Abstractions\Fluxera.Extensions.Hosting.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting.AspNetCore\Fluxera.Extensions.Hosting.AspNetCore.csproj" />
+		<ProjectReference Include="..\..\..\src\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
 		<ProjectReference Include="..\BlazorApp2.Client\BlazorApp2.Client.csproj" />
 	</ItemGroup>
 
