@@ -85,15 +85,15 @@
 			/// <inheritdoc />
 			public string ContentRootPath
 			{
-				get => throw new NotSupportedException("ContentRootPath not supported in Blazor application.");
-				set => throw new NotSupportedException("ContentRootPath not supported in Blazor application.");
+				get => throw new NotSupportedException("ContentRootPath not supported in Blazor applications.");
+				set => throw new NotSupportedException("ContentRootPath not supported in Blazor applications.");
 			}
 
 			/// <inheritdoc />
 			public IFileProvider ContentRootFileProvider
 			{
-				get => throw new NotSupportedException("ContentRootFileProvider not supported in Blazor application.");
-				set => throw new NotSupportedException("ContentRootFileProvider not supported in Blazor application.");
+				get => throw new NotSupportedException("ContentRootFileProvider not supported in Blazor applications.");
+				set => throw new NotSupportedException("ContentRootFileProvider not supported in Blazor applications.");
 			}
 
 			/// <inheritdoc />

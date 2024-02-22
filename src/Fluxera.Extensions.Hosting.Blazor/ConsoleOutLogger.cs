@@ -64,13 +64,6 @@
 						case LogLevel.Debug:
 						case LogLevel.Information:
 						case LogLevel.Warning:
-							// Although https://console.spec.whatwg.org/#loglevel-severity claims that
-							// "console.debug" and "console.log" are synonyms, that doesn't match the
-							// behavior of browsers in the real world. Chromium only displays "debug"
-							// messages if you enable "Verbose" in the filter dropdown (which is off
-							// by default). As such "console.debug" is the best choice for messages
-							// with a lower severity level than "Information".
-							//_jsRuntime.InvokeVoid("console.debug", formattedMessage);
 							Console.Out.WriteLine(formattedMessage);
 							break;
 						case LogLevel.Error:
@@ -123,6 +116,7 @@
 
 		private static string GetLogLevelString(LogLevel logLevel)
 		{
+			// ReSharper disable StringLiteralTypo
 			return logLevel switch
 			{
 				LogLevel.Trace => "trce",
@@ -131,8 +125,10 @@
 				LogLevel.Warning => "warn",
 				LogLevel.Error => "fail",
 				LogLevel.Critical => "crit",
+				LogLevel.None => string.Empty,
 				_ => throw new ArgumentOutOfRangeException(nameof(logLevel))
 			};
+			// ReSharper restore StringLiteralTypo
 		}
 
 		private class NoOpDisposable : IDisposable
