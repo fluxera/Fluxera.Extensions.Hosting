@@ -1,9 +1,8 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
+	using System;
 	using System.Diagnostics;
-	using System.IO;
 	using System.Linq;
-	using System.Reflection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Hosting;
@@ -22,7 +21,7 @@
 			bool isService = !(Debugger.IsAttached || this.CommandLineArgs.Contains("--console"));
 
 			// Configure the content root to use.
-			builder.UseContentRoot(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+			builder.UseContentRoot(Environment.CurrentDirectory);
 
 			if(isService)
 			{

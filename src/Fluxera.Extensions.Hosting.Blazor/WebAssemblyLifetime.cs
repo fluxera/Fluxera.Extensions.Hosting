@@ -9,14 +9,14 @@
 		/// <inheritdoc />
 		public Task WaitForStartAsync(CancellationToken cancellationToken)
 		{
-			// WebAssembly applications start immediately.
+			// Wasm applications start immediately.
 			return Task.CompletedTask;
 		}
 
 		/// <inheritdoc />
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			// There's nothing to do here
+			// There's nothing to do here.
 			return Task.CompletedTask;
 		}
 	}
