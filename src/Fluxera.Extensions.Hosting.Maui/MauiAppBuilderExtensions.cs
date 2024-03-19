@@ -28,9 +28,6 @@
 			// Register the environment.
 			hostBuilder.Services.AddSingleton<IHostEnvironment>(environment);
 
-			//// Use the web assembly lifetime.
-			//hostBuilder.UseWebAssemblyLifetime();
-
 			return hostBuilder;
 		}
 
