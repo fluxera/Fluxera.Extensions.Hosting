@@ -53,11 +53,11 @@
 			IReadOnlyCollection<IModuleDescriptor> modules = this.LoadModules();
 
 			// Create the application instance.
-			IApplicationLoader application = applicationLoaderFactory == null
+			IApplicationLoader applicationLoader = applicationLoaderFactory == null
 				? new ApplicationLoader(this.startupModuleType, this.services, this.PluginSources, modules)
 				: applicationLoaderFactory.Invoke(this.startupModuleType, this.services, this.PluginSources, modules);
 
-			return application;
+			return applicationLoader;
 		}
 
 		public IPluginSourceList PluginSources { get; }

@@ -62,6 +62,9 @@
 			// Add the application loader.
 			services.AddSingleton(applicationLoader);
 
+			// Execute the application loader.
+			applicationLoader.ConfigureServices();
+
 			return services;
 		}
 

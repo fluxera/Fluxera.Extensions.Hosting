@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Reflection;
 	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
@@ -16,6 +17,7 @@
 	/// </summary>
 	public class ApplicationLoader : IApplicationLoader
 	{
+		private bool isConfigured;
 		private bool isShutDown;
 
 		/// <summary>
@@ -40,9 +42,6 @@
 			this.Services = services;
 			this.PluginSources = pluginSources;
 			this.Modules = modules;
-
-			// Configure the services of the modules.
-			modules.ConfigureServices(services);
 		}
 
 		/// <inheritdoc />
@@ -62,6 +61,19 @@
 
 		/// <inheritdoc />
 		public IPluginSourceList PluginSources { get; }
+
+		/// <inheritdoc />
+		public void ConfigureServices()
+		{
+			if(this.isConfigured)
+			{
+				throw new InvalidOperationException("The application loader can only configure the services once.");
+			}
+
+			// Configure the services of the modules.
+			this.Modules.ConfigureServices(this.Services);
+			this.isConfigured = true;
+		}
 
 		/// <inheritdoc />
 		public virtual void Initialize(IApplicationLoaderInitializationContext context)

@@ -1,5 +1,6 @@
 ﻿namespace Fluxera.Extensions.Hosting.UnitTests
 {
+	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using JetBrains.Annotations;
 
@@ -20,6 +21,8 @@
 
 		public bool OnApplicationShutdownWasCalled { get; set; }
 
+		public bool HasModuleContainer { get; set; }
+
 		/// <inheritdoc />
 		public override void PreConfigureServices(IServiceConfigurationContext context)
 		{
@@ -30,6 +33,9 @@
 		public override void ConfigureServices(IServiceConfigurationContext context)
 		{
 			this.ConfigureServicesWasCalled = true;
+
+			IModuleContainer moduleLoader = context.Services.GetObjectOrDefault<IModuleContainer>();
+			this.HasModuleContainer = moduleLoader != null;
 		}
 
 		/// <inheritdoc />

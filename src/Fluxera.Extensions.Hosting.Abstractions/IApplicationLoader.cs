@@ -40,6 +40,11 @@
 		IServiceProvider ServiceProvider { get; }
 
 		/// <summary>
+		///		Configure the services.
+		/// </summary>
+		void ConfigureServices();
+
+		/// <summary>
 		///     Initializes the application using the given context.
 		/// </summary>
 		/// <remarks>
