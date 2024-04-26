@@ -1,5 +1,6 @@
 ﻿namespace Fluxera.Extensions.Hosting.UnitTests
 {
+	using System;
 	using System.Linq;
 	using FluentAssertions;
 	using Fluxera.Extensions.Hosting.Modules;
@@ -15,6 +16,17 @@
 			TestApplicationModule module = descriptor.Instance as TestApplicationModule;
 
 			module.HasModuleContainer.Should().BeTrue();
+		}
+
+		[Test]
+		public void ShouldNotAllowCallingConfigureServicesMultipleTimes()
+		{
+			Action action = () =>
+			{
+				this.ApplicationLoader.ConfigureServices();
+			};
+
+			action.Should().ThrowExactly<InvalidOperationException>();
 		}
 	}
 }
