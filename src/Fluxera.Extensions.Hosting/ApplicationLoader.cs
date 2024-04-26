@@ -41,11 +41,14 @@
 			this.PluginSources = pluginSources;
 			this.Modules = modules;
 
+			//	Configure the module container.
 			services.AddSingleton<IModuleContainer>(this);
+			services.AddObjectAccessor<IModuleContainer>(this, ObjectAccessorLifetime.ConfigureServices);
 
 			// Configure the services of the modules.
 			modules.ConfigureServices(services);
 
+			// Configure the application loader.
 			services.AddSingleton<IApplicationLoader>(this);
 		}
 
