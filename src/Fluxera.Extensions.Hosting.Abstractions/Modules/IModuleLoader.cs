@@ -14,7 +14,7 @@
 	{
 		/// <summary>
 		///     Loads all modules starting with the given startup module and
-		///     then loading it's dependencies.
+		///     then loading its dependencies.
 		/// </summary>
 		/// <param name="startupModuleType"></param>
 		/// <param name="services"></param>
