@@ -53,7 +53,14 @@
 			// Build the application.
 			IModularApplicationBuilder applicationBuilder = new ModularApplicationBuilder(typeof(TStartupModule), services);
 			configurePlugins?.Invoke(new PluginConfigurationContext(services, applicationBuilder.PluginSources));
-			applicationBuilder.Build(applicationLoaderFactory);
+			IApplicationLoader applicationLoader = applicationBuilder.Build(applicationLoaderFactory);
+
+			// Add the module container.
+			services.AddSingleton<IModuleContainer>(applicationLoader);
+			services.AddObjectAccessor<IModuleContainer>(applicationLoader, ObjectAccessorLifetime.ConfigureServices);
+
+			// Add the application loader.
+			services.AddSingleton(applicationLoader);
 
 			return services;
 		}
