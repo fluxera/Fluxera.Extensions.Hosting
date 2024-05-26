@@ -4,7 +4,6 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Reflection;
-	using Fluxera.Guards;
 
 	/// <summary>
 	///     A plugin source for manually adding module types.
@@ -16,7 +15,7 @@
 
 		public PluginTypeListSource(params Type[] moduleTypes)
 		{
-			Guard.Against.Null(moduleTypes, nameof(moduleTypes));
+			Guard.ThrowIfNull(moduleTypes);
 
 			this.moduleTypes = moduleTypes;
 

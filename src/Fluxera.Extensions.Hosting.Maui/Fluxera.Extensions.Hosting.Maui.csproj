@@ -14,21 +14,21 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
-	  <WarningLevel>7</WarningLevel>
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<WarningLevel>7</WarningLevel>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
-	  <WarningLevel>7</WarningLevel>
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<WarningLevel>7</WarningLevel>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

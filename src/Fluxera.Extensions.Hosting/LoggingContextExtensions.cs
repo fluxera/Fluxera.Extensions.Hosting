@@ -5,7 +5,6 @@ namespace Fluxera.Extensions.Hosting
 	using System;
 	using System.Linq.Expressions;
 	using System.Runtime.CompilerServices;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Logging;
 
@@ -21,11 +20,11 @@ namespace Fluxera.Extensions.Hosting
 		public static void Log<T>(this ILoggingContext<T> context, Expression<Func<T, T>> expression, [CallerMemberName] string callerMemberName = null)
 			where T : class
 		{
-			Guard.Against.Null(context);
-			Guard.Against.Null(expression);
+			Guard.ThrowIfNull(context);
+			Guard.ThrowIfNull(expression);
 
 			MethodCallExpression methodCallExpression = expression.Body as MethodCallExpression;
-			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
+			Guard.ThrowIfNull(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
 			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
@@ -42,11 +41,11 @@ namespace Fluxera.Extensions.Hosting
 		public static void Log<T>(this ILoggingContext<T> context, Expression<Action<T>> expression, [CallerMemberName] string callerMemberName = null)
 			where T : class
 		{
-			Guard.Against.Null(context);
-			Guard.Against.Null(expression);
+			Guard.ThrowIfNull(context);
+			Guard.ThrowIfNull(expression);
 
 			MethodCallExpression methodCallExpression = expression.Body as MethodCallExpression;
-			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
+			Guard.ThrowIfNull(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
 			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
@@ -63,8 +62,8 @@ namespace Fluxera.Extensions.Hosting
 		public static void Log<T>(this ILoggingContext<T> context, string methodName, Action<T> function, [CallerMemberName] string callerMemberName = null)
 			where T : class
 		{
-			Guard.Against.Null(context);
-			Guard.Against.Null(function);
+			Guard.ThrowIfNull(context);
+			Guard.ThrowIfNull(function);
 
 			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
 
@@ -80,11 +79,11 @@ namespace Fluxera.Extensions.Hosting
 		public static TResult Log<T, TResult>(this ILoggingContext<T> context, Expression<Func<T, TResult>> expression, [CallerMemberName] string callerMemberName = null)
 			where T : class
 		{
-			Guard.Against.Null(context, nameof(context));
-			Guard.Against.Null(expression, nameof(expression));
+			Guard.ThrowIfNull(context, nameof(context));
+			Guard.ThrowIfNull(expression, nameof(expression));
 
 			MethodCallExpression methodCallExpression = expression.Body as MethodCallExpression;
-			Guard.Against.Null(methodCallExpression, nameof(methodCallExpression));
+			Guard.ThrowIfNull(methodCallExpression, nameof(methodCallExpression));
 
 			string methodName = methodCallExpression.Method.Name;
 			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
@@ -99,8 +98,8 @@ namespace Fluxera.Extensions.Hosting
 		public static TResult Log<T, TResult>(this ILoggingContext<T> context, string methodName, Func<T, TResult> function, [CallerMemberName] string callerMemberName = null)
 			where T : class
 		{
-			Guard.Against.Null(context, nameof(context));
-			Guard.Against.Null(function, nameof(function));
+			Guard.ThrowIfNull(context, nameof(context));
+			Guard.ThrowIfNull(function, nameof(function));
 
 			context.Logger.LogServiceConfiguration(callerMemberName, methodName);
 

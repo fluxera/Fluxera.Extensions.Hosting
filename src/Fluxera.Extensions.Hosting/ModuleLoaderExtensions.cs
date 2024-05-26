@@ -4,7 +4,6 @@
 	using System.Linq;
 	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
-	using Fluxera.Utilities.Extensions;
 	using Microsoft.Extensions.DependencyInjection;
 
 	internal static class ModuleLoaderExtensions
@@ -41,7 +40,7 @@
 
 			// Remove all "ConfigureServices" object accessor instances, because they are only needed for configuring services.
 			IList<ServiceDescriptor> serviceDescriptors = services
-				.Where(x => x.ServiceType.IsAssignableTo<IObjectAccessor>())
+				.Where(x => x.ServiceType.IsAssignableTo(typeof(IObjectAccessor)))
 				.Where(x => (x.ImplementationInstance != null) && (((IObjectAccessor)x.ImplementationInstance).Context == ObjectAccessorLifetime.ConfigureServices))
 				.ToList();
 			foreach(ServiceDescriptor serviceDescriptor in serviceDescriptors)

@@ -51,4 +51,4 @@
 		<ProjectReference Include="..\Fluxera.Extensions.Hosting\Fluxera.Extensions.Hosting.csproj" />
 	</ItemGroup>
 
-</Project> 
+</Project>

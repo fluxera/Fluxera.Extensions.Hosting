@@ -5,8 +5,6 @@
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
-	using Fluxera.Guards;
-	using Fluxera.Utilities.Extensions;
 
 	/// <summary>
 	///     Loads plugin modules from a folder containing assemblies.
@@ -19,7 +17,7 @@
 
 		public FolderPluginSource(string folder, SearchOption searchOption = SearchOption.TopDirectoryOnly)
 		{
-			Guard.Against.NullOrWhiteSpace(folder, nameof(folder));
+			Guard.ThrowIfNullOrWhiteSpace(folder);
 
 			this.folder = folder;
 			this.searchOption = searchOption;

@@ -5,7 +5,6 @@
 	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
-	using Fluxera.Utilities.Extensions;
 	using Microsoft.Extensions.DependencyInjection;
 
 	internal sealed class ModularApplicationBuilder : IModularApplicationBuilder
@@ -66,8 +65,7 @@
 		{
 			return this.services
 				.GetSingletonInstance<IModuleLoader>()
-				.LoadModules(this.startupModuleType, this.services, this.PluginSources)
-				.AsReadOnly();
+				.LoadModules(this.startupModuleType, this.services, this.PluginSources);
 		}
 	}
 }
