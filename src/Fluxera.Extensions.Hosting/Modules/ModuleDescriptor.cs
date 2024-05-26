@@ -2,9 +2,10 @@
 {
 	using System;
 	using System.Collections.Generic;
+#if NET6_0
+	using System.Collections.ObjectModel;
+#endif
 	using System.Reflection;
-	using Fluxera.Guards;
-	using Fluxera.Utilities.Extensions;
 
 	internal sealed class ModuleDescriptor : IModuleDescriptor
 	{
@@ -12,8 +13,8 @@
 
 		public ModuleDescriptor(Type type, IModule instance, bool isLoadedAsPlugin)
 		{
-			Guard.Against.Null(type, nameof(type));
-			Guard.Against.Null(instance, nameof(instance));
+			Guard.ThrowIfNull(type);
+			Guard.ThrowIfNull(instance);
 
 			if(!type.GetTypeInfo().IsInstanceOfType(instance))
 			{
@@ -31,7 +32,13 @@
 
 		public Type Type { get; }
 
+#if NET6_0
+		public IReadOnlyCollection<IModuleDescriptor> Dependencies => new ReadOnlyCollection<IModuleDescriptor>(this.dependencies);
+#endif
+
+#if NET7_0_OR_GREATER
 		public IReadOnlyCollection<IModuleDescriptor> Dependencies => this.dependencies.AsReadOnly();
+#endif
 
 		public Assembly Assembly { get; }
 

@@ -2,7 +2,6 @@
 {
 	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Plugins;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -14,8 +13,8 @@
 	{
 		public PluginConfigurationContext(IServiceCollection services, IPluginSourceList pluginSources)
 		{
-			Guard.Against.Null(services, nameof(services));
-			Guard.Against.Null(pluginSources, nameof(pluginSources));
+			Guard.ThrowIfNull(services);
+			Guard.ThrowIfNull(pluginSources);
 
 			this.PluginSources = pluginSources;
 

@@ -1,7 +1,6 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
 	using System;
-	using Fluxera.Guards;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
@@ -11,7 +10,7 @@
 	{
 		public ApplicationShutdownContext(IServiceProvider serviceProvider)
 		{
-			Guard.Against.Null(serviceProvider, nameof(serviceProvider));
+			Guard.ThrowIfNull(serviceProvider);
 
 			this.ServiceProvider = serviceProvider;
 

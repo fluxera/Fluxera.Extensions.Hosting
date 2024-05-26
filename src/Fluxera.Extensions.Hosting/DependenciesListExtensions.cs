@@ -2,7 +2,6 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using Fluxera.Utilities.Extensions;
 
 	internal static class DependenciesListExtensions
 	{

@@ -1,6 +1,5 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Hosting;
 
@@ -19,7 +18,7 @@
 		/// <returns>True if the environment name is <see cref="Testing" />, otherwise false.</returns>
 		public static bool IsTesting(this IHostEnvironment hostEnvironment)
 		{
-			hostEnvironment = Guard.Against.Null(hostEnvironment);
+			hostEnvironment = Guard.ThrowIfNull(hostEnvironment);
 
 			return hostEnvironment.IsEnvironment(Testing);
 		}

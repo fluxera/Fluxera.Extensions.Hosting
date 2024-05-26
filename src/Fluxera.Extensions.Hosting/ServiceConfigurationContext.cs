@@ -2,7 +2,6 @@
 {
 	using System.Collections.Generic;
 	using Fluxera.Extensions.DependencyInjection;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +13,7 @@
 	{
 		public ServiceConfigurationContext(IServiceCollection services)
 		{
-			Guard.Against.Null(services, nameof(services));
+			Guard.ThrowIfNull(services);
 
 			this.Services = services;
 			this.Configuration = services.GetObject<IConfiguration>();

@@ -5,7 +5,6 @@
 	using System.Threading.Tasks;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Components;
 	using Microsoft.AspNetCore.Components.Web;
@@ -35,7 +34,7 @@
 		/// <inheritdoc />
 		public async Task RunAsync(string[] args)
 		{
-			Guard.Against.Null(args);
+			Guard.ThrowIfNull(args);
 
 			try
 			{

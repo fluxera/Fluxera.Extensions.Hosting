@@ -19,6 +19,8 @@
 		/// <returns></returns>
 		public static IPluginConfigurationContext AddPlugins(this IPluginConfigurationContext context, string pluginAssembliesFolder)
 		{
+			Guard.ThrowIfNull(context);
+
 			context.PluginSources.Add(new FolderPluginSource(pluginAssembliesFolder));
 
 			return context;
@@ -32,6 +34,8 @@
 		/// <returns></returns>
 		public static IPluginConfigurationContext AddPlugins(this IPluginConfigurationContext context, params Type[] pluginModuleTypes)
 		{
+			Guard.ThrowIfNull(context);
+
 			context.PluginSources.Add(new PluginTypeListSource(pluginModuleTypes));
 
 			return context;
@@ -46,6 +50,8 @@
 		public static IPluginConfigurationContext AddPlugin<TPluginModule>(this IPluginConfigurationContext context)
 			where TPluginModule : class, IModule
 		{
+			Guard.ThrowIfNull(context);
+
 			return context.AddPlugin(typeof(TPluginModule));
 		}
 
@@ -57,6 +63,8 @@
 		/// <returns></returns>
 		public static IPluginConfigurationContext AddPlugin(this IPluginConfigurationContext context, Type pluginModuleType)
 		{
+			Guard.ThrowIfNull(context);
+
 			context.PluginSources.Add(new PluginModuleTypeSource(pluginModuleType));
 
 			return context;

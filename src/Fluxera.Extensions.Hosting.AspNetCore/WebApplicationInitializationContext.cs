@@ -1,7 +1,6 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
 	using System;
-	using Fluxera.Guards;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +11,7 @@
 	{
 		public WebApplicationInitializationContext(IApplicationBuilder applicationBuilder)
 		{
-			Guard.Against.Null(applicationBuilder, nameof(applicationBuilder));
+			Guard.ThrowIfNull(applicationBuilder);
 
 			this.ApplicationBuilder = applicationBuilder;
 			this.ServiceProvider = applicationBuilder.ApplicationServices;

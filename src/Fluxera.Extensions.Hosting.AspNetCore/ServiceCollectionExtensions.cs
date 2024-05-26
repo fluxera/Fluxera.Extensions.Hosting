@@ -1,6 +1,5 @@
 ﻿namespace Fluxera.Extensions.Hosting
 {
-	using Fluxera.Guards;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Mvc.Infrastructure;
 	using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +18,7 @@
 		/// <returns>The service collection.</returns>
 		public static IServiceCollection AddActionContextAccessor(this IServiceCollection services)
 		{
-			Guard.Against.Null(services, nameof(services));
+			Guard.ThrowIfNull(services);
 
 			services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 			return services;

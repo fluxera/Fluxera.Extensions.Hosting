@@ -8,8 +8,6 @@ namespace Fluxera.Extensions.Hosting
 	using System.Threading.Tasks;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
-	using Fluxera.Guards;
-	using Fluxera.Utilities.Extensions;
 	using JetBrains.Annotations;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -94,7 +92,7 @@ namespace Fluxera.Extensions.Hosting
 		/// <inheritdoc />
 		public async Task RunAsync(string[] args)
 		{
-			Guard.Against.Null(args, nameof(args));
+			Guard.ThrowIfNull(args);
 
 			try
 			{
@@ -236,7 +234,7 @@ namespace Fluxera.Extensions.Hosting
 
 			foreach(string prefix in this.HostConfigurationEnvironmentVariablesPrefixes)
 			{
-				if(prefix.IsNotNullOrWhiteSpace())
+				if(!string.IsNullOrWhiteSpace(prefix))
 				{
 					configurationBuilder.AddEnvironmentVariables(prefix);
 				}
@@ -260,8 +258,7 @@ namespace Fluxera.Extensions.Hosting
 
 			if(string.IsNullOrEmpty(hostingEnvironment.ApplicationName))
 			{
-				// Note GetEntryAssembly returns null for the net4x console test runner.
-				hostingEnvironment.ApplicationName = Assembly.GetEntryAssembly()?.GetName().Name;
+				hostingEnvironment.ApplicationName = Assembly.GetEntryAssembly()?.GetName()?.Name ?? "(unknown)";
 			}
 
 			hostingEnvironment.ContentRootFileProvider = new PhysicalFileProvider(hostingEnvironment.ContentRootPath);

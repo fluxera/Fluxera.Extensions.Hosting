@@ -3,11 +3,9 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Reflection;
 	using Fluxera.Extensions.DependencyInjection;
 	using Fluxera.Extensions.Hosting.Modules;
 	using Fluxera.Extensions.Hosting.Plugins;
-	using Fluxera.Guards;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
@@ -33,10 +31,10 @@
 			IPluginSourceList pluginSources,
 			IReadOnlyCollection<IModuleDescriptor> modules)
 		{
-			Guard.Against.Null(startupModuleType, nameof(startupModuleType));
-			Guard.Against.Null(services, nameof(services));
-			Guard.Against.Null(pluginSources, nameof(pluginSources));
-			Guard.Against.Null(modules, nameof(modules));
+			Guard.ThrowIfNull(startupModuleType);
+			Guard.ThrowIfNull(services);
+			Guard.ThrowIfNull(pluginSources);
+			Guard.ThrowIfNull(modules);
 
 			this.StartupModuleType = startupModuleType;
 			this.Services = services;
@@ -78,7 +76,7 @@
 		/// <inheritdoc />
 		public virtual void Initialize(IApplicationLoaderInitializationContext context)
 		{
-			Guard.Against.Null(context, nameof(context));
+			Guard.ThrowIfNull(context);
 
 			this.ServiceProvider = context.ServiceProvider;
 

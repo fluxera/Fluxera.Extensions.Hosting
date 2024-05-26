@@ -2,10 +2,11 @@
 {
 	using System;
 	using System.Collections.Generic;
+#if NET6_0
+	using System.Collections.ObjectModel;
+#endif
 	using System.Linq;
 	using Fluxera.Extensions.Hosting.Plugins;
-	using Fluxera.Guards;
-	using Fluxera.Utilities.Extensions;
 	using Microsoft.Extensions.DependencyInjection;
 
 	internal sealed class ModuleLoader : IModuleLoader
@@ -15,14 +16,19 @@
 			IServiceCollection services,
 			IPluginSourceList pluginSources)
 		{
-			Guard.Against.Null(startupModuleType, nameof(startupModuleType));
-			Guard.Against.Null(services, nameof(services));
-			Guard.Against.Null(pluginSources, nameof(pluginSources));
+			Guard.ThrowIfNull(startupModuleType);
+			Guard.ThrowIfNull(services);
+			Guard.ThrowIfNull(pluginSources);
 
 			IList<IModuleDescriptor> modules = GetModuleDescriptors(services, startupModuleType, pluginSources);
 			modules = SortByDependency(modules, startupModuleType);
 
+#if NET6_0
+			return new ReadOnlyCollection<IModuleDescriptor>(modules);
+#endif
+#if NET7_0_OR_GREATER
 			return modules.AsReadOnly();
+#endif
 		}
 
 		private static IList<IModuleDescriptor> GetModuleDescriptors(

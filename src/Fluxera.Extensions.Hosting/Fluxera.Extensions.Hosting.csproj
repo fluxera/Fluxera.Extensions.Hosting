@@ -22,14 +22,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.Maui" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.AspNetCore" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.AspNetCore.TestHost" />
 		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.Blazor" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.Console" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.Maui" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.WindowsService" />
+		<InternalsVisibleTo Include="Fluxera.Extensions.Hosting.Wpf" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="8.2.0" />
-		<PackageReference Include="Fluxera.Guards" Version="8.0.2" />
-		<PackageReference Include="Fluxera.Utilities" Version="8.0.4" />
+		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="8.3.0" />
 		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

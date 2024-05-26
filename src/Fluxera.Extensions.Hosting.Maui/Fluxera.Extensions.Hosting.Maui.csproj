@@ -14,21 +14,21 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
-	  <WarningLevel>7</WarningLevel>
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<WarningLevel>7</WarningLevel>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
-	  <WarningLevel>7</WarningLevel>
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<WarningLevel>7</WarningLevel>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;NETSDK1023</NoWarn>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -48,7 +48,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="All" />
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.4" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
@@ -56,8 +56,8 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
 	</ItemGroup>
 
 	<ItemGroup>
