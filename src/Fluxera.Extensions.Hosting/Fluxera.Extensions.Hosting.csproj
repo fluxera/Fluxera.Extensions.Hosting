@@ -32,7 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="9.0.1" />
+		<PackageReference Include="Fluxera.Extensions.DependencyInjection" Version="9.0.2" />
 		<PackageReference Include="GitVersion.MsBuild" Version="6.0.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
