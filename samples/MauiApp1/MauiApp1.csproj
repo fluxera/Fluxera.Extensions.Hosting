@@ -60,15 +60,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
-		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.1.1" />
-		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.4" />
-		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.2.0" />
-		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="4.1.2" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="11.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="11.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="3.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="5.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="6.0.0" />
 		<PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.10" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.10" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.30" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<TargetFramework>net9.0</TargetFramework>
+		<!--<TargetFrameworks>net8.0;net9.0</TargetFrameworks>-->
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
+		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -11,24 +13,6 @@
 		<Description>A modular application host for .NET MAUI.</Description>
 		<PackageTags>library;extensions;hosting;modular;maui</PackageTags>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace(".Maui",""))</RootNamespace>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
-		<WarningLevel>7</WarningLevel>
-		<NoWarn>1701;1702;NETSDK1023</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
-		<WarningLevel>7</WarningLevel>
-		<NoWarn>1701;1702;NETSDK1023</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0|AnyCPU'">
-		<NoWarn>1701;1702;NETSDK1023</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0|AnyCPU'">
-		<NoWarn>1701;1702;NETSDK1023</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -43,18 +27,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="GitVersion.MsBuild" Version="6.0.5">
+		<PackageReference Include="GitVersion.MsBuild" Version="6.1.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="All" />
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.10" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.30" />
 	</ItemGroup>
 
 	<ItemGroup>
